@@ -1,0 +1,125 @@
+/* =========================
+   ROOT PAGE CONTAINER
+========================= */
+.home-page {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+}
+
+/* =========================
+   VIDEO BACKGROUND
+========================= */
+.home-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    /* Smooth crossfade */
+    opacity: 0;
+    transition: opacity 0.25s linear;
+
+    /* Performance */
+    will-change: opacity;
+    transform: translateZ(0);
+}
+
+/* Active video */
+.home-video.visible {
+    opacity: 1;
+}
+
+/* =========================
+   DARK OVERLAY (READABILITY)
+========================= */
+.home-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.55),
+        rgba(0, 0, 0, 0.25),
+        rgba(0, 0, 0, 0.6)
+    );
+    z-index: 2;
+}
+
+/* =========================
+   CONTENT
+========================= */
+.home-content {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    color: #ffffff;
+    padding: 1rem;
+}
+
+/* Title */
+.home-title {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    line-height: 1;
+}
+
+.home-title span {
+    display: block;
+}
+
+/* Tagline */
+.home-tagline {
+    margin-top: 1rem;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    opacity: 0.85;
+}
+
+/* =========================
+   RESPONSIVE TUNING
+========================= */
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .home-title {
+        letter-spacing: 0.12em;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .home-content {
+        padding: 1.5rem;
+    }
+
+    .home-title {
+        font-size: clamp(2rem, 9vw, 3rem);
+        letter-spacing: 0.1em;
+    }
+
+    .home-tagline {
+        font-size: 1rem;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .home-overlay {
+        background: rgba(0, 0, 0, 0.6);
+    }
+
+    .home-title {
+        font-size: 2rem;
+        letter-spacing: 0.08em;
+    }
+}
