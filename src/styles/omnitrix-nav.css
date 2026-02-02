@@ -1,345 +1,520 @@
-/* ============================================
-   OMNITRIX NAV - ANIMATIONS & TRANSITIONS
-   ============================================ */
+/* =====================================================
+   OMNITRIX NAV — COMPACT MOVABLE EDITION
+   ===================================================== */
 
-/* === PERSPECTIVE & 3D TRANSFORMS === */
-.perspective-1000 {
-    perspective: 1000px;
+:root {
+  --omni-green: #22c55e;
+  --omni-glow: #4ade80;
+  --omni-dark: #020617;
+  --holo-alpha: rgba(74, 222, 128, 0.75);
 }
 
-/* === GALACTIC PANEL ANIMATIONS === */
-.galactic-panel {
-    animation: panelSlideIn 0.7s ease-out;
+/* ======================
+   MOVABLE ROOT
+   ====================== */
+.omni-wrapper {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+
+  /* movable support */
+  touch-action: none;
+  cursor: grab;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-@keyframes panelSlideIn {
-    from {
-        opacity: 0;
-        transform: translateX(60px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+/* When centered (open state) */
+.omni-wrapper.centered {
+  cursor: default;
+  touch-action: auto;
 }
 
-.scan-line {
-    animation: scan 4s linear infinite;
+
+.omni-wrapper:active {
+  cursor: grabbing;
 }
 
-@keyframes scan {
-    0% {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
-
-    50% {
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateY(100%);
-        opacity: 0;
-    }
+/* ======================
+   CLOSED OMNITRIX LOGO
+   ====================== */
+.omni-logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #020617 60%, #000 100%);
+  border: 3px solid var(--omni-green);
+  box-shadow:
+    0 0 16px var(--omni-glow),
+    inset 0 0 10px rgba(74, 222, 128, 0.35);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  animation: pulse-glow 2.5s ease-in-out infinite;
 }
 
-/* === OMNITRIX 3D ANIMATIONS === */
+.logo-core {
+  width: 18px;
+  height: 18px;
+  background: var(--omni-green);
+  border-radius: 50%;
+  box-shadow: 0 0 14px var(--omni-glow);
+}
+
+/* ======================
+   OPEN STATE
+   ====================== */
+.omni-open {
+  position: relative;
+  width: 220px;
+  height: 220px;
+}
+
+/* ======================
+   OMNITRIX RING
+   ====================== */
+.omni-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 4px solid rgba(34, 197, 94, 0.25);
+  box-shadow:
+    inset 0 0 16px rgba(74, 222, 128, 0.25),
+    0 0 18px rgba(74, 222, 128, 0.25);
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.ring-item {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: center;
+  font-size: 24px;
+  opacity: 0.45;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -22.5px;
+  margin-top: -22.5px;
+  background: rgba(2, 6, 23, 0.6);
+  border-radius: 50%;
+  border: 2px solid rgba(34, 197, 94, 0.3);
+}
+
+.ring-item.active {
+  opacity: 1;
+  font-size: 28px;
+  background: rgba(2, 6, 23, 0.9);
+  border-color: var(--omni-green);
+  box-shadow:
+    0 0 20px rgba(74, 222, 128, 0.6),
+    inset 0 0 10px rgba(74, 222, 128, 0.3);
+}
+
+/* ======================
+   CENTER CORE
+   ====================== */
+.omni-core {
+  position: absolute;
+  inset: 64px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #020617 55%, #000 100%);
+  border: 3px solid var(--omni-green);
+  box-shadow:
+    inset 0 0 16px var(--omni-glow),
+    0 0 18px rgba(74, 222, 128, 0.45);
+  cursor: pointer;
+}
+
+/* ======================
+   HOLOGRAM PROJECTION
+   ====================== */
+.holo {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  animation: holo-float 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* LIGHT BEAM */
+.holo::before {
+  content: "";
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 120px;
+  background: linear-gradient(to top,
+      transparent,
+      rgba(74, 222, 128, 0.15),
+      transparent);
+  filter: blur(6px);
+}
+
+.holo-icon {
+  font-size: 42px;
+  color: var(--omni-glow);
+  text-shadow:
+    0 0 18px var(--omni-glow),
+    0 0 32px rgba(74, 222, 128, 0.6);
+}
+
+.holo-text {
+  margin-top: 6px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  color: #eafff3;
+  text-shadow: 0 0 14px var(--omni-glow);
+}
+
+/* ======================
+   CONTROLS (DESKTOP ONLY)
+   ====================== */
+.ctrl {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 2px solid var(--omni-green);
+  color: var(--omni-green);
+  width: 28px;
+  height: 48px;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(74, 222, 128, 0.4);
+}
+
+.ctrl.left {
+  left: -36px;
+}
+
+.ctrl.right {
+  right: -36px;
+}
+
+/* ======================
+   ANIMATIONS
+   ====================== */
 @keyframes holo-float {
 
-    0%,
-    100% {
-        transform: translateY(0px) rotateX(-30deg) scale(1);
-    }
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
 
-    50% {
-        transform: translateY(-20px) rotateX(-30deg) scale(1.05);
-    }
-}
-
-@keyframes digital-flicker {
-    0% {
-        opacity: 0.9;
-        transform: skewX(0deg);
-    }
-
-    10% {
-        opacity: 0.4;
-        transform: skewX(2deg);
-    }
-
-    20% {
-        opacity: 0.9;
-        transform: skewX(0deg);
-    }
-
-    50% {
-        opacity: 0.8;
-        transform: skewX(-1deg);
-    }
-
-    100% {
-        opacity: 1;
-        transform: skewX(0deg);
-    }
-}
-
-@keyframes beam-sparkle {
-    0% {
-        opacity: 0.3;
-        transform: scaleX(1);
-    }
-
-    50% {
-        opacity: 0.6;
-        transform: scaleX(1.1);
-    }
-
-    100% {
-        opacity: 0.3;
-        transform: scaleX(1);
-    }
-}
-
-/* === ROTATION & WHEEL ANIMATIONS === */
-@keyframes metallic-shine {
-    0% {
-        background-position: -200% center;
-    }
-
-    100% {
-        background-position: 200% center;
-    }
+  50% {
+    transform: translate(-50%, -12px);
+  }
 }
 
 @keyframes pulse-glow {
 
-    0%,
-    100% {
-        box-shadow: 0 0 20px rgba(34, 197, 94, 0.4),
-            0 0 40px rgba(34, 197, 94, 0.2);
-    }
+  0%,
+  100% {
+    box-shadow:
+      0 0 14px rgba(74, 222, 128, 0.45),
+      inset 0 0 10px rgba(74, 222, 128, 0.35);
+  }
 
-    50% {
-        box-shadow: 0 0 30px rgba(34, 197, 94, 0.6),
-            0 0 60px rgba(34, 197, 94, 0.4);
-    }
+  50% {
+    box-shadow:
+      0 0 26px rgba(74, 222, 128, 0.75),
+      inset 0 0 18px rgba(74, 222, 128, 0.6);
+  }
 }
 
-@keyframes pulse-glow-red {
+/* ===============================
+   HOLOGRAM PROJECTOR (BEN 10)
+   =============================== */
 
-    0%,
-    100% {
-        box-shadow: 0 0 20px rgba(239, 68, 68, 0.4),
-            0 0 40px rgba(239, 68, 68, 0.2);
-    }
-
-    50% {
-        box-shadow: 0 0 30px rgba(239, 68, 68, 0.6),
-            0 0 60px rgba(239, 68, 68, 0.4);
-    }
+.holo-projector {
+  position: absolute;
+  top: -180px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 200px;
+  pointer-events: none;
 }
 
-/* === SELECTION FLASH ANIMATION === */
-@keyframes selection-flash {
-    0% {
-        background-color: rgba(34, 197, 94, 0.2);
-        border-color: #22c55e;
-    }
+/* GREEN LIGHT CONE */
+.holo-beam {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 200px;
 
-    25% {
-        background-color: rgba(239, 68, 68, 0.4);
-        border-color: #ef4444;
-    }
+  background: linear-gradient(to top,
+      rgba(34, 197, 94, 0.6),
+      rgba(34, 197, 94, 0.3),
+      rgba(34, 197, 94, 0.1),
+      transparent);
 
-    50% {
-        background-color: rgba(239, 68, 68, 0.6);
-        border-color: #dc2626;
-    }
+  clip-path: polygon(50% 100%,
+      0% 0%,
+      100% 0%);
 
-    75% {
-        background-color: rgba(239, 68, 68, 0.4);
-        border-color: #ef4444;
-    }
-
-    100% {
-        background-color: rgba(34, 197, 94, 0.2);
-        border-color: #22c55e;
-    }
+  filter: blur(12px);
+  animation: beam-flicker 2.8s infinite;
 }
 
-/* === ICON & LABEL ANIMATIONS === */
-@keyframes icon-bounce {
-
-    0%,
-    100% {
-        transform: scale(1) rotate(0deg);
-    }
-
-    25% {
-        transform: scale(1.2) rotate(-5deg);
-    }
-
-    75% {
-        transform: scale(0.9) rotate(5deg);
-    }
+/* Add a sharper inner beam */
+.holo-beam::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 200px;
+  background: linear-gradient(to top,
+      rgba(74, 222, 128, 0.8),
+      rgba(74, 222, 128, 0.4),
+      rgba(74, 222, 128, 0.15),
+      transparent);
+  clip-path: polygon(50% 100%,
+      0% 0%,
+      100% 0%);
+  filter: blur(4px);
 }
 
-@keyframes label-shine {
-    0% {
-        background-position: -200% center;
-        text-shadow: 0 0 15px rgba(34, 197, 94, 0.8),
-            0 0 30px rgba(34, 197, 94, 0.4);
-    }
 
-    50% {
-        background-position: 200% center;
-        text-shadow: 0 0 20px rgba(34, 197, 94, 1),
-            0 0 40px rgba(34, 197, 94, 0.6);
-    }
-
-    100% {
-        background-position: -200% center;
-        text-shadow: 0 0 15px rgba(34, 197, 94, 0.8),
-            0 0 30px rgba(34, 197, 94, 0.4);
-    }
+/* FLOATING CONTENT */
+.holo-content {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  animation: holo-float 3s ease-in-out infinite;
+  z-index: 5;
 }
 
-/* === CIRCUIT BACKGROUND PATTERN === */
-.circuit-bg {
-    background-image: radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0);
-    background-size: 12px 12px;
-    animation: circuit-flow 20s linear infinite;
+/* ALIEN / ICON */
+.holo-icon {
+  font-size: 56px;
+  color: #7cffb2;
+  text-shadow:
+    0 0 20px rgba(34, 197, 94, 0.9),
+    0 0 40px rgba(34, 197, 94, 0.6);
+  animation: holo-flicker 2.5s infinite;
 }
 
-@keyframes circuit-flow {
-    0% {
-        background-position: 0 0;
-    }
-
-    100% {
-        background-position: 12px 12px;
-    }
+/* LABEL INSIDE LIGHT */
+.holo-text {
+  margin-top: 6px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  color: #eafff3;
+  text-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
 }
 
-/* === METALLIC RING === */
-.metallic-ring {
-    background: linear-gradient(135deg, #444, #888 50%, #444);
-    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5),
-        0 10px 30px rgba(0, 0, 0, 0.8);
-    position: relative;
+/* OPTIONAL ALIEN IMAGE */
+.alien-silhouette {
+  width: 70px;
+  height: auto;
+  filter:
+    drop-shadow(0 0 20px rgba(34, 197, 94, 0.8)) brightness(1.2);
 }
 
-.metallic-ring::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    border-radius: inherit;
-    animation: metallic-shine 3s linear infinite;
-    pointer-events: none;
+/* ===============================
+   ANIMATIONS
+   =============================== */
+
+@keyframes holo-float {
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-12px);
+  }
 }
 
-/* === SCROLLBAR HIDE === */
-.scrollbar-hide::-webkit-scrollbar {
-    display: none;
+@keyframes holo-flicker {
+  0% {
+    opacity: 1;
+  }
+
+  15% {
+    opacity: 0.6;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  45% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
-.scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+@keyframes beam-flicker {
+
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
-/* === BUTTON HOVER EFFECTS === */
-@keyframes button-pulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
-    }
-
-    50% {
-        transform: scale(1.05);
-        box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
-    }
+/* ======================
+   CENTER ACTIVATE BUTTON
+   ====================== */
+.omni-activate {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #020617 55%, #000 100%);
+  border: 3px solid var(--omni-green);
+  box-shadow:
+    inset 0 0 16px rgba(74, 222, 128, 0.4),
+    0 0 18px rgba(74, 222, 128, 0.5);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  transition: all 0.3s ease;
+  z-index: 10;
 }
 
-/* === GRID BACKGROUND === */
-@keyframes grid-shift {
-    0% {
-        background-position: 0 0;
-    }
-
-    100% {
-        background-position: 40px 40px;
-    }
+.omni-activate:hover {
+  background: radial-gradient(circle, #0a1829 55%, #000 100%);
+  border-color: var(--omni-glow);
+  box-shadow:
+    inset 0 0 24px rgba(74, 222, 128, 0.6),
+    0 0 28px rgba(74, 222, 128, 0.8);
+  transform: translate(-50%, -50%) scale(1.05);
 }
 
-/* === RESPONSIVE ANIMATIONS === */
+.omni-activate:active {
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+.activate-icon {
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--omni-green);
+  text-shadow: 0 0 10px var(--omni-glow);
+  line-height: 1;
+}
+
+.activate-text {
+  font-size: 0.5rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: var(--omni-green);
+  text-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
+}
+
+.omni-activate:hover .activate-icon,
+.omni-activate:hover .activate-text {
+  color: var(--omni-glow);
+  text-shadow: 0 0 16px var(--omni-glow);
+}
+
+
+
+
+/* ======================
+   REDUCED MOTION
+   ====================== */
 @media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
-/* === MOBILE OPTIMIZATIONS === */
 @media (max-width: 768px) {
-    .scan-line {
-        animation-duration: 3s;
-    }
+  .omni-wrapper {
+    top: 12px;
+    left: 12px;
+  }
 
-    @keyframes holo-float {
+  .omni-wrapper.centered {
+    transform: translate(-50%, -50%) !important;
+  }
 
-        0%,
-        100% {
-            transform: translateY(0px) rotateX(-30deg) scale(0.95);
-        }
+  /* Adjust for mobile screens */
+  .omni-open {
+    width: 200px;
+    height: 200px;
+  }
 
-        50% {
-            transform: translateY(-15px) rotateX(-30deg) scale(1);
-        }
-    }
-}
+  /* Reduce hologram projection height on mobile */
+  .holo-projector {
+    top: -150px;
+    height: 170px;
+  }
 
-/* === DESKTOP ENHANCEMENTS === */
-@media (min-width: 1024px) {
-    .metallic-ring:hover::before {
-        animation-duration: 1.5s;
-    }
+  .holo-beam,
+  .holo-beam::before {
+    height: 170px;
+  }
 
-    @keyframes holo-float {
+  .holo-content {
+    top: 10px;
+  }
 
-        0%,
-        100% {
-            transform: translateY(0px) rotateX(-30deg) scale(1);
-        }
+  .holo-icon {
+    font-size: 48px;
+  }
 
-        50% {
-            transform: translateY(-25px) rotateX(-30deg) scale(1.08);
-        }
-    }
-}
+  .holo-text {
+    font-size: 0.65rem;
+  }
 
-/* === UTILITY CLASSES === */
-.transition-all-smooth {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
+  /* Smaller ring items on mobile */
+  .ring-item {
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    margin-left: -20px;
+    margin-top: -20px;
+  }
 
-.transition-transform-smooth {
-    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-}
+  .ring-item.active {
+    font-size: 24px;
+  }
 
-.transition-colors-smooth {
-    transition: color 0.3s ease,
-        background-color 0.3s ease,
-        border-color 0.3s ease;
+  /* Smaller activate button on mobile */
+  .omni-activate {
+    width: 58px;
+    height: 58px;
+  }
+
+  .activate-icon {
+    font-size: 18px;
+  }
+
+  .activate-text {
+    font-size: 0.45rem;
+  }
 }
