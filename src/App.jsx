@@ -1,19 +1,26 @@
-import { useState } from "react"
-import IntroPage from "./pages/IntroPage"
-import HomePage from "./pages/HomePage"
+import { useState } from "react";
+import IntroPage from "./pages/IntroPage";
+import Header from "./components/Header";
+import Home from "./pages/HomePage";
+import OmnitrixBackground from "./components/OmnitrixBackground";
 
 function App() {
-  const [introComplete, setIntroComplete] = useState(false)
+  const [showIntro, setShowIntro] = useState(true);
 
   return (
-    <>
-      {!introComplete ? (
-        <IntroPage onStart={() => setIntroComplete(true)} />
+    <div className="min-h-screen bg-black">
+      <OmnitrixBackground />
+
+      {showIntro ? (
+        <IntroPage onStart={() => setShowIntro(false)} />
       ) : (
-        <HomePage />
+        <>
+          <Header />
+          <Home />
+        </>
       )}
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;

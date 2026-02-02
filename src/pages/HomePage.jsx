@@ -1,7 +1,23 @@
-import OmnitrixNav from "../components/omnitrixNav"
+import { motion } from "framer-motion";
+import "../styles/home.css";
 
-export default function HomePage() {
-    // OmnitrixNav is a full-page component with its own layout
-    // It includes the title, 3D Omnitrix, and AI panel
-    return <OmnitrixNav />
+export default function Home() {
+  return (
+    <motion.div
+      className="home-page"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+    >
+      <div className="home-overlay"></div>
+
+      <div className="home-content">
+        <h1 className="home-title">
+          <span>OMNI</span>
+          <span>TECH</span>
+        </h1>
+        <p className="home-tagline">Future Activated</p>
+      </div>
+    </motion.div>
+  );
 }
