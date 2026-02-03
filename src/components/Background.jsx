@@ -1,8 +1,24 @@
-
 import React, { useRef, useEffect } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import alienBg from "../assets/alien-x-new.png";
 
 const Background = () => {
   const canvasRef = useRef(null);
+
+  // Parallax mouse tracking for Alien X
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springX = useSpring(mouseX, { damping: 50, stiffness: 400 });
+  const springY = useSpring(mouseY, { damping: 50, stiffness: 400 });
+  const moveX = useTransform(springX, [-0.5, 0.5], ["-2%", "2%"]);
+  const moveY = useTransform(springY, [-0.5, 0.5], ["-2%", "2%"]);
+  const rotateX = useTransform(springY, [-0.5, 0.5], [2, -2]);
+  const rotateY = useTransform(springX, [-0.5, 0.5], [-2, 2]);
+
+  const handleMouseMove = (e) => {
+    mouseX.set(e.clientX / window.innerWidth - 0.5);
+    mouseY.set(e.clientY / window.innerHeight - 0.5);
+  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -154,7 +170,33 @@ const Background = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="absolute inset-0 z-0"></canvas>;
+  return (
+    <>
+      {/* Alien X Background */}
+      <motion.img
+        src={alienBg}
+        alt="Alien X"
+        className="home-alien-image"
+        style={{ x: moveX, y: moveY, rotateX, rotateY }}
+        animate={{
+          scale: [1, 1.05, 1],
+          filter: [
+            "brightness(0.7) contrast(1.1)",
+            "brightness(1) contrast(1.2)",
+            "brightness(0.7) contrast(1.1)",
+          ],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          repeatType: "mirror",
+          ease: "easeInOut",
+        }}
+        onMouseMove={handleMouseMove}
+      />
+      <canvas ref={canvasRef} className="absolute inset-0 z-0"></canvas>
+    </>
+  );
 };
 
 export default Background;  

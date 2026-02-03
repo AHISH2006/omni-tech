@@ -1,104 +1,62 @@
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import OmnitrixBackground from "../components/Background";
 import omniText from "../assets/omni-tech-full.png";
 import deptLogo1 from "../assets/dept-logo-1.png";
 import deptLogo2 from "../assets/dept-logo-2.png";
-import alienBg from "../assets/alien-x-new.png"
-
-
-
 import "../styles/home.css";
 
 export default function HomePage() {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  // Smooth springs for the parallax movement
-  const springX = useSpring(mouseX, { damping: 50, stiffness: 400 });
-  const springY = useSpring(mouseY, { damping: 50, stiffness: 400 });
-
-  // Map mouse position to movement ranges
-  const moveX = useTransform(springX, [-0.5, 0.5], ["-2%", "2%"]);
-  const moveY = useTransform(springY, [-0.5, 0.5], ["-2%", "2%"]);
-  const rotateX = useTransform(springY, [-0.5, 0.5], [2, -2]); // Subtle tilt
-  const rotateY = useTransform(springX, [-0.5, 0.5], [-2, 2]); // Subtle tilt
-
-  const handleMouseMove = (e) => {
-    const { clientX, clientY } = e;
-    const { innerWidth, innerHeight } = window;
-    // Normalize to -0.5 to 0.5
-    mouseX.set(clientX / innerWidth - 0.5);
-    mouseY.set(clientY / innerHeight - 0.5);
-  };
   return (
-    <div className="home-page" onMouseMove={handleMouseMove}>
-      {/* =========================
-          CINEMATIC BACKGROUND
-      ========================= */}
+    <div className="home-page">
       <OmnitrixBackground />
-
-      {/* Alien X Image Element */}
-      <motion.img
-        src={alienBg}
-        alt="Alien X"
-        className="home-alien-image"
-        style={{
-          x: moveX,
-          y: moveY,
-          rotateX: rotateX,
-          rotateY: rotateY,
-        }}
-        animate={{
-          scale: [1, 1.05, 1],
-          filter: [
-            "brightness(0.7) contrast(1.1)",
-            "brightness(1) contrast(1.2)",
-            "brightness(0.7) contrast(1.1)",
-          ],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          repeatType: "mirror",
-          ease: "easeInOut",
-        }}
-      />
-
-      {/* =========================
-          FOREGROUND CONTENT
-      ========================= */}
+      {/* Foreground */}
       <div className="home-entry">
-        {/* TOP DEPARTMENT LOGOS */}
+
         <motion.div
-          className="dept-logos-row"
+          className="header-section"
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.8, duration: 0.8 }}
         >
-          <img src={deptLogo1} alt="Tech Titans" className="dept-logo" />
-          <img src={deptLogo2} alt="Into Zen" className="dept-logo" />
+          <div className="dept-logos-row">
+            <a className="logo-link">
+              <img src={deptLogo1} alt="Tech Titans" className="dept-logo" />
+            </a>
+            <a className="logo-link">
+              <img src={deptLogo2} alt="Into Zen" className="dept-logo" />
+            </a>
+          </div>
+
+          <a className="college-logo-link">
+            <div className="college-logo-placeholder">
+              <span>College Logo</span>
+            </div>
+          </a>
         </motion.div>
 
-        {/* OMNI LOGO SYSTEM */}
-        <div className="logo-container">
-          {/* OMNI-O */}
+    
+        {/* Heading (NO JSX WHITESPACE GAPS) */}
+    <motion.div className="full-home">
+        <motion.h1
+          className="dept-heading"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.0, duration: 0.8 }}
+        >
+          DEPARTMENTS OF ARTIFICIAL INTELLIGENCE AND DATA SCIENCE<br />
+          &amp; INFORMATION TECHNOLOGY PRESENT
+        </motion.h1>
 
+        {/* Omni Tech */}
+        <motion.img
+          src={omniText}
+          className="omni-text-integrated"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
+        />
 
-          {/* OMNI-TECH TEXT */}
-          <motion.img
-            src={omniText}
-            className="omni-text-integrated"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              delay: 1.2,
-              duration: 0.8,
-              ease: "easeOut",
-            }}
-          />
-        </div>
-
-        {/* SUBTITLE */}
+        {/* Subtitle */}
         <motion.p
           className="subtitle"
           initial={{ opacity: 0, y: 20 }}
@@ -108,7 +66,7 @@ export default function HomePage() {
           A National Level Inter-College Symposium
         </motion.p>
 
-        {/* EVENT INFO */}
+        {/* Event Info */}
         <motion.div
           className="event-info"
           initial={{ opacity: 0 }}
@@ -124,6 +82,7 @@ export default function HomePage() {
             <span className="venue-icon">📍</span>
             <span className="venue-text">Your College Name</span>
           </div>
+        </motion.div>
         </motion.div>
       </div>
     </div>
