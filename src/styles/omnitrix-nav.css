@@ -1,10 +1,7 @@
-/* =====================================================
-   OMNITRIX NAV — COMPACT MOVABLE EDITION
-   ===================================================== */
 
 :root {
   --omni-green: #22c55e;
-  --omni-glow: #4ade80;
+  --omni-glow: #54de4a;
   --omni-dark: #020617;
   --holo-alpha: rgba(74, 222, 128, 0.75);
 }
@@ -111,7 +108,7 @@
   background: rgba(2, 6, 23, 0.9);
   border-color: var(--omni-green);
   box-shadow:
-    0 0 20px rgba(74, 222, 128, 0.6),
+    0 0 20px rgba(55, 235, 45, 0.6),
     inset 0 0 10px rgba(74, 222, 128, 0.3);
 }
 
@@ -154,7 +151,7 @@
   height: 120px;
   background: linear-gradient(to top,
       transparent,
-      rgba(74, 222, 128, 0.15),
+      rgba(99, 222, 74, 0.15),
       transparent);
   filter: blur(6px);
 }
@@ -251,7 +248,7 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 30px;
+  width: 200px;
   height: 200px;
 
   background: linear-gradient(to top,
@@ -517,4 +514,5 @@
   .activate-text {
     font-size: 0.45rem;
   }
+  
 }

@@ -7,13 +7,16 @@ const OPTIONS = [
     { id: "about", label: "ABOUT", icon: "👽" },
     { id: "events", label: "EVENTS", icon: "🧬" },
     { id: "workshops", label: "WORKSHOPS", icon: "⚙️" },
-    { id: "papers", label: "PAPERS", icon: "📜" },
+    { id: "technical", label: "TECHNICAL", icon: "⚡" },
+    { id: "non-technical", label: "NON-TECHNICAL", icon: "🎮" },
+    { id: "pakages", label: "PACKAGES", icon: "💎" }
 ]
 
 
 export default function OmnitrixNav({ onNavigate }) {
     const [open, setOpen] = useState(false)
     const [active, setActive] = useState(0)
+    const [rotation, setRotation] = useState(0) // Track cumulative rotation
 
     /* MOVABLE POSITION */
     const [pos, setPos] = useState({ x: 40, y: 40 })
@@ -80,8 +83,10 @@ export default function OmnitrixNav({ onNavigate }) {
         return () => window.removeEventListener("keydown", onKey)
     }, [open, active])
 
-    const rotate = (dir) =>
+    const rotate = (dir) => {
         setActive((p) => (p + dir + OPTIONS.length) % OPTIONS.length)
+        setRotation((r) => r - dir * step) // Rotate in circular direction
+    }
 
     const activate = () => {
         setOpen(false)
@@ -155,7 +160,7 @@ export default function OmnitrixNav({ onNavigate }) {
                     {/* RING */}
                     <div
                         className="omni-ring"
-                        style={{ transform: `rotate(${-active * step}deg)` }}
+                        style={{ transform: `rotate(${rotation}deg)` }}
                     >
                         {OPTIONS.map((o, i) => (
                             <div
@@ -165,6 +170,9 @@ export default function OmnitrixNav({ onNavigate }) {
                                     transform: `rotate(${i * step}deg) translateY(-85px)`,
                                 }}
                                 onClick={() => {
+                                    const diff = i - active
+                                    const shortestPath = diff > OPTIONS.length / 2 ? diff - OPTIONS.length : diff < -OPTIONS.length / 2 ? diff + OPTIONS.length : diff
+                                    setRotation((r) => r - shortestPath * step)
                                     setActive(i)
                                 }}
                             >
