@@ -1,66 +1,102 @@
-
 :root {
   --omni-green: #22c55e;
   --omni-glow: #54de4a;
   --omni-dark: #020617;
-  --holo-alpha: rgba(74, 222, 128, 0.75);
 }
 
 /* ======================
-   MOVABLE ROOT
-   ====================== */
+   OVERLAY
+====================== */
+.omni-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 999;
+  backdrop-filter: blur(4px);
+}
+
+/* ======================
+   WRAPPER
+====================== */
 .omni-wrapper {
   position: fixed;
   top: 20px;
   left: 20px;
   z-index: 1000;
-
-  /* movable support */
   touch-action: none;
   cursor: grab;
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* When centered (open state) */
 .omni-wrapper.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   cursor: default;
-  touch-action: auto;
+}
+
+@media (max-width: 768px) {
+  .omni-wrapper.centered {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .omni-open {
+    width: 180px;
+    height: 180px;
+  }
+
+  .ring-item {
+    width: 38px;
+    height: 38px;
+    margin-left: -19px;
+    margin-top: -19px;
+    font-size: 20px;
+  }
+
+  .omni-activate {
+    width: 56px;
+    height: 56px;
+  }
+
+  .holo-projector {
+    top: -150px;
+  }
+
+  .holo-icon {
+    font-size: 44px;
+  }
+
+  .holo-text {
+    font-size: 0.65rem;
+  }
 }
 
 
-.omni-wrapper:active {
-  cursor: grabbing;
-}
 
 /* ======================
-   CLOSED OMNITRIX LOGO
-   ====================== */
+   CLOSED LOGO
+====================== */
 .omni-logo {
   width: 64px;
   height: 64px;
   border-radius: 50%;
   background: radial-gradient(circle, #020617 60%, #000 100%);
   border: 3px solid var(--omni-green);
-  box-shadow:
-    0 0 16px var(--omni-glow),
-    inset 0 0 10px rgba(74, 222, 128, 0.35);
+  box-shadow: 0 0 16px var(--omni-glow);
   display: grid;
   place-items: center;
   cursor: pointer;
-  animation: pulse-glow 2.5s ease-in-out infinite;
 }
 
-.logo-core {
-  width: 18px;
-  height: 18px;
-  background: var(--omni-green);
-  border-radius: 50%;
-  box-shadow: 0 0 14px var(--omni-glow);
+.omni-logo img {
+  width: 42px;
 }
 
 /* ======================
-   OPEN STATE
-   ====================== */
+   OPEN CONTAINER
+====================== */
 .omni-open {
   position: relative;
   width: 220px;
@@ -68,451 +104,107 @@
 }
 
 /* ======================
-   OMNITRIX RING
-   ====================== */
+   RING
+====================== */
 .omni-ring {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 4px solid rgba(34, 197, 94, 0.25);
-  box-shadow:
-    inset 0 0 16px rgba(74, 222, 128, 0.25),
-    0 0 18px rgba(74, 222, 128, 0.25);
-  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  border: 4px solid rgba(34, 197, 94, 0.3);
+  touch-action: none;
+  cursor: grab;
+}
+
+.omni-ring:active {
+  cursor: grabbing;
 }
 
 .ring-item {
   position: absolute;
-  left: 50%;
   top: 50%;
+  left: 50%;
   transform-origin: center;
-  font-size: 24px;
-  opacity: 0.45;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  width: 45px;
-  height: 45px;
+  width: 44px;
+  height: 44px;
+  margin-left: -22px;
+  margin-top: -22px;
+  border-radius: 50%;
+  background: rgba(2, 6, 23, 0.7);
+  border: 2px solid rgba(34, 197, 94, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: -22.5px;
-  margin-top: -22.5px;
-  background: rgba(2, 6, 23, 0.6);
-  border-radius: 50%;
-  border: 2px solid rgba(34, 197, 94, 0.3);
+  opacity: 0.5;
+  cursor: pointer;
 }
 
 .ring-item.active {
   opacity: 1;
-  font-size: 28px;
-  background: rgba(2, 6, 23, 0.9);
   border-color: var(--omni-green);
-  box-shadow:
-    0 0 20px rgba(55, 235, 45, 0.6),
-    inset 0 0 10px rgba(74, 222, 128, 0.3);
+  box-shadow: 0 0 16px var(--omni-glow);
 }
 
 /* ======================
-   CENTER CORE
-   ====================== */
-.omni-core {
+   HOLOGRAM
+====================== */
+.holo-projector {
   position: absolute;
-  inset: 64px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #020617 55%, #000 100%);
-  border: 3px solid var(--omni-green);
-  box-shadow:
-    inset 0 0 16px var(--omni-glow),
-    0 0 18px rgba(74, 222, 128, 0.45);
-  cursor: pointer;
-}
-
-/* ======================
-   HOLOGRAM PROJECTION
-   ====================== */
-.holo {
-  position: absolute;
-  top: -100px;
+  top: -170px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  animation: holo-float 3s ease-in-out infinite;
   pointer-events: none;
-}
-
-/* LIGHT BEAM */
-.holo::before {
-  content: "";
-  position: absolute;
-  top: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90px;
-  height: 120px;
-  background: linear-gradient(to top,
-      transparent,
-      rgba(99, 222, 74, 0.15),
-      transparent);
-  filter: blur(6px);
-}
-
-.holo-icon {
-  font-size: 42px;
-  color: var(--omni-glow);
-  text-shadow:
-    0 0 18px var(--omni-glow),
-    0 0 32px rgba(74, 222, 128, 0.6);
-}
-
-.holo-text {
-  margin-top: 6px;
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.25em;
-  color: #eafff3;
-  text-shadow: 0 0 14px var(--omni-glow);
-}
-
-/* ======================
-   CONTROLS (DESKTOP ONLY)
-   ====================== */
-.ctrl {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  border: 2px solid var(--omni-green);
-  color: var(--omni-green);
-  width: 28px;
-  height: 48px;
-  cursor: pointer;
-  box-shadow: 0 0 12px rgba(74, 222, 128, 0.4);
-}
-
-.ctrl.left {
-  left: -36px;
-}
-
-.ctrl.right {
-  right: -36px;
-}
-
-/* ======================
-   ANIMATIONS
-   ====================== */
-@keyframes holo-float {
-
-  0%,
-  100% {
-    transform: translate(-50%, 0);
-  }
-
-  50% {
-    transform: translate(-50%, -12px);
-  }
-}
-
-@keyframes pulse-glow {
-
-  0%,
-  100% {
-    box-shadow:
-      0 0 14px rgba(74, 222, 128, 0.45),
-      inset 0 0 10px rgba(74, 222, 128, 0.35);
-  }
-
-  50% {
-    box-shadow:
-      0 0 26px rgba(74, 222, 128, 0.75),
-      inset 0 0 18px rgba(74, 222, 128, 0.6);
-  }
-}
-
-/* ===============================
-   HOLOGRAM PROJECTOR (BEN 10)
-   =============================== */
-
-.holo-projector {
-  position: absolute;
-  top: -180px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 160px;
+  width: 200px;
   height: 200px;
-  pointer-events: none;
 }
 
-/* GREEN LIGHT CONE */
 .holo-beam {
   position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   width: 200px;
   height: 200px;
-
-  background: linear-gradient(to top,
-      rgba(34, 197, 94, 0.6),
-      rgba(34, 197, 94, 0.3),
-      rgba(34, 197, 94, 0.1),
-      transparent);
-
-  clip-path: polygon(50% 100%,
-      0% 0%,
-      100% 0%);
-
-  filter: blur(12px);
-  animation: beam-flicker 2.8s infinite;
+  background: linear-gradient(to top, rgba(34, 197, 94, .6), transparent);
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  filter: blur(10px);
+  z-index: 1;
 }
 
-/* Add a sharper inner beam */
-.holo-beam::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 200px;
-  background: linear-gradient(to top,
-      rgba(74, 222, 128, 0.8),
-      rgba(74, 222, 128, 0.4),
-      rgba(74, 222, 128, 0.15),
-      transparent);
-  clip-path: polygon(50% 100%,
-      0% 0%,
-      100% 0%);
-  filter: blur(4px);
-}
-
-
-/* FLOATING CONTENT */
-.holo-content {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  animation: holo-float 3s ease-in-out infinite;
-  z-index: 5;
-}
-
-/* ALIEN / ICON */
 .holo-icon {
-  font-size: 56px;
-  color: #7cffb2;
-  text-shadow:
-    0 0 20px rgba(34, 197, 94, 0.9),
-    0 0 40px rgba(34, 197, 94, 0.6);
-  animation: holo-flicker 2.5s infinite;
+  position: relative;
+  z-index: 2;
+  font-size: 52px;
+  color: var(--omni-glow);
+  text-shadow: 0 0 20px rgba(34, 197, 94, 0.8);
 }
 
-/* LABEL INSIDE LIGHT */
 .holo-text {
-  margin-top: 6px;
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.25em;
+  position: relative;
+  z-index: 2;
+  margin-top: 8px;
+  font-size: .7rem;
+  letter-spacing: .25em;
   color: #eafff3;
-  text-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
-}
-
-/* OPTIONAL ALIEN IMAGE */
-.alien-silhouette {
-  width: 70px;
-  height: auto;
-  filter:
-    drop-shadow(0 0 20px rgba(34, 197, 94, 0.8)) brightness(1.2);
-}
-
-/* ===============================
-   ANIMATIONS
-   =============================== */
-
-@keyframes holo-float {
-
-  0%,
-  100% {
-    transform: translateX(-50%) translateY(0);
-  }
-
-  50% {
-    transform: translateX(-50%) translateY(-12px);
-  }
-}
-
-@keyframes holo-flicker {
-  0% {
-    opacity: 1;
-  }
-
-  15% {
-    opacity: 0.6;
-  }
-
-  30% {
-    opacity: 1;
-  }
-
-  45% {
-    opacity: 0.75;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes beam-flicker {
-
-  0%,
-  100% {
-    opacity: 0.8;
-  }
-
-  50% {
-    opacity: 1;
-  }
+  text-shadow: 0 0 12px rgba(34, 197, 94, 0.6);
 }
 
 /* ======================
-   CENTER ACTIVATE BUTTON
-   ====================== */
+   ACTIVATE BUTTON
+====================== */
 .omni-activate {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  inset: 50%;
   transform: translate(-50%, -50%);
-  width: 68px;
-  height: 68px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  background: radial-gradient(circle, #020617 55%, #000 100%);
   border: 3px solid var(--omni-green);
-  box-shadow:
-    inset 0 0 16px rgba(74, 222, 128, 0.4),
-    0 0 18px rgba(74, 222, 128, 0.5);
+  background: radial-gradient(circle, #020617 60%, #000);
+  box-shadow: 0 0 18px var(--omni-glow);
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  transition: all 0.3s ease;
-  z-index: 10;
-}
-
-.omni-activate:hover {
-  background: radial-gradient(circle, #0a1829 55%, #000 100%);
-  border-color: var(--omni-glow);
-  box-shadow:
-    inset 0 0 24px rgba(74, 222, 128, 0.6),
-    0 0 28px rgba(74, 222, 128, 0.8);
-  transform: translate(-50%, -50%) scale(1.05);
-}
-
-.omni-activate:active {
-  transform: translate(-50%, -50%) scale(0.95);
 }
 
 .activate-icon {
-  font-size: 22px;
+  color: var(--omni-green);
   font-weight: bold;
-  color: var(--omni-green);
-  text-shadow: 0 0 10px var(--omni-glow);
-  line-height: 1;
-}
-
-.activate-text {
-  font-size: 0.5rem;
-  font-weight: 800;
-  letter-spacing: 0.15em;
-  color: var(--omni-green);
-  text-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
-}
-
-.omni-activate:hover .activate-icon,
-.omni-activate:hover .activate-text {
-  color: var(--omni-glow);
-  text-shadow: 0 0 16px var(--omni-glow);
-}
-
-
-
-
-/* ======================
-   REDUCED MOTION
-   ====================== */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .omni-wrapper {
-    top: 12px;
-    left: 12px;
-  }
-
-  .omni-wrapper.centered {
-    transform: translate(-50%, -50%) !important;
-  }
-
-  /* Adjust for mobile screens */
-  .omni-open {
-    width: 200px;
-    height: 200px;
-  }
-
-  /* Reduce hologram projection height on mobile */
-  .holo-projector {
-    top: -150px;
-    height: 170px;
-  }
-
-  .holo-beam,
-  .holo-beam::before {
-    height: 170px;
-  }
-
-  .holo-content {
-    top: 10px;
-  }
-
-  .holo-icon {
-    font-size: 48px;
-  }
-
-  .holo-text {
-    font-size: 0.65rem;
-  }
-
-  /* Smaller ring items on mobile */
-  .ring-item {
-    font-size: 20px;
-    width: 40px;
-    height: 40px;
-    margin-left: -20px;
-    margin-top: -20px;
-  }
-
-  .ring-item.active {
-    font-size: 24px;
-  }
-
-  /* Smaller activate button on mobile */
-  .omni-activate {
-    width: 58px;
-    height: 58px;
-  }
-
-  .activate-icon {
-    font-size: 18px;
-  }
-
-  .activate-text {
-    font-size: 0.45rem;
-  }
-  
 }

@@ -1,24 +1,25 @@
+
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import omniO from "../assets/omni-o.png";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+
 import bgImage from "../assets/bg.png";
 import heroTimeSound from "../assets/herotime.m4a";
 import "../styles/intro.css";
 
-export default function IntroPage({ onStart }) {
+export default function IntroPage() {
   const [startMotion, setStartMotion] = useState(false);
-  const [showLogo, setShowLogo] = useState(false);
+  const navigate = useNavigate();
 
   const handleActivate = () => {
     // Play the hero time sound
     const audio = new Audio(heroTimeSound);
     audio.play().catch(error => console.log("Audio playback failed:", error));
 
-    setShowLogo(true);
     setStartMotion(true);
 
     setTimeout(() => {
-      onStart?.();
+      navigate("/home");
     }, 2000);
   };
 
@@ -27,7 +28,7 @@ export default function IntroPage({ onStart }) {
       {/* 🔥 Animated Background */}
       <motion.div
         className="intro-bg"
-        style={{ backgroundImage: `url(${bgImage})` }}
+        style={{ backgroundImage: `url(${ bgImage })` }}
         animate={{ y: [0, -20, 0] }}
         transition={{
           duration: 3,

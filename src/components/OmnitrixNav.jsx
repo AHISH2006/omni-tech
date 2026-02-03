@@ -1,5 +1,9 @@
+
 import { useState, useRef, useEffect } from "react"
+import { useNavigate, useLocation } from "react-router-dom"
 import omniLogo from "../assets/omnitrix.png"
+import rotateSound from "../assets/sounds/rotate.mp3"
+import activateSound from "../assets/sounds/activate.mp3"
 import "../styles/omnitrix-nav.css"
 
 const OPTIONS = [
@@ -9,189 +13,174 @@ const OPTIONS = [
     { id: "workshops", label: "WORKSHOPS", icon: "⚙️" },
     { id: "technical", label: "TECHNICAL", icon: "⚡" },
     { id: "non-technical", label: "NON-TECHNICAL", icon: "🎮" },
-    { id: "pakages", label: "PACKAGES", icon: "💎" }
+    { id: "packages", label: "PACKAGES", icon: "💎" },
 ]
 
-
-export default function OmnitrixNav({ onNavigate }) {
+export default function OmnitrixNav() {
     const [open, setOpen] = useState(false)
     const [active, setActive] = useState(0)
-    const [rotation, setRotation] = useState(0) // Track cumulative rotation
+    const [rotation, setRotation] = useState(0)
 
-    /* MOVABLE POSITION */
-    const [pos, setPos] = useState({ x: 40, y: 40 })
+    const navigate = useNavigate()
+    const location = useLocation()
+    const rotateAudio = useRef(new Audio(rotateSound))
+    const activateAudio = useRef(new Audio(activateSound))
+    const ringRef = useRef(null)
     const dragging = useRef(false)
-    const start = useRef({ x: 0, y: 0 })
-    const wrapperRef = useRef(null)
+    const lastAngle = useRef(0)
+    const lastSnappedIndex = useRef(0)
 
     const step = 360 / OPTIONS.length
 
-    /* ------------------ DRAG (DESKTOP + MOBILE) - ONLY WHEN CLOSED ------------------ */
-    const startDrag = (e) => {
-        if (open) return // Don't allow dragging when open
-        dragging.current = true
-        const point = e.touches ? e.touches[0] : e
-        start.current = {
-            x: point.clientX - pos.x,
-            y: point.clientY - pos.y,
+    /* 🔁 Sync active option with current page */
+    useEffect(() => {
+        const currentPath = location.pathname.replace('/', '') || 'home'
+        const index = OPTIONS.findIndex(o => o.id === currentPath)
+        if (index !== -1) {
+            setActive(index)
+            setRotation(-index * step)
+            lastSnappedIndex.current = index
         }
-    }
+    }, [location.pathname])
 
-    const onDrag = (e) => {
-        if (!dragging.current || open) return // Don't drag when open
-        const point = e.touches ? e.touches[0] : e
-        setPos({
-            x: point.clientX - start.current.x,
-            y: point.clientY - start.current.y,
-        })
-    }
-
-    const endDrag = () => (dragging.current = false)
-
-    /* ------------------ CLICK OUTSIDE TO CLOSE ------------------ */
+    /* ⌨️ Keyboard */
     useEffect(() => {
         if (!open) return
 
-        const handleClickOutside = (e) => {
-            if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
-                setOpen(false)
-            }
-        }
-
-        // Add a small delay to prevent immediate closing when opening
-        const timer = setTimeout(() => {
-            document.addEventListener("mousedown", handleClickOutside)
-            document.addEventListener("touchstart", handleClickOutside)
-        }, 100)
-
-        return () => {
-            clearTimeout(timer)
-            document.removeEventListener("mousedown", handleClickOutside)
-            document.removeEventListener("touchstart", handleClickOutside)
-        }
-    }, [open])
-
-    /* ------------------ KEYBOARD ------------------ */
-    useEffect(() => {
         const onKey = (e) => {
-            if (!open) return
             if (e.key === "ArrowRight") rotate(1)
             if (e.key === "ArrowLeft") rotate(-1)
             if (e.key === "Enter") activate()
         }
+
         window.addEventListener("keydown", onKey)
         return () => window.removeEventListener("keydown", onKey)
     }, [open, active])
 
+    /* 🖱️ Drag to rotate */
+    const getAngle = (cx, cy, x, y) => {
+        return Math.atan2(y - cy, x - cx) * (180 / Math.PI)
+    }
+
+    const getCenter = () => {
+        if (!ringRef.current) return { x: 0, y: 0 }
+        const rect = ringRef.current.getBoundingClientRect()
+        return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 }
+    }
+
+    const startDrag = (e) => {
+        dragging.current = true
+        const p = e.touches ? e.touches[0] : e
+        const center = getCenter()
+        lastAngle.current = getAngle(center.x, center.y, p.clientX, p.clientY)
+        lastSnappedIndex.current = active
+    }
+
+    const onDrag = (e) => {
+        if (!dragging.current) return
+
+        const p = e.touches ? e.touches[0] : e
+        const center = getCenter()
+        const currentAngle = getAngle(center.x, center.y, p.clientX, p.clientY)
+
+        let diff = currentAngle - lastAngle.current
+        if (diff > 180) diff -= 360
+        if (diff < -180) diff += 360
+
+        const newRotation = rotation + diff
+        setRotation(newRotation)
+
+        // Calculate which option should be active based on rotation
+        const normalizedRotation = ((newRotation % 360) + 360) % 360
+        const targetIndex = Math.round(-normalizedRotation / step) % OPTIONS.length
+        const finalIndex = ((targetIndex % OPTIONS.length) + OPTIONS.length) % OPTIONS.length
+
+        // Snap to option and play sound when crossing threshold
+        if (finalIndex !== lastSnappedIndex.current) {
+            rotateAudio.current.currentTime = 0
+            rotateAudio.current.play()
+            setActive(finalIndex)
+            lastSnappedIndex.current = finalIndex
+        }
+
+        lastAngle.current = currentAngle
+    }
+
+    const endDrag = () => {
+        if (!dragging.current) return
+        dragging.current = false
+        // No snap-back - keep the rotation where user left it for continuous circular motion
+    }
+
     const rotate = (dir) => {
-        setActive((p) => (p + dir + OPTIONS.length) % OPTIONS.length)
-        setRotation((r) => r - dir * step) // Rotate in circular direction
+        rotateAudio.current.currentTime = 0
+        rotateAudio.current.play()
+
+        const newIndex = (active + dir + OPTIONS.length) % OPTIONS.length
+        setActive(newIndex)
+        setRotation(-newIndex * step)
+        lastSnappedIndex.current = newIndex
     }
 
     const activate = () => {
+        activateAudio.current.currentTime = 0
+        activateAudio.current.play()
+
         setOpen(false)
-        onNavigate?.(OPTIONS[active].id)
-    }
-
-    /* ------------------ TOUCH ROTATE ------------------ */
-    const startX = useRef(0)
-    const onTouchStart = (e) => (startX.current = e.touches[0].clientX)
-    const onTouchEnd = (e) => {
-        const diff = e.changedTouches[0].clientX - startX.current
-        if (Math.abs(diff) > 30) rotate(diff > 0 ? -1 : 1)
-    }
-
-    // Calculate centered position when open
-    const getPosition = () => {
-        if (!open) {
-            return { transform: `translate(${pos.x}px, ${pos.y}px)` }
-        }
-        // Center the omnitrix when open
-        return {
-            transform: `translate(-50%, -50%)`,
-            left: '50%',
-            top: '50%',
-        }
+        navigate(`/${OPTIONS[active].id}`)
     }
 
     return (
-        <div
-            ref={wrapperRef}
-            className={`omni-wrapper ${open ? 'centered' : ''}`}
-            style={getPosition()}
-            onMouseMove={onDrag}
-            onMouseUp={endDrag}
-            onTouchMove={onDrag}
-            onTouchEnd={endDrag}
-        >
-            {/* CLOSED */}
-            {!open && (
-                <button
-                    className="omni-logo"
-                    onMouseDown={startDrag}
-                    onTouchStart={startDrag}
-                    onClick={() => setOpen(true)}
-                >
-                    <img src={omniLogo} alt="Omnitrix" />
-                </button>
-            )}
+        <>
+            {/* Dark overlay when open */}
+            {open && <div className="omni-overlay" onClick={() => setOpen(false)} />}
 
-            {/* OPEN */}
-            {open && (
-                <div
-                    className="omni-open dark"
-                    onTouchEnd={onTouchEnd}
-                >
-                    {/* HOLOGRAM */}
-                    <div className="holo-projector">
-                        <div className="holo-beam" />
+            <div className={`omni-wrapper ${open ? "centered" : ""}`}>
+                {!open && (
+                    <button className="omni-logo" onClick={() => setOpen(true)}>
+                        <img src={omniLogo} alt="Omnitrix" />
+                    </button>
+                )}
 
-                        <div className="holo-content">
-                            <img
-                                src={OPTIONS[active].holo || ""}
-                                alt=""
-                                className="alien-silhouette"
-                            />
+                {open && (
+                    <div className="omni-open">
+                        <div className="holo-projector">
+                            <div className="holo-beam" />
                             <div className="holo-icon">{OPTIONS[active].icon}</div>
                             <div className="holo-text">{OPTIONS[active].label}</div>
                         </div>
-                    </div>
 
-                    {/* RING */}
-                    <div
-                        className="omni-ring"
-                        style={{ transform: `rotate(${rotation}deg)` }}
-                    >
-                        {OPTIONS.map((o, i) => (
-                            <div
-                                key={o.id}
-                                className={`ring-item ${i === active ? "active" : ""}`}
-                                style={{
-                                    transform: `rotate(${i * step}deg) translateY(-85px)`,
-                                }}
-                                onClick={() => {
-                                    const diff = i - active
-                                    const shortestPath = diff > OPTIONS.length / 2 ? diff - OPTIONS.length : diff < -OPTIONS.length / 2 ? diff + OPTIONS.length : diff
-                                    setRotation((r) => r - shortestPath * step)
-                                    setActive(i)
-                                }}
-                            >
-                                {o.icon}
-                            </div>
-                        ))}
-                    </div>
+                        <div
+                            ref={ringRef}
+                            className="omni-ring"
+                            style={{ transform: `rotate(${rotation}deg)` }}
+                            onMouseDown={startDrag}
+                            onMouseMove={onDrag}
+                            onMouseUp={endDrag}
+                            onMouseLeave={endDrag}
+                            onTouchStart={startDrag}
+                            onTouchMove={onDrag}
+                            onTouchEnd={endDrag}
+                        >
+                            {OPTIONS.map((o, i) => (
+                                <div
+                                    key={o.id}
+                                    className={`ring-item ${i === active ? "active" : ""}`}
+                                    style={{
+                                        transform: `rotate(${i * step}deg) translateY(-85px)`,
+                                    }}
+                                >
+                                    {o.icon}
+                                </div>
+                            ))}
+                        </div>
 
-                    {/* CENTER ACTIVATE BUTTON */}
-                    <button
-                        className="omni-activate"
-                        onClick={activate}
-                        title="Activate Selection"
-                    >
-                        <div className="activate-icon">✓</div>
-                        <div className="activate-text">Activate</div>
-                    </button>
-                </div>
-            )}
-        </div>
+                        <button className="omni-activate" onClick={activate}>
+                            <div className="activate-icon">✓</div>
+                        </button>
+                    </div>
+                )}
+            </div>
+        </>
     )
 }

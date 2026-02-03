@@ -1,5 +1,5 @@
 /* =========================
-   HOME PAGE
+   HOME PAGE BASE
    ========================= */
 
 .home-page {
@@ -9,26 +9,73 @@
 }
 
 /* =========================
-   ENTRY ANIMATION WRAPPER
+   CINEMATIC BACKGROUND
+   ========================= */
+
+.home-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  filter:
+    brightness(0.55) contrast(1.2) saturate(1.05);
+
+  transform: scale(1.1);
+}
+
+/* Dark overlay for readability */
+.home-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(circle at center,
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.75));
+}
+
+/* =========================
+   ALIEN IMAGE ELEMENT
+   ========================= */
+
+.home-alien-image {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+
+  opacity: 0.8;
+  filter: brightness(0.7) contrast(1.1);
+}
+
+/* =========================
+   FOREGROUND CONTENT
    ========================= */
 
 .home-entry {
   position: fixed;
   inset: 0;
-  z-index: 20;
+  z-index: 10;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   gap: 2rem;
-  padding: 2rem;
 
-  background: transparent;
+  padding: 2rem;
+  pointer-events: none;
 }
 
 /* =========================
-   DEPARTMENT LOGOS ROW
+   DEPARTMENT LOGOS
    ========================= */
 
 .dept-logos-row {
@@ -40,23 +87,18 @@
   display: flex;
   gap: 3rem;
   align-items: center;
-  justify-content: center;
 }
 
 .dept-logo {
   width: 100px;
   height: 100px;
   object-fit: contain;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
-  transition: transform 0.3s ease;
-}
 
-.dept-logo:hover {
-  transform: scale(1.08);
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
 }
 
 /* =========================
-   INTEGRATED LOGO CONTAINER
+   LOGO SYSTEM
    ========================= */
 
 .logo-container {
@@ -64,11 +106,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0;
-  margin-top: 2rem;
 }
 
-/* OMNI-O (integrated position) */
+/* OMNI-O */
 .omni-o-integrated {
   position: absolute;
   left: 0;
@@ -83,16 +123,15 @@
     drop-shadow(0 0 30px rgba(34, 197, 94, 0.9)) drop-shadow(0 0 80px rgba(74, 222, 128, 0.6));
 }
 
-/* OMNITRIX TEXT (aligned with O) */
+/* OMNI-TECH TEXT */
 .omni-text-integrated {
   width: 520px;
   max-width: 85vw;
   height: auto;
   margin-left: 80px;
-  /* Space for the O to sit in */
 
   filter:
-    drop-shadow(0 0 20px rgba(34, 197, 94, 0.7)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+    drop-shadow(0 0 20px rgba(34, 197, 94, 0.7)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
 }
 
 /* =========================
@@ -100,22 +139,23 @@
    ========================= */
 
 .subtitle {
-  margin-top: 0;
   font-size: 1.1rem;
   font-weight: 500;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   text-align: center;
+
   color: #ffffff;
   opacity: 0.9;
 
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   max-width: 90vw;
   padding: 0 1rem;
+
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 /* =========================
-   EVENT INFO SECTION
+   EVENT INFO
    ========================= */
 
 .event-info {
@@ -123,7 +163,6 @@
   flex-direction: column;
   gap: 1rem;
   align-items: center;
-  margin-top: 1rem;
 }
 
 .event-date,
@@ -131,14 +170,15 @@
   display: flex;
   align-items: center;
   gap: 0.8rem;
+
   font-size: 1rem;
   color: #d1fae5;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
 .date-label {
   font-weight: 600;
-  letter-spacing: 0.08em;
   opacity: 0.85;
 }
 
@@ -146,86 +186,18 @@
   font-weight: 700;
   font-size: 1.1rem;
   color: #ffffff;
-  letter-spacing: 0.05em;
-  text-shadow:
-    0 0 10px rgba(34, 197, 94, 0.6),
-    0 2px 6px rgba(0, 0, 0, 0.4);
+
+  text-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
 }
 
 .venue-icon {
   font-size: 1.3rem;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 .venue-text {
   font-weight: 600;
   font-size: 1.05rem;
-  letter-spacing: 0.05em;
   color: #ffffff;
-}
-
-/* =========================
-   LEGACY STYLES
-   (Keep for compatibility)
-   ========================= */
-
-.omni-o-entry {
-  width: 160px;
-  max-width: 40vw;
-  margin-bottom: 1rem;
-
-  filter:
-    drop-shadow(0 0 30px rgba(34, 197, 94, 0.9)) drop-shadow(0 0 80px rgba(74, 222, 128, 0.6));
-}
-
-.omni-text {
-  width: 500px;
-  max-width: 85vw;
-  height: auto;
-  margin-top: 1rem;
-
-  filter:
-    drop-shadow(0 0 20px rgba(34, 197, 94, 0.7)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
-}
-
-.home-header {
-  margin-top: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 1.6rem;
-}
-
-.home-omnitrix {
-  width: 80px;
-  filter: drop-shadow(0 0 20px rgba(34, 197, 94, 0.8));
-}
-
-.home-title {
-  text-align: left;
-}
-
-.omni-tech {
-  font-size: 3.2rem;
-  font-weight: 900;
-  letter-spacing: 0.14em;
-
-  background: linear-gradient(180deg,
-      #ffffff,
-      #d1fae5,
-      #86efac);
-
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  text-shadow:
-    0 0 15px rgba(34, 197, 94, 0.5);
-}
-
-.home-content {
-  position: relative;
-  z-index: 5;
-  padding-top: 6rem;
 }
 
 /* =========================
@@ -233,17 +205,9 @@
    ========================= */
 
 @media (max-width: 968px) {
-  .dept-logos-row {
-    gap: 2rem;
-  }
-
   .dept-logo {
     width: 85px;
     height: 85px;
-  }
-
-  .logo-container {
-    margin-top: 1.5rem;
   }
 
   .omni-o-integrated {
@@ -270,8 +234,6 @@
 
   .logo-container {
     flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 1rem;
   }
 
   .omni-o-integrated {
@@ -279,10 +241,10 @@
     left: auto;
     top: auto;
     transform: none;
+
     width: 90px;
     height: 90px;
     margin-bottom: -15px;
-    /* Overlap with text */
   }
 
   .omni-text-integrated {
@@ -295,66 +257,16 @@
     letter-spacing: 0.22em;
   }
 
-  .event-info {
-    gap: 0.8rem;
-  }
-
   .event-date,
   .event-venue {
     font-size: 0.9rem;
-    gap: 0.6rem;
-  }
-
-  .date-value {
-    font-size: 1rem;
-  }
-
-  .venue-icon {
-    font-size: 1.1rem;
-  }
-
-  .venue-text {
-    font-size: 0.95rem;
-  }
-
-  /* Legacy */
-  .omni-o-entry {
-    width: 130px;
-    margin-bottom: 0.8rem;
-  }
-
-  .omni-text {
-    width: 400px;
-    margin-top: 0.8rem;
-  }
-
-  .home-header {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .home-title {
-    text-align: center;
-  }
-
-  .omni-tech {
-    font-size: 2.4rem;
   }
 }
 
 @media (max-width: 480px) {
-  .dept-logos-row {
-    top: 1rem;
-    gap: 1rem;
-  }
-
   .dept-logo {
     width: 55px;
     height: 55px;
-  }
-
-  .logo-container {
-    margin-top: 0.5rem;
   }
 
   .omni-o-integrated {
@@ -372,39 +284,10 @@
     letter-spacing: 0.18em;
   }
 
-  .event-info {
-    gap: 0.6rem;
-  }
-
   .event-date,
   .event-venue {
-    font-size: 0.8rem;
     flex-direction: column;
     gap: 0.3rem;
-  }
-
-  .date-value {
-    font-size: 0.9rem;
-  }
-
-  .venue-icon {
-    font-size: 1rem;
-  }
-
-  .venue-text {
-    font-size: 0.85rem;
-  }
-
-  /* Legacy */
-  .omni-o-entry {
-    width: 110px;
-  }
-
-  .omni-text {
-    width: 320px;
-  }
-
-  .home-omnitrix {
-    width: 64px;
+    font-size: 0.8rem;
   }
 }
