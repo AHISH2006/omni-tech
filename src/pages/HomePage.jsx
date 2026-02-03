@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import OmnitrixNav from "../components/omnitrixNav";
 import omniO from "../assets/omni-o.png";
-import omniText from "../assets/omni-tech-full.svg";
+import omniText from "../assets/omni-tech-full.png";
 import deptLogo1 from "../assets/dept-logo-1.png";
 import deptLogo2 from "../assets/dept-logo-2.png";
 

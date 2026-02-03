@@ -1,6 +1,6 @@
 import { useState } from "react";
 import IntroPage from "./pages/IntroPage";
-import Header from "./components/Header";
+
 import Home from "./pages/HomePage";
 
 
@@ -13,7 +13,7 @@ function App() {
         <IntroPage onStart={() => setShowIntro(false)} />
       ) : (
         <>
-          <Header />
+
           <Home />
         </>
       )}
