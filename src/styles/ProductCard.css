@@ -1,0 +1,184 @@
+/* Ben 10 Themed Card Styles */
+.ben10-card-container {
+    width: 280px;
+    height: 380px;
+    perspective: 1000px;
+    margin: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.ben10-card-frame {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #001a00 0%, #000000 100%);
+    border: 2px solid #00ff00;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.4), inset 0 0 20px rgba(0, 255, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    clip-path: polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%);
+}
+
+.ben10-card-container:hover .ben10-card-frame {
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.8), inset 0 0 30px rgba(0, 255, 0, 0.2);
+    border-color: #39ff14;
+}
+
+.ben10-card-content {
+    padding: 20px;
+    text-align: center;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ben10-image-wrapper {
+    width: 240px;
+    height: 240px;
+    position: relative;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ben10-profile-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #00ff00;
+    box-shadow: 0 0 15px #00ff00;
+    z-index: 2;
+    transition: transform 0.4s ease;
+}
+
+.ben10-card-container:hover .ben10-profile-img {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #00ff00;
+}
+
+/* Holographic Effect */
+.holographic-ring {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border: 2px dashed rgba(0, 255, 0, 0.5);
+    border-radius: 50%;
+    animation: spin 10s linear infinite;
+    z-index: 1;
+}
+
+.ben10-card-container:hover .holographic-ring {
+    border-color: #00ff00;
+    animation-duration: 4s;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.omnitrix-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 60%, rgba(0, 255, 0, 0.1) 100%);
+    pointer-events: none;
+    z-index: 3;
+}
+
+.ben10-info {
+    color: #fff;
+    z-index: 2;
+    position: relative;
+}
+
+.ben10-name {
+    font-family: 'Orbitron', 'Segoe UI', sans-serif;
+    /* Tech-looking font */
+    font-size: 1.5rem;
+    margin: 0;
+    text-transform: uppercase;
+    color: #00ff00;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.8);
+    letter-spacing: 1px;
+}
+
+.ben10-dept {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    color: #aaddaa;
+    margin-top: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ben10-description {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8rem;
+    color: #ccc;
+    margin-top: 8px;
+    line-height: 1.4;
+    max-width: 90%;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+/* Decorative Lines */
+.ben10-decoration-lines {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background-image:
+        linear-gradient(90deg, transparent 50%, rgba(0, 255, 0, 0.05) 50%),
+        linear-gradient(rgba(0, 255, 0, 0.05) 50%, transparent 50%);
+    background-size: 20px 20px;
+    z-index: 0;
+    opacity: 0.5;
+}
+
+/* Pseudo Omnitrix Dials */
+.ben10-card-frame::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 5px;
+    background: #00ff00;
+    box-shadow: 0 0 10px #00ff00;
+}
+
+.ben10-card-frame::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 5px;
+    background: #00ff00;
+    box-shadow: 0 0 10px #00ff00;
+}

@@ -9,7 +9,6 @@ import "../styles/omnitrix-nav.css"
 const OPTIONS = [
     { id: "home", label: "HOME", icon: "🏠" },
     { id: "about", label: "ABOUT", icon: "👽" },
-    { id: "events", label: "EVENTS", icon: "🧬" },
     { id: "workshops", label: "WORKSHOPS", icon: "⚙️" },
     { id: "technical", label: "TECHNICAL", icon: "⚡" },
     { id: "non-technical", label: "NON-TECHNICAL", icon: "🎮" },
@@ -137,7 +136,11 @@ export default function OmnitrixNav() {
 
             <div className={`omni-wrapper ${open ? "centered" : ""}`}>
                 {!open && (
-                    <button className="omni-logo" onClick={() => setOpen(true)}>
+                    <button className="omni-logo" onClick={() => {
+                        rotateAudio.current.currentTime = 0
+                        rotateAudio.current.play()
+                        setOpen(true)
+                    }}>
                         <img src={omniLogo} alt="Omnitrix" />
                     </button>
                 )}

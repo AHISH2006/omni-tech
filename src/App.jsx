@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-
+import "./index.css"
 import IntroPage from "./pages/IntroPage";
 import HomePage from "./pages/HomePage";
 import TechnicalEventsPage from "./pages/TechnicalEventsPage";

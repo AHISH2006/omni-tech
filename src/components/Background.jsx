@@ -8,17 +8,72 @@ const Background = () => {
   // Parallax mouse tracking for Alien X
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const springX = useSpring(mouseX, { damping: 50, stiffness: 400 });
-  const springY = useSpring(mouseY, { damping: 50, stiffness: 400 });
-  const moveX = useTransform(springX, [-0.5, 0.5], ["-2%", "2%"]);
-  const moveY = useTransform(springY, [-0.5, 0.5], ["-2%", "2%"]);
-  const rotateX = useTransform(springY, [-0.5, 0.5], [2, -2]);
-  const rotateY = useTransform(springX, [-0.5, 0.5], [-2, 2]);
+  const springX = useSpring(mouseX, { damping: 30, stiffness: 200 });
+  const springY = useSpring(mouseY, { damping: 30, stiffness: 200 });
+
+  // Enhanced movement ranges
+  const moveX = useTransform(springX, [-0.5, 0.5], ["-5%", "5%"]);
+  const moveY = useTransform(springY, [-0.5, 0.5], ["-5%", "5%"]);
+  const rotateX = useTransform(springY, [-0.5, 0.5], [3, -3]);
+  const rotateY = useTransform(springX, [-0.5, 0.5], [-3, 3]);
+
+  // Mouse-based zoom and shake effect
+  const distance = useTransform(
+    [springX, springY],
+    ([x, y]) => Math.sqrt(x * x + y * y)
+  );
+
+  // Responsive base scale + mouse-based zoom
+  const [baseScale, setBaseScale] = React.useState(1.5);
+  const scaleValue = useTransform(distance, [0, 0.5], [baseScale, baseScale + 0.15]);
+
+  // Mouse-based shake effect
+  const shakeX = useTransform(springX, [-0.5, 0.5], [-3, 3]);
+  const shakeY = useTransform(springY, [-0.5, 0.5], [-3, 3]);
 
   const handleMouseMove = (e) => {
     mouseX.set(e.clientX / window.innerWidth - 0.5);
     mouseY.set(e.clientY / window.innerHeight - 0.5);
   };
+
+  const handleTouchMove = (e) => {
+    if (e.touches.length > 0) {
+      const touch = e.touches[0];
+      mouseX.set(touch.clientX / window.innerWidth - 0.5);
+      mouseY.set(touch.clientY / window.innerHeight - 0.5);
+    }
+  };
+
+  // Responsive scale based on screen size - optimized for all resolutions
+  useEffect(() => {
+    const updateScale = () => {
+      const width = window.innerWidth;
+      if (width <= 480) {
+        setBaseScale(1.4); // Mobile - zoomed out for better view
+      } else if (width <= 768) {
+        setBaseScale(1.5); // Tablet - balanced coverage
+      } else if (width <= 1024) {
+        setBaseScale(1.3); // Small desktop
+      } else {
+        setBaseScale(1.2); // Large desktop - subtle zoom
+      }
+    };
+
+    updateScale();
+    window.addEventListener("resize", updateScale);
+    return () => window.removeEventListener("resize", updateScale);
+  }, []);
+
+  useEffect(() => {
+    // Attach mouse move listener to window for global tracking
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
+    };
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -177,9 +232,16 @@ const Background = () => {
         src={alienBg}
         alt="Alien X"
         className="home-alien-image"
-        style={{ x: moveX, y: moveY, rotateX, rotateY }}
+        style={{
+          x: moveX,
+          y: moveY,
+          rotateX,
+          rotateY,
+          scale: scaleValue
+        }}
         animate={{
-          scale: [1, 1.05, 1],
+          x: shakeX,
+          y: shakeY,
           filter: [
             "brightness(0.7) contrast(1.1)",
             "brightness(1) contrast(1.2)",
@@ -187,14 +249,13 @@ const Background = () => {
           ],
         }}
         transition={{
-          duration: 12,
+          duration: 8,
           repeat: Infinity,
           repeatType: "mirror",
           ease: "easeInOut",
         }}
-        onMouseMove={handleMouseMove}
       />
-      <canvas ref={canvasRef} className="absolute inset-0 z-0"></canvas>
+      <canvas ref={canvasRef} className="fixed inset-0 z-0"></canvas>
     </>
   );
 };
