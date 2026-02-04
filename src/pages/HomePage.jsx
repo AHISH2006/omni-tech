@@ -12,11 +12,11 @@ import cosmicVision from "../assets/cosmic-vision.png";
 import glanticIntel from "../assets/glantic-intel.jpeg";
 import dnaDecode from "../assets/dna-decode.jpeg";
 import dataSpectrum from "../assets/data-spectrum.png";
-import battleArena from "../assets/battle-arena.jpeg";
+import battleArena from "../assets/battle-arena.png";
 import "../styles/home.css";
 import ProductCard from "../components/ProductCard";
 import ElectricBorder from "../components/Antigravity";
-
+import AssociationHeadCard from "../components/AssociationHeadCard";
 export default function HomePage() {
   const navigate = useNavigate();
   const [width, setWidth] = useState(0);
@@ -296,9 +296,70 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* =========================
+          ASSOCIATION HEADS SECTION
+          ========================= */}
+      <section id="association-heads-section" className="association-heads-section">
+        <div className="heads-section-overlay"></div>
+        <h2 className="events-title">ASSOCIATION HEADS</h2>
+        <p className="events-subtitle">Leading the Charge</p>
+
+        <div className="heads-container">
+          {/* Left Column: IT Department */}
+          <div className="heads-column left-column">
+            <h3 className="dept-title">DEPARTMENT OF IT</h3>
+            <div className="heads-grid">
+              {associationHeadsIT.map((head, index) => (
+                <AssociationHeadCard
+                  key={index}
+                  name={head.name}
+                  position={head.role}
+                  number={head.number}
+                  department="IT"
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Right Column: AI&DS Department */}
+          <div className="heads-column right-column">
+            <h3 className="dept-title">DEPARTMENT OF AI&DS</h3>
+            <div className="heads-grid">
+              {associationHeadsAIDS.map((head, index) => (
+                <AssociationHeadCard
+                  key={index}
+                  name={head.name}
+                  position={head.role}
+                  number={head.number}
+                  department="AI&DS"
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
+
+const associationHeadsIT = [
+  { name: 'ANU J', role: 'PRESIDENT', number: '+91 6381313958' },
+  { name: 'GNANA KAYANA C', role: 'SECRETARY', number: '+91 8668044227' },
+  { name: 'KIRUBAKARAN K', role: 'TREASURER', number: '+91 9342801732' },
+  { name: 'MATHAVAN S', role: 'VICE-PRESIDENT', number: '+91 8072456474' },
+  { name: 'RAVICHANDRAN P', role: 'JOINT-SECRETARY', number: '+91 8248411493' },
+  { name: 'HARSHVARNIKA S S', role: 'JOINT-TREASURER', number: '+91 9943250607' },
+];
+
+const associationHeadsAIDS = [
+  { name: 'TANISHA GOVINDAN', role: 'PRESIDENT', number: '+91 8754324366' },
+  { name: 'DURKESH A', role: 'SECRETARY', number: '+91 6383670489' },
+  { name: 'VISHNU PRIYAN S', role: 'TREASURER', number: '+91 7604819632' },
+  { name: 'KARTHIK RAJA R', role: 'VICE-PRESIDENT', number: '+91 9344471458' },
+  { name: 'ARUN PRASATH M', role: 'JOINT-SECRETARY', number: '+91 9080659813' },
+  { name: 'GNANA PRAKASH V', role: 'JOINT-TREASURER', number: '+91 7825996108' },
+];
 
 const eventsData = [
   // User Text: 
