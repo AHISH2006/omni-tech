@@ -1,15 +1,34 @@
-import { motion } from "framer-motion";
+import { motion, useMotionValue, animate } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 import OmnitrixBackground from "../components/Background";
 import omniText from "../assets/omni-tech-full.png";
 import deptLogo1 from "../assets/dept-logo-1.png";
 import deptLogo2 from "../assets/dept-logo-2.png";
 import collegeLogo from "../assets/college-logo.png";
+import webtrixBuilder from "../assets/webtrix-builder.png";
+import botrixBuilter from "../assets/botrix-builter.png";
+import cosmicVision from "../assets/cosmic-vision.png";
+import glanticIntel from "../assets/glantic-intel.jpeg";
+import dnaDecode from "../assets/dna-decode.jpeg";
+import dataSpectrum from "../assets/data-spectrum.png";
+import battleArena from "../assets/battle-arena.jpeg";
 import "../styles/home.css";
 import ProductCard from "../components/ProductCard";
+import ElectricBorder from "../components/Antigravity";
 
 export default function HomePage() {
   const navigate = useNavigate();
+  const [width, setWidth] = useState(0);
+  const carouselRef = useRef();
+  const x = useMotionValue(0);
+
+  useEffect(() => {
+    if (carouselRef.current) {
+      setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth);
+    }
+  }, []);
+
   return (
     <div className="home-page">
       <OmnitrixBackground />
@@ -179,50 +198,84 @@ export default function HomePage() {
         <h2 className="events-title">EVENTS</h2>
         <p className="events-subtitle">Explore our lineup of exciting events</p>
 
-        <motion.div
-          className="events-grid"
-          variants={{
-            hidden: { opacity: 0 },
-            show: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.15
-              }
-            }
+        <div
+          className="events-showcase-wrapper"
+          ref={carouselRef}
+          onWheel={(e) => {
+            const currentX = x.get();
+            const newX = currentX - e.deltaY; // Convert vertical scroll to horizontal
+            // Clamp value
+            const clampedX = Math.max(Math.min(newX, 0), -width);
+            x.set(clampedX);
           }}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
         >
-          {eventsData.map((event) => (
-            <motion.div
-              key={event.id}
-              className={`event-card ${event.size} ${event.category.replace(/\s+/g, '-').toLowerCase()}`}
-              variants={{
-                hidden: { opacity: 0, y: 50 },
-                show: {
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    type: "spring",
-                    stiffness: 100,
-                    damping: 12
-                  }
-                }
-              }}
-              whileHover={{ scale: 1.02, filter: "brightness(1.2)" }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => navigate(`/${event.id}`)}
-            >
-              <div className="card-content">
-                <h3 className="card-title">{event.title}</h3>
-                {event.subtitle && <p className="card-subtitle">{event.subtitle}</p>}
-                <span className="card-category">{event.category}</span>
-                <div className="card-decoration"></div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+          {/* Navigation Buttons */}
+          <button
+            className="carousel-btn left"
+            onClick={() => {
+              const currentX = x.get();
+              const newX = Math.min(currentX + 350, 0);
+              animate(x, newX, { type: "spring", stiffness: 300, damping: 30 });
+            }}
+          >
+            &#8249;
+          </button>
+
+          <button
+            className="carousel-btn right"
+            onClick={() => {
+              const currentX = x.get();
+              const newX = Math.max(currentX - 350, -width);
+              animate(x, newX, { type: "spring", stiffness: 300, damping: 30 });
+            }}
+          >
+            &#8250;
+          </button>
+
+          <motion.div
+            className="events-showcase-track"
+            drag="x"
+            dragConstraints={{ right: 0, left: -width }}
+            whileTap={{ cursor: "grabbing" }}
+            style={{ x }}
+          >
+            {eventsData.map((event) => (
+              <motion.div
+                key={event.id}
+                className={`event-showcase-card ${event.category.replace(/\s+/g, '-').toLowerCase()}`}
+                whileHover={{
+                  scale: 1.05,
+                  rotateY: 10,
+                  zIndex: 10
+                }}
+                transition={{ type: "spring", stiffness: 300 }}
+                onClick={() => navigate(`/${event.id}`)}
+              >
+                <ElectricBorder
+                  color={event.category === 'Technical' ? '#ff0055' : event.category === 'Workshop' ? '#39ff14' : '#00f3ff'}
+                  className="w-full h-full"
+                >
+                  <div className="card-glass-effect"></div>
+                  <div className="card-content">
+                    {/* Poster Image */}
+                    <div className="card-image-container">
+                      <img
+                        src={event.image || "https://placehold.co/600x400/000000/FFF?text=Event+Image"}
+                        alt={event.title}
+                        className="card-image"
+                      />
+                    </div>
+
+                    <h3 className="card-title">{event.title}</h3>
+                    {event.subtitle && <p className="card-subtitle">{event.subtitle}</p>}
+                    <span className="card-category">{event.category}</span>
+                    <div className="card-decoration-corn"></div>
+                  </div>
+                </ElectricBorder>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </section>
 
       {/* =========================
@@ -248,42 +301,35 @@ export default function HomePage() {
 }
 
 const eventsData = [
-  // Technical
-  { id: 'web-duplication', title: 'QuestX', category: 'Non Technical', size: 'medium' }, // Renaming based on image reference if visible, checking user text explicitly
-  // User text list: technical: Web Duplication etc. image has "QuestX Non Technical", "ForceCoders Technical".
-  // User provided list: Technical Events: Web Duplication, Chatbot Building, VR/AI, Google-based, Escape Code, Data Visualization.
-  // I should stick to the USER PROVIDED LIST in the prompt text, but use the LAYOUT from the image.
   // User Text: 
   // Technical: Web Duplication, Chatbot Building, VR/AI Video Generation, Google-based Challenges, Escape Code, Data Visualization
   // Non-Technical: Connection, Start Music, E-Sports, Anime Verse, Treasure Hunt, Photography, IPL Auction
   // Workshops: Workshop 1, Workshop 2
 
-  // I will map these to sizes to make a bento grid.
-
   // Row 1
-  { id: 'web-duplication', title: 'Web Duplication', category: 'Technical', size: 'large' },
-  { id: 'chatbot', title: 'Chatbot Building', category: 'Technical', size: 'medium' },
+  { id: 'web-duplication', title: 'Web Duplication', category: 'Technical', size: 'large', image: webtrixBuilder },
+  { id: 'chatbot', title: 'Chatbot Building', category: 'Technical', size: 'medium', image: botrixBuilter },
 
   // Row 2
-  { id: 'vr-ai-video', title: 'VR/AI Video Gen', category: 'Technical', size: 'medium' },
-  { id: 'google-challenge', title: 'Google Challenges', category: 'Technical', size: 'large' },
+  { id: 'vr-ai-video', title: 'VR/AI Video Gen', category: 'Technical', size: 'medium', image: cosmicVision },
+  { id: 'google-challenge', title: 'Google Challenges', category: 'Technical', size: 'large', image: glanticIntel },
 
   // Row 3
-  { id: 'escape-code', title: 'Escape Code', category: 'Technical', size: 'medium' },
-  { id: 'data-vis', title: 'Data Visualization', category: 'Technical', size: 'medium' },
+  { id: 'escape-code', title: 'Escape Code', category: 'Technical', size: 'medium', image: dnaDecode },
+  { id: 'data-vis', title: 'Data Visualization', category: 'Technical', size: 'medium', image: dataSpectrum },
 
   // Non-Technical
-  { id: 'connection', title: 'Connection', category: 'Non Technical', size: 'medium' },
-  { id: 'start-music', title: 'Start Music', category: 'Non Technical', size: 'medium' },
-  { id: 'esports', title: 'E-Sports', category: 'Non Technical', size: 'large' },
-  { id: 'anime-verse', title: 'Anime Verse', category: 'Non Technical', size: 'medium' },
-  { id: 'treasure-hunt', title: 'Treasure Hunt', category: 'Non Technical', size: 'medium' },
-  { id: 'photography', title: 'Photography', category: 'Non Technical', size: 'medium' },
-  { id: 'ipl-auction', title: 'IPL Auction', category: 'Non Technical', size: 'large' },
+  { id: 'connection', title: 'Connection', category: 'Non Technical', size: 'medium', image: 'https://placehold.co/600x400/001133/00f3ff?text=Connection' },
+  { id: 'start-music', title: 'Start Music', category: 'Non Technical', size: 'medium', image: 'https://placehold.co/600x400/001133/00f3ff?text=Music' },
+  { id: 'esports', title: 'E-Sports', category: 'Non Technical', size: 'large', image: battleArena },
+  { id: 'anime-verse', title: 'Anime Verse', category: 'Non Technical', size: 'medium', image: 'https://placehold.co/600x400/001133/00f3ff?text=Anime' },
+  { id: 'treasure-hunt', title: 'Treasure Hunt', category: 'Non Technical', size: 'medium', image: 'https://placehold.co/600x400/001133/00f3ff?text=Treasure' },
+  { id: 'photography', title: 'Photography', category: 'Non Technical', size: 'medium', image: 'https://placehold.co/600x400/001133/00f3ff?text=Photo' },
+  { id: 'ipl-auction', title: 'IPL Auction', category: 'Non Technical', size: 'large', image: 'https://placehold.co/600x400/001133/00f3ff?text=IPL' },
 
   // Workshops
-  { id: 'workshop-1', title: 'Workshop 1', subtitle: 'Morning Session', category: 'Workshop', size: 'wide' },
-  { id: 'workshop-2', title: 'Workshop 2', subtitle: 'Afternoon Session', category: 'Workshop', size: 'wide' },
+  { id: 'workshop-1', title: 'Workshop 1', subtitle: 'Morning Session', category: 'Workshop', size: 'wide', image: 'https://placehold.co/600x400/002200/39ff14?text=Workshop+1' },
+  { id: 'workshop-2', title: 'Workshop 2', subtitle: 'Afternoon Session', category: 'Workshop', size: 'wide', image: 'https://placehold.co/600x400/002200/39ff14?text=Workshop+2' },
 ];
 
 const speakersData = [
