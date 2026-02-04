@@ -13,6 +13,11 @@ import glanticIntel from "../assets/glantic-intel.jpeg";
 import dnaDecode from "../assets/dna-decode.jpeg";
 import dataSpectrum from "../assets/data-spectrum.png";
 import battleArena from "../assets/battle-arena.png";
+import neural from "../assets/neural-nexus.png"
+import dnaHunter from "../assets/dna-hunter.png";
+import freakyLens from "../assets/freaky-lens-capture.jpeg";
+import iplAuction from "../assets/ipl-auction.png";
+import mindMorph from "../assets/mind-morph.png";
 import "../styles/home.css";
 import ProductCard from "../components/ProductCard";
 import ElectricBorder from "../components/Antigravity";
@@ -42,7 +47,7 @@ export default function HomePage() {
           transition={{ delay: 0.8, duration: 0.8 }}
         >
           <a
-            href="https://your-dept1-website.com"
+            href="https://www.instagram.com/tech_titans_23?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
             target="_blank"
             rel="noopener noreferrer"
             className="logo-link-right"
@@ -57,7 +62,7 @@ export default function HomePage() {
           </a>
 
           <a
-            href="https://your-dept2-website.com"
+            href="https://www.instagram.com/infozen_25?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
             target="_blank"
             rel="noopener noreferrer"
             className="logo-link-right"
@@ -72,7 +77,7 @@ export default function HomePage() {
           </a>
 
           <a
-            href="https://your-college-website.com"
+            href="https://www.sugunace.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="logo-link-right"
@@ -252,7 +257,7 @@ export default function HomePage() {
                 onClick={() => navigate(`/${event.id}`)}
               >
                 <ElectricBorder
-                  color={event.category === 'Technical' ? '#ff0055' : event.category === 'Workshop' ? '#39ff14' : '#00f3ff'}
+                  color={event.category === 'Technical' ? '#39ff14' : '#ff0055'}
                   className="w-full h-full"
                 >
                   <div className="card-glass-effect"></div>
@@ -380,17 +385,12 @@ const eventsData = [
   { id: 'data-vis', title: 'Data Visualization', category: 'Technical', size: 'medium', image: dataSpectrum },
 
   // Non-Technical
-  { id: 'connection', title: 'Connection', category: 'Non Technical', size: 'medium', image: 'https://placehold.co/600x400/001133/00f3ff?text=Connection' },
-  { id: 'start-music', title: 'Start Music', category: 'Non Technical', size: 'medium', image: 'https://placehold.co/600x400/001133/00f3ff?text=Music' },
+  { id: 'memory-challenge', title: 'MIND MORPH CHALLENGE', category: 'Non Technical', size: 'medium', image: mindMorph },
+  { id: 'connection', title: 'NEURAL NEXUS', category: 'Non Technical', size: 'medium', image: neural },
   { id: 'esports', title: 'E-Sports', category: 'Non Technical', size: 'large', image: battleArena },
-  { id: 'anime-verse', title: 'Anime Verse', category: 'Non Technical', size: 'medium', image: 'https://placehold.co/600x400/001133/00f3ff?text=Anime' },
-  { id: 'treasure-hunt', title: 'Treasure Hunt', category: 'Non Technical', size: 'medium', image: 'https://placehold.co/600x400/001133/00f3ff?text=Treasure' },
-  { id: 'photography', title: 'Photography', category: 'Non Technical', size: 'medium', image: 'https://placehold.co/600x400/001133/00f3ff?text=Photo' },
-  { id: 'ipl-auction', title: 'IPL Auction', category: 'Non Technical', size: 'large', image: 'https://placehold.co/600x400/001133/00f3ff?text=IPL' },
-
-  // Workshops
-  { id: 'workshop-1', title: 'Workshop 1', subtitle: 'Morning Session', category: 'Workshop', size: 'wide', image: 'https://placehold.co/600x400/002200/39ff14?text=Workshop+1' },
-  { id: 'workshop-2', title: 'Workshop 2', subtitle: 'Afternoon Session', category: 'Workshop', size: 'wide', image: 'https://placehold.co/600x400/002200/39ff14?text=Workshop+2' },
+  { id: 'treasure-hunt', title: 'Treasure Hunt', category: 'Non Technical', size: 'medium', image: dnaHunter },
+  { id: 'photography', title: 'Photography', category: 'Non Technical', size: 'medium', image: freakyLens },
+  { id: 'ipl-auction', title: 'IPL Auction', category: 'Non Technical', size: 'large', image: iplAuction },
 ];
 
 const speakersData = [
