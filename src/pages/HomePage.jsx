@@ -1,15 +1,39 @@
-import { motion } from "framer-motion";
+import { motion, useMotionValue, animate } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 import OmnitrixBackground from "../components/Background";
 import omniText from "../assets/omni-tech-full.png";
 import deptLogo1 from "../assets/dept-logo-1.png";
 import deptLogo2 from "../assets/dept-logo-2.png";
 import collegeLogo from "../assets/college-logo.png";
+import webtrixBuilder from "../assets/webtrix-builder.png";
+import botrixBuilter from "../assets/botrix-builter.png";
+import cosmicVision from "../assets/cosmic-vision.png";
+import glanticIntel from "../assets/glantic-intel.jpeg";
+import dnaDecode from "../assets/dna-decode.jpeg";
+import dataSpectrum from "../assets/data-spectrum.png";
+import battleArena from "../assets/battle-arena.png";
+import neural from "../assets/neural-nexus.png"
+import dnaHunter from "../assets/dna-hunter.png";
+import freakyLens from "../assets/freaky-lens-capture.jpeg";
+import iplAuction from "../assets/ipl-auction.png";
+import mindMorph from "../assets/mind-morph.png";
 import "../styles/home.css";
 import ProductCard from "../components/ProductCard";
-
+import ElectricBorder from "../components/Antigravity";
+import AssociationHeadCard from "../components/AssociationHeadCard";
 export default function HomePage() {
   const navigate = useNavigate();
+  const [width, setWidth] = useState(0);
+  const carouselRef = useRef();
+  const x = useMotionValue(0);
+
+  useEffect(() => {
+    if (carouselRef.current) {
+      setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth);
+    }
+  }, []);
+
   return (
     <div className="home-page">
       <OmnitrixBackground />
@@ -23,7 +47,7 @@ export default function HomePage() {
           transition={{ delay: 0.8, duration: 0.8 }}
         >
           <a
-            href="https://your-dept1-website.com"
+            href="https://www.instagram.com/tech_titans_23?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
             target="_blank"
             rel="noopener noreferrer"
             className="logo-link-right"
@@ -38,7 +62,7 @@ export default function HomePage() {
           </a>
 
           <a
-            href="https://your-dept2-website.com"
+            href="https://www.instagram.com/infozen_25?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
             target="_blank"
             rel="noopener noreferrer"
             className="logo-link-right"
@@ -53,7 +77,7 @@ export default function HomePage() {
           </a>
 
           <a
-            href="https://your-college-website.com"
+            href="https://www.sugunace.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="logo-link-right"
@@ -179,50 +203,84 @@ export default function HomePage() {
         <h2 className="events-title">EVENTS</h2>
         <p className="events-subtitle">Explore our lineup of exciting events</p>
 
-        <motion.div
-          className="events-grid"
-          variants={{
-            hidden: { opacity: 0 },
-            show: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.15
-              }
-            }
+        <div
+          className="events-showcase-wrapper"
+          ref={carouselRef}
+          onWheel={(e) => {
+            const currentX = x.get();
+            const newX = currentX - e.deltaY; // Convert vertical scroll to horizontal
+            // Clamp value
+            const clampedX = Math.max(Math.min(newX, 0), -width);
+            x.set(clampedX);
           }}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
         >
-          {eventsData.map((event) => (
-            <motion.div
-              key={event.id}
-              className={`event-card ${event.size} ${event.category.replace(/\s+/g, '-').toLowerCase()}`}
-              variants={{
-                hidden: { opacity: 0, y: 50 },
-                show: {
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    type: "spring",
-                    stiffness: 100,
-                    damping: 12
-                  }
-                }
-              }}
-              whileHover={{ scale: 1.02, filter: "brightness(1.2)" }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => navigate(`/${event.id}`)}
-            >
-              <div className="card-content">
-                <h3 className="card-title">{event.title}</h3>
-                {event.subtitle && <p className="card-subtitle">{event.subtitle}</p>}
-                <span className="card-category">{event.category}</span>
-                <div className="card-decoration"></div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+          {/* Navigation Buttons */}
+          <button
+            className="carousel-btn left"
+            onClick={() => {
+              const currentX = x.get();
+              const newX = Math.min(currentX + 350, 0);
+              animate(x, newX, { type: "spring", stiffness: 300, damping: 30 });
+            }}
+          >
+            &#8249;
+          </button>
+
+          <button
+            className="carousel-btn right"
+            onClick={() => {
+              const currentX = x.get();
+              const newX = Math.max(currentX - 350, -width);
+              animate(x, newX, { type: "spring", stiffness: 300, damping: 30 });
+            }}
+          >
+            &#8250;
+          </button>
+
+          <motion.div
+            className="events-showcase-track"
+            drag="x"
+            dragConstraints={{ right: 0, left: -width }}
+            whileTap={{ cursor: "grabbing" }}
+            style={{ x }}
+          >
+            {eventsData.map((event) => (
+              <motion.div
+                key={event.id}
+                className={`event-showcase-card ${event.category.replace(/\s+/g, '-').toLowerCase()}`}
+                whileHover={{
+                  scale: 1.05,
+                  rotateY: 10,
+                  zIndex: 10
+                }}
+                transition={{ type: "spring", stiffness: 300 }}
+                onClick={() => navigate(`/${event.id}`)}
+              >
+                <ElectricBorder
+                  color={event.category === 'Technical' ? '#39ff14' : '#ff0055'}
+                  className="w-full h-full"
+                >
+                  <div className="card-glass-effect"></div>
+                  <div className="card-content">
+                    {/* Poster Image */}
+                    <div className="card-image-container">
+                      <img
+                        src={event.image || "https://placehold.co/600x400/000000/FFF?text=Event+Image"}
+                        alt={event.title}
+                        className="card-image"
+                      />
+                    </div>
+
+                    <h3 className="card-title">{event.title}</h3>
+                    {event.subtitle && <p className="card-subtitle">{event.subtitle}</p>}
+                    <span className="card-category">{event.category}</span>
+                    <div className="card-decoration-corn"></div>
+                  </div>
+                </ElectricBorder>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </section>
 
       {/* =========================
@@ -243,47 +301,96 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* =========================
+          ASSOCIATION HEADS SECTION
+          ========================= */}
+      <section id="association-heads-section" className="association-heads-section">
+        <div className="heads-section-overlay"></div>
+        <h2 className="events-title">ASSOCIATION HEADS</h2>
+        <p className="events-subtitle">Leading the Charge</p>
+
+        <div className="heads-container">
+          {/* Left Column: IT Department */}
+          <div className="heads-column left-column">
+            <h3 className="dept-title">DEPARTMENT OF IT</h3>
+            <div className="heads-grid">
+              {associationHeadsIT.map((head, index) => (
+                <AssociationHeadCard
+                  key={index}
+                  name={head.name}
+                  position={head.role}
+                  number={head.number}
+                  department="IT"
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Right Column: AI&DS Department */}
+          <div className="heads-column right-column">
+            <h3 className="dept-title">DEPARTMENT OF AI&DS</h3>
+            <div className="heads-grid">
+              {associationHeadsAIDS.map((head, index) => (
+                <AssociationHeadCard
+                  key={index}
+                  name={head.name}
+                  position={head.role}
+                  number={head.number}
+                  department="AI&DS"
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
 
+const associationHeadsIT = [
+  { name: 'ANU J', role: 'PRESIDENT', number: '+91 6381313958' },
+  { name: 'GNANA KAYANA C', role: 'SECRETARY', number: '+91 8668044227' },
+  { name: 'KIRUBAKARAN K', role: 'TREASURER', number: '+91 9342801732' },
+  { name: 'MATHAVAN S', role: 'VICE-PRESIDENT', number: '+91 8072456474' },
+  { name: 'RAVICHANDRAN P', role: 'JOINT-SECRETARY', number: '+91 8248411493' },
+  { name: 'HARSHVARNIKA S S', role: 'JOINT-TREASURER', number: '+91 9943250607' },
+];
+
+const associationHeadsAIDS = [
+  { name: 'TANISHA GOVINDAN', role: 'PRESIDENT', number: '+91 8754324366' },
+  { name: 'DURKESH A', role: 'SECRETARY', number: '+91 6383670489' },
+  { name: 'VISHNU PRIYAN S', role: 'TREASURER', number: '+91 7604819632' },
+  { name: 'KARTHIK RAJA R', role: 'VICE-PRESIDENT', number: '+91 9344471458' },
+  { name: 'ARUN PRASATH M', role: 'JOINT-SECRETARY', number: '+91 9080659813' },
+  { name: 'GNANA PRAKASH V', role: 'JOINT-TREASURER', number: '+91 7825996108' },
+];
+
 const eventsData = [
-  // Technical
-  { id: 'web-duplication', title: 'QuestX', category: 'Non Technical', size: 'medium' }, // Renaming based on image reference if visible, checking user text explicitly
-  // User text list: technical: Web Duplication etc. image has "QuestX Non Technical", "ForceCoders Technical".
-  // User provided list: Technical Events: Web Duplication, Chatbot Building, VR/AI, Google-based, Escape Code, Data Visualization.
-  // I should stick to the USER PROVIDED LIST in the prompt text, but use the LAYOUT from the image.
   // User Text: 
   // Technical: Web Duplication, Chatbot Building, VR/AI Video Generation, Google-based Challenges, Escape Code, Data Visualization
   // Non-Technical: Connection, Start Music, E-Sports, Anime Verse, Treasure Hunt, Photography, IPL Auction
   // Workshops: Workshop 1, Workshop 2
 
-  // I will map these to sizes to make a bento grid.
-
   // Row 1
-  { id: 'web-duplication', title: 'Web Duplication', category: 'Technical', size: 'large' },
-  { id: 'chatbot', title: 'Chatbot Building', category: 'Technical', size: 'medium' },
+  { id: 'web-duplication', title: 'Web Duplication', category: 'Technical', size: 'large', image: webtrixBuilder },
+  { id: 'chatbot', title: 'Chatbot Building', category: 'Technical', size: 'medium', image: botrixBuilter },
 
   // Row 2
-  { id: 'vr-ai-video', title: 'VR/AI Video Gen', category: 'Technical', size: 'medium' },
-  { id: 'google-challenge', title: 'Google Challenges', category: 'Technical', size: 'large' },
+  { id: 'vr-ai-video', title: 'VR/AI Video Gen', category: 'Technical', size: 'medium', image: cosmicVision },
+  { id: 'google-challenge', title: 'Google Challenges', category: 'Technical', size: 'large', image: glanticIntel },
 
   // Row 3
-  { id: 'escape-code', title: 'Escape Code', category: 'Technical', size: 'medium' },
-  { id: 'data-vis', title: 'Data Visualization', category: 'Technical', size: 'medium' },
+  { id: 'escape-code', title: 'Escape Code', category: 'Technical', size: 'medium', image: dnaDecode },
+  { id: 'data-vis', title: 'Data Visualization', category: 'Technical', size: 'medium', image: dataSpectrum },
 
   // Non-Technical
-  { id: 'connection', title: 'Connection', category: 'Non Technical', size: 'medium' },
-  { id: 'start-music', title: 'Start Music', category: 'Non Technical', size: 'medium' },
-  { id: 'esports', title: 'E-Sports', category: 'Non Technical', size: 'large' },
-  { id: 'anime-verse', title: 'Anime Verse', category: 'Non Technical', size: 'medium' },
-  { id: 'treasure-hunt', title: 'Treasure Hunt', category: 'Non Technical', size: 'medium' },
-  { id: 'photography', title: 'Photography', category: 'Non Technical', size: 'medium' },
-  { id: 'ipl-auction', title: 'IPL Auction', category: 'Non Technical', size: 'large' },
-
-  // Workshops
-  { id: 'workshop-1', title: 'Workshop 1', subtitle: 'Morning Session', category: 'Workshop', size: 'wide' },
-  { id: 'workshop-2', title: 'Workshop 2', subtitle: 'Afternoon Session', category: 'Workshop', size: 'wide' },
+  { id: 'memory-challenge', title: 'MIND MORPH CHALLENGE', category: 'Non Technical', size: 'medium', image: mindMorph },
+  { id: 'connection', title: 'NEURAL NEXUS', category: 'Non Technical', size: 'medium', image: neural },
+  { id: 'esports', title: 'E-Sports', category: 'Non Technical', size: 'large', image: battleArena },
+  { id: 'treasure-hunt', title: 'Treasure Hunt', category: 'Non Technical', size: 'medium', image: dnaHunter },
+  { id: 'photography', title: 'Photography', category: 'Non Technical', size: 'medium', image: freakyLens },
+  { id: 'ipl-auction', title: 'IPL Auction', category: 'Non Technical', size: 'large', image: iplAuction },
 ];
 
 const speakersData = [

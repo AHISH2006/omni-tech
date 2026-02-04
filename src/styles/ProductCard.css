@@ -182,3 +182,23 @@
     background: #00ff00;
     box-shadow: 0 0 10px #00ff00;
 }
+
+/* Association Head Card Specifics */
+.ben10-number {
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    color: #39ff14;
+    margin-top: 10px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px rgba(57, 255, 20, 0.5);
+}
+
+.text-only-card {
+    height: 200px;
+    /* Reduced height since no image */
+}
+
+.text-only-card .ben10-card-content {
+    justify-content: center;
+    height: 100%;
+}
