@@ -2,6 +2,7 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import "./index.css"
 import IntroPage from "./pages/IntroPage";
 import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
 import TechnicalEventsPage from "./pages/TechnicalEventsPage";
 import OmnitrixNav from "./components/omnitrixNav";
 
@@ -17,7 +18,7 @@ function App() {
 
         {/* MAIN PAGES */}
         <Route path="/home" element={<HomePage />} />
-        <Route path="/about" element={<Page title="About Page (Coming Soon)" />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/events" element={<Page title="Events Page (Coming Soon)" />} />
         <Route path="/workshops" element={<Page title="Workshops Page (Coming Soon)" />} />
         <Route path="/technical" element={<TechnicalEventsPage />} />

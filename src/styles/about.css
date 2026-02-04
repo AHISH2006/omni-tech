@@ -145,50 +145,39 @@
   align-items: center;
   text-align: center;
   padding: 1rem;
+  gap: 1rem;
+  /* Adjusted gap */
+  justify-content: space-between;
+  /* Adjusted alignment */
 }
+
 
 .organizer-column h3 {
   font-family: 'Inter', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #e0e0e0;
-  margin-bottom: 2rem;
-  line-height: 1.5;
-  height: 3.6rem;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-.logo-container {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  padding: 5px;
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 1.5rem 0 1rem;
+  line-height: 1.4;
+  height: auto;
+  min-height: 3.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.logo-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 255, 13, 0.1);
+.dept-top-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 13, 0.3));
+  margin-bottom: 0.5rem;
+  transition: transform 0.3s ease;
 }
 
-.circular-dept-logo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  filter: grayscale(20%);
-  transition: filter 0.3s ease;
-}
-
-.logo-container:hover .circular-dept-logo {
-  filter: grayscale(0%);
+.dept-top-logo:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 15px rgba(0, 255, 13, 0.5));
 }
 
 .divider-vertical {
@@ -198,12 +187,45 @@
 
 
 .dept-description {
-  margin-top: 1.5rem;
+  margin-bottom: 2rem;
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #b0b0b0;
-  max-width: 320px;
+  color: #c0c0c0;
+  max-width: 380px;
   font-family: 'Inter', sans-serif;
+}
+
+.dept-photo-placeholder {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.dept-photo-placeholder span {
+  font-size: 0.8rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.dept-photo-placeholder:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 255, 13, 0.3);
+  box-shadow: 0 10px 40px rgba(0, 255, 13, 0.1);
+  transform: translateY(-5px);
+}
+
+.dept-photo-placeholder:hover span {
+  color: #00ff0d;
 }
 
 .about-section p {
