@@ -134,6 +134,98 @@
 }
 
 /* =========================
+   FAQ SECTION
+   ========================= */
+
+.faq-section {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  margin-top: 2rem;
+}
+
+.faq-container {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.faq-item {
+  background: rgba(10, 20, 10, 0.6);
+  border: 1px solid rgba(57, 255, 20, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.faq-item:hover,
+.faq-item.open {
+  border-color: rgba(57, 255, 20, 0.6);
+  background: rgba(10, 30, 10, 0.7);
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.15);
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.faq-question h3 {
+  font-size: 1.2rem;
+  color: #fff;
+  margin: 0;
+  font-weight: 600;
+  font-family: 'Outfit', sans-serif;
+  flex: 1;
+  padding-right: 1rem;
+}
+
+.faq-icon {
+  font-size: 1.5rem;
+  color: #39ff14;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(180deg);
+  /* Optional rotation if using arrow */
+  color: #ff0055;
+  /* Change color when open */
+}
+
+.faq-answer {
+  overflow: hidden;
+  padding: 0 1.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.faq-answer p {
+  padding-bottom: 1.5rem;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .faq-question h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* =========================
    DEPARTMENT HEADING
    ========================= */
 
@@ -477,66 +569,21 @@
   letter-spacing: 0.1em;
 }
 
-/* Showcase Carousel Layout */
-.events-showcase-wrapper {
-  width: 100%;
-  overflow-x: hidden;
-  padding: 2rem 0 4rem 0;
-  /* Extra bottom padding for hover effects */
-  position: relative;
-  /* perspective: 1000px; Removed for cleaner 2D slide, can add back for 3D */
-}
-
-.events-showcase-track {
+/* Grid Layout for Events */
+.events-grid-container {
   display: flex;
-  gap: 2.5rem;
-  padding: 0 4rem;
-  /* Initial padding on sides */
-  width: fit-content;
-  cursor: grab;
-  touch-action: pan-y;
-  /* Allow vertical scroll but handle horizontal drag */
-}
-
-.events-showcase-track:active {
-  cursor: grabbing;
-}
-
-/* Navigation Buttons */
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 2rem;
-  display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: center;
-  cursor: pointer;
-  z-index: 20;
-  backdrop-filter: blur(5px);
-  transition: all 0.3s ease;
-  padding-bottom: 5px;
-  /* Visual center adjustment */
+  align-items: stretch;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 1rem;
+  flex-wrap: wrap;
+  /* Wrap on smaller screens if necessary, but aim for row */
 }
 
-.carousel-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-}
-
-.carousel-btn.left {
-  left: 10px;
-}
-
-.carousel-btn.right {
-  right: 10px;
-}
+/* Removed carousel buttons and track */
 
 /* 
      EVENT SHOWCASE CARD 
@@ -544,8 +591,13 @@
   */
 
 .event-showcase-card {
-  width: 320px;
-  height: 450px;
+  flex: 1;
+  min-width: 300px;
+  max-width: 450px;
+  /* Don't let them get too wide on huge screens, or maybe larger? */
+  width: 100%;
+  height: 550px;
+  /* Taller */
   flex-shrink: 0;
   position: relative;
   background: transparent;
@@ -585,16 +637,43 @@
 
 /* Category Colors - Reduced to subtle text/accent colors instead of big glows */
 .event-showcase-card.technical {
-  --glow-color: #ff0055;
+  --glow-color: #39ff14;
+  /* Green */
   /* box-shadow removed */
 }
 
 .event-showcase-card.non-technical {
-  --glow-color: #00f3ff;
+  --glow-color: #ff0000;
+  /* Red */
 }
 
-.event-showcase-card.workshop {
-  --glow-color: #39ff14;
+.event-showcase-card.workshops {
+  --glow-color: #00f3ff;
+  /* Cyan */
+}
+
+/* Poster / Image Container */
+.card-image-container {
+  width: 100%;
+  height: 200px;
+  background-color: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.event-showcase-card:hover .card-image {
+  opacity: 1;
 }
 
 /* Content Styling */
@@ -607,7 +686,12 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  /* Changed from flex-end to top-align images */
+  align-items: center;
+  /* Centered content */
+  text-align: center;
+  /* Centered text */
 }
 
 .card-title {
@@ -619,6 +703,7 @@
   letter-spacing: 0.05em;
   text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
   line-height: 1.1;
+  text-align: center;
 }
 
 .card-subtitle {
@@ -626,6 +711,7 @@
   color: rgba(255, 255, 255, 0.8);
   margin-bottom: 1rem;
   font-weight: 500;
+  text-align: center;
 }
 
 .card-category {
@@ -639,6 +725,8 @@
   color: #000;
   background: var(--glow-color);
   box-shadow: 0 0 15px var(--glow-color);
+  margin-top: auto;
+  /* Push to bottom */
 }
 
 /* Decorative Corn/Corner */
@@ -653,24 +741,27 @@
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-  .carousel-btn {
-    display: none;
+@media (max-width: 968px) {
+  .events-grid-container {
+    flex-direction: column;
+    align-items: center;
   }
 
   .event-showcase-card {
-    width: 260px;
-    height: 380px;
-    padding: 1.5rem;
-  }
-
-  .events-showcase-track {
-    padding: 0 2rem;
-    gap: 1.5rem;
+    width: 100%;
+    max-width: 600px;
+    /* Wider on tablet/mobile when stacked */
+    height: 500px;
   }
 
   .card-title {
     font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .event-showcase-card {
+    height: 450px;
   }
 }
 
@@ -690,14 +781,97 @@
   margin-top: 2rem;
 }
 
+/* Carousel Layout for Speakers */
+/* Carousel Layout for Speakers */
 .speakers-grid {
   display: flex;
   flex-wrap: wrap;
+  /* Grid wrap */
   justify-content: center;
   gap: 2rem;
   width: 100%;
   max-width: 1400px;
   padding: 2rem 0;
+}
+
+.speakers-grid>* {
+  flex: 0 0 calc(33.333% - 2rem);
+  max-width: 400px;
+  min-width: 300px;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.speakers-carousel-track {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem 0;
+  /* Space for hover effects */
+}
+
+.carousel-item {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+/* Updated Nav Buttons for Speakers Carousel */
+.carousel-nav-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #39ff14;
+  border: 1px solid rgba(57, 255, 20, 0.3);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.carousel-nav-btn:hover {
+  background: rgba(57, 255, 20, 0.2);
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.5);
+}
+
+.carousel-nav-btn.left {
+  margin-right: 1rem;
+}
+
+.carousel-nav-btn.right {
+  margin-left: 1rem;
+}
+
+/* Ensure ProductCard fits in the carousel item */
+.carousel-item .product-card {
+  width: 100%;
+}
+
+/* Mobile Tweaks */
+@media (max-width: 768px) {
+  .carousel-nav-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
 }
 
 /* =========================

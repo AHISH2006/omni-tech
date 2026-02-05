@@ -1,0 +1,204 @@
+/* NonTechEventCard.css */
+.nt-card-container {
+    width: 380px;
+    height: 560px;
+    position: relative;
+    perspective: 1000px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nt-card-frame {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: rgba(10, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    clip-path: polygon(20px 0, 100% 0,
+            100% calc(100% - 20px), calc(100% - 20px) 100%,
+            0 100%, 0 20px);
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.nt-card-container.active .nt-card-frame {
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+    border-color: rgba(255, 0, 0, 0.8);
+}
+
+/* Holographic Corners */
+.nt-border-corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ff0000;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.nt-border-corner.top-left {
+    top: 5px;
+    left: 5px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.nt-border-corner.top-right {
+    top: 5px;
+    right: 5px;
+    border-left: none;
+    border-bottom: none;
+}
+
+.nt-border-corner.bottom-left {
+    bottom: 5px;
+    left: 5px;
+    border-right: none;
+    border-top: none;
+}
+
+.nt-border-corner.bottom-right {
+    bottom: 5px;
+    right: 5px;
+    border-left: none;
+    border-top: none;
+}
+
+.nt-card-container:hover .nt-border-corner {
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 0 10px #ff0000;
+}
+
+/* Internal Structure */
+.nt-card-internal {
+    padding: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ImageWrapper */
+.nt-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    overflow: hidden;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%);
+    border-bottom: 2px solid rgba(255, 0, 0, 0.5);
+}
+
+.nt-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(80%) sepia(20%) hue-rotate(-50deg) contrast(1.2);
+    /* Red tint */
+    transition: all 0.5s ease;
+}
+
+.nt-card-container:hover .nt-card-image,
+.nt-card-container.active .nt-card-image {
+    filter: grayscale(0%) contrast(1.1);
+}
+
+.nt-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(255, 0, 0, 0.2) 100%);
+    pointer-events: none;
+}
+
+/* Scanline Animation */
+.nt-scan-line {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 0, 0, 0.8), transparent);
+    animation: nt-scan 3s infinite linear;
+    z-index: 5;
+    opacity: 0.5;
+}
+
+@keyframes nt-scan {
+    0% {
+        top: -20%;
+    }
+
+    100% {
+        top: 120%;
+    }
+}
+
+/* Content */
+.nt-content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 15px 5px;
+    position: relative;
+}
+
+.nt-index-mark {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 3rem;
+    font-weight: 900;
+    color: rgba(255, 0, 0, 0.1);
+    z-index: 0;
+}
+
+.nt-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 0;
+    z-index: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    line-height: 1;
+}
+
+.nt-decoration-bar {
+    width: 50px;
+    height: 4px;
+    background: #ff0000;
+    margin-top: 10px;
+    box-shadow: 0 0 10px #ff0000;
+    transition: width 0.3s ease;
+}
+
+.nt-card-container:hover .nt-decoration-bar {
+    width: 100px;
+}
+
+/* Glow on Active/Hover */
+.nt-card-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 20px rgba(255, 0, 0, 0.2);
+    pointer-events: none;
+    z-index: 20;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.nt-card-container.active .nt-card-glow {
+    opacity: 1;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .nt-card-container {
+        width: 280px;
+        height: 420px;
+    }
+}

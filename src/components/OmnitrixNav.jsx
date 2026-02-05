@@ -12,6 +12,7 @@ const OPTIONS = [
     { id: "workshops", label: "WORKSHOPS", icon: "⚙️" },
     { id: "technical", label: "TECHNICAL", icon: "⚡" },
     { id: "non-technical", label: "NON-TECHNICAL", icon: "🎮" },
+    { id: "schedule", label: "SCHEDULE", icon: "📅" },
     { id: "packages", label: "PACKAGES", icon: "💎" },
 ]
 
