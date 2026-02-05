@@ -8,6 +8,16 @@
     align-items: center;
     color: #e0fce0;
     font-family: 'Rajdhani', sans-serif;
+    padding: 80px 20px 40px;
+    /* Top padding for navbar/breathing room */
+    background: radial-gradient(circle at center, #0a1f0a 0%, #000000 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #e0fce0;
+    font-family: 'Rajdhani', 'Orbitron', sans-serif;
+    /* Sci-fi fonts */
     overflow-x: hidden;
 }
 
@@ -29,6 +39,35 @@
     justify-content: center;
     gap: 3rem;
     flex-wrap: wrap;
+    font-size: 3rem;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 3rem;
+    letter-spacing: 4px;
+    color: #00ff00;
+    text-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+    position: relative;
+    animation: titlePulse 3s infinite alternate;
+}
+
+@keyframes titlePulse {
+    0% {
+        text-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+        transform: scale(1);
+    }
+
+    100% {
+        text-shadow: 0 0 25px rgba(0, 255, 0, 0.8), 0 0 50px rgba(0, 255, 0, 0.2);
+        transform: scale(1.02);
+    }
+}
+
+/* Cards Grid */
+.packages-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
     width: 100%;
     max-width: 1400px;
     position: relative;
@@ -91,6 +130,218 @@
     font-size: 2rem;
     font-weight: 800;
     margin-bottom: 0.5rem;
+}
+
+/* Package Wrapper to hold Card + Button */
+.package-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 360px;
+    /* Should match card width */
+}
+
+/* Base Card Style */
+.package-card {
+    position: relative;
+    width: 100%;
+    /* Fill wrapper */
+    height: 640px;
+    background: rgba(0, 20, 0, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 2px solid rgba(0, 255, 0, 0.3);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Distribute content evenly */
+    align-items: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+}
+
+.package-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+    z-index: -1;
+}
+
+/* Hover Effect - Omnitrix Pulse */
+.package-card:hover {
+    transform: translateY(-15px) scale(1.03);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.4), inset 0 0 20px rgba(0, 255, 0, 0.2);
+    border-color: #00ff00;
+}
+
+/* Specific Card Themes */
+
+/* Gold - Golden Gradient & Glow */
+.package-card.gold {
+    border-color: rgba(255, 215, 0, 0.5);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+}
+
+.package-card.gold:hover {
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.5), inset 0 0 20px rgba(255, 215, 0, 0.2);
+    border-color: #ffd700;
+}
+
+.package-card.gold .card-title {
+    background: linear-gradient(to right, #ffd700, #ffaa00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+/* Gold Poster Special Styling */
+/* Poster Mode (Generic) */
+.package-card.poster-mode {
+    padding: 1.5rem;
+    /* Consistent padding slightly reduced */
+    width: 100%;
+    /* Fill wrapper */
+    height: 640px;
+    /* Match standard card */
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* Push button to bottom */
+}
+
+.package-card.poster-mode .card-image-container {
+    position: absolute;
+    /* Absolute position to fill full card behind button */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 20px;
+    margin: 0;
+    opacity: 1;
+    z-index: 0;
+}
+
+.package-card.poster-mode .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ensure aspect ratio fills container */
+    border-radius: 20px;
+    opacity: 1;
+}
+
+/* Button logic removed from poster-mode since it's outside */
+
+.package-card.poster-mode .card-title,
+.package-card.poster-mode .features-list {
+    display: none;
+}
+
+.package-card.poster-mode:hover {
+    box-shadow: none;
+    transform: translateY(-10px) scale(1.02);
+}
+
+/* Gold Poster Specifics */
+.package-card.gold.poster-mode .card-image-container {
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.3), inset 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.package-card.gold.poster-mode:hover .card-image-container {
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.8), inset 0 0 40px rgba(255, 215, 0, 0.4);
+}
+
+/* Silver Poster Specifics */
+.package-card.silver.poster-mode .card-image-container {
+    box-shadow: 0 0 25px rgba(192, 192, 192, 0.3), inset 0 0 20px rgba(192, 192, 192, 0.2);
+}
+
+.package-card.silver.poster-mode:hover .card-image-container {
+    box-shadow: 0 0 50px rgba(192, 192, 192, 0.8), inset 0 0 40px rgba(192, 192, 192, 0.4);
+}
+
+
+/* Silver - Silver Gradient & Glow */
+.package-card.silver {
+    border-color: rgba(192, 192, 192, 0.5);
+    box-shadow: 0 0 15px rgba(192, 192, 192, 0.1);
+}
+
+.package-card.silver:hover {
+    box-shadow: 0 0 40px rgba(192, 192, 192, 0.5), inset 0 0 20px rgba(192, 192, 192, 0.2);
+    border-color: #c0c0c0;
+}
+
+.package-card.silver .card-title {
+    background: linear-gradient(to right, #c0c0c0, #e0e0e0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(192, 192, 192, 0.3);
+}
+
+/* Diamond - Diamond/White & Glow */
+.package-card.diamond {
+    border-color: rgba(229, 228, 226, 0.5);
+    box-shadow: 0 0 15px rgba(229, 228, 226, 0.1);
+}
+
+.package-card.diamond:hover {
+    box-shadow: 0 0 40px rgba(229, 228, 226, 0.6), inset 0 0 20px rgba(0, 255, 0, 0.3);
+    /* Mixed with green for Sci-fi feel */
+    border-color: #e5e4e2;
+}
+
+.package-card.diamond .card-title {
+    background: linear-gradient(to right, #ffffff, #e5e4e2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+
+/* Image Container */
+.card-image-container {
+    width: 100%;
+    height: 180px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    opacity: 0.8;
+}
+
+.package-card:hover .card-image {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+/* Content */
+.card-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     text-align: center;
@@ -112,12 +363,31 @@
     border-bottom: 1px solid rgba(0, 255, 0, 0.15);
     color: #ccffcc;
     font-size: 1rem;
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    width: 100%;
+    text-align: left;
+}
+
+.features-list li {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+    color: #ccc;
+    font-size: 0.95rem;
     display: flex;
     align-items: center;
 }
 
 .plan-features li::before {
     content: '◈';
+}
+
+.features-list li::before {
+    content: '►';
     color: #00ff00;
     margin-right: 10px;
     font-size: 0.8rem;
@@ -132,6 +402,24 @@
     color: #00ff00;
     font-family: 'Orbitron', sans-serif;
     font-size: 1.2rem;
+}
+
+.features-list li:last-child {
+    border-bottom: none;
+}
+
+/* Omnitrix Button */
+.select-btn {
+    width: 100%;
+    /* Full width relative to wrapper */
+    margin-top: 1.5rem;
+    /* Space between card and button */
+    padding: 1rem;
+    background: transparent;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    font-family: inherit;
+    font-size: 1.1rem;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -143,6 +431,11 @@
 }
 
 .omnitrix-btn::before {
+    clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+    /* Sci-fi Shape */
+}
+
+.select-btn::before {
     content: '';
     position: absolute;
     top: 0;
@@ -231,6 +524,47 @@
 @media (max-width: 768px) {
     .packages-container {
         padding-top: 80px;
+        background: #00ff00;
+        transition: left 0.3s ease;
+        z-index: -1;
+    }
+}
+
+.select-btn:hover {
+    color: black;
+    box-shadow: 0 0 20px #00ff00;
+}
+
+.select-btn:hover::before {
+    left: 0;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1100px) {
+    .packages-grid {
+        gap: 2rem;
+    }
+
+    /* Update wrapper size */
+    .package-wrapper {
+        width: 320px;
+    }
+
+    .package-card {
+        /* Remove fixed width, let it fill wrapper */
+        height: 570px;
+        /* Slight scale down */
+    }
+
+    .package-card.poster-mode {
+        /* Remove fixed width */
+        height: 570px;
+    }
+}
+
+@media (max-width: 768px) {
+    .packages-container {
+        padding-top: 60px;
     }
 
     .packages-grid {
@@ -246,5 +580,24 @@
 
     .plan-image-container {
         height: 300px;
+    }
+
+    .package-wrapper {
+        width: 90%;
+        max-width: 400px;
+    }
+
+    .package-card {
+        height: auto;
+        min-height: 500px;
+    }
+
+    .package-card.poster-mode {
+        height: 500px;
+    }
+
+    .package-card.gold-poster {
+        /* Legacy cleanup? No, strictly remove usage if present */
+        width: 100%;
     }
 }
