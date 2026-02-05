@@ -12,6 +12,14 @@ import { eventsData } from "../data/eventsData";
 import ProductCard from "../components/ProductCard";
 // Removed ElectricBorder import
 import AssociationHeadCard from "../components/AssociationHeadCard";
+
+import panelist1 from "../assets/panelist1.png";
+import panelist2 from "../assets/panelist2.png";
+import panelist3 from "../assets/panelist3.png";
+import panelist4 from "../assets/panelist4.png";
+import panelist5 from "../assets/panelist5.png";
+import panelist6 from "../assets/panelist6.png";
+import panelist7 from "../assets/panelist7.png";
 export default function HomePage() {
   const navigate = useNavigate();
   // Removed carousel state and logic
@@ -260,6 +268,7 @@ export default function HomePage() {
               image={speaker.image}
               name={speaker.name}
               dept={speaker.dept}
+              description={speaker.description}
             />
           ))}
         </div>
@@ -332,11 +341,48 @@ const associationHeadsAIDS = [
 
 
 const speakersData = [
-  { id: 1, name: "Dr. Azmuth", dept: "Galvan Prime", image: "https://placehold.co/400x400/003300/00ff00?text=Azmuth" },
-  { id: 2, name: "Prof. Paradox", dept: "Time Travel", image: "https://placehold.co/400x400/003300/00ff00?text=Paradox" },
-  { id: 3, name: "Max Tennyson", dept: "Plumbers", image: "https://placehold.co/400x400/003300/00ff00?text=Max" },
-  { id: 4, name: "Gwen Tennyson", dept: "Mana Arts", image: "https://placehold.co/400x400/003300/00ff00?text=Gwen" },
-  { id: 5, name: "Kevin Levin", dept: "Matter Absorption", image: "https://placehold.co/400x400/003300/00ff00?text=Kevin" },
-  { id: 6, name: "Rook Blonko", dept: "Plumbers Academy", image: "https://placehold.co/400x400/003300/00ff00?text=Rook" },
-  { id: 7, name: "Tetrax Shard", dept: "Bounty Hunter", image: "https://placehold.co/400x400/003300/00ff00?text=Tetrax" },
+  {
+    id: 1,
+    name: "Mrs. K. Kanakambal , M.E",
+    image: panelist1,
+    description: "Expertise: Cybersecurity "
+  },
+  {
+    id: 2,
+    name: "Mr. C. Vignesh Manikadan, M.E",
+    image: panelist2,
+    description: "Expertise: Data Analytics"
+  },
+  {
+    id: 3,
+    name: "Mrs. C. Rajanayaki @ Sindhuja, M.E",
+    image: panelist3,
+    description: "Expertise: Computer Vision and Artificial Intelligence"
+  },
+  {
+    id: 4,
+    name: "Ms. Gayathri , M.E.",
+    image: panelist4,
+    description: "Expertise: Networks"
+  },
+  {
+    id: 5,
+    name: "Mrs. Suganya A, M.E., M.B.A",
+    image: panelist5,
+    description: "Expertise: Networks"
+  },
+  {
+    id: 6,
+    name: "Mr. S. Sivaraja, M.E",
+   
+    image: panelist6,
+    description: "Expertise: Cloud Computing"
+  },
+  {
+    id: 7,
+    name: "Mrs. C. Eyamini, M.E. (Ph.D)",
+    
+    image: panelist7,
+    description: "Expertise: Data Science and Cybersecurity"
+  },
 ];
