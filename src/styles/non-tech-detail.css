@@ -1,0 +1,297 @@
+/* =========================
+   NON-TECHNICAL DETAIL PAGE
+   ========================= */
+
+.non-tech-detail-page {
+    min-height: 100vh;
+    width: 100%;
+    background-color: #000;
+    color: #ff0055;
+    position: relative;
+    overflow-x: hidden;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.non-tech-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    z-index: 10;
+    position: relative;
+}
+
+/* Back Button */
+.back-button-container {
+    margin-bottom: 2rem;
+}
+
+.back-button {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #ef4444;
+    color: #ef4444;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.back-button:hover {
+    background: rgba(239, 68, 68, 0.15);
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+    transform: translateX(-5px);
+}
+
+/* Grid Layout */
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+@media (min-width: 992px) {
+    .detail-grid {
+        grid-template-columns: 1.2fr 1fr;
+        gap: 4rem;
+    }
+}
+
+/* Image Hologram Effect */
+.hologram-image-container {
+    position: relative;
+    width: 100%;
+    /* Removed aspect-ratio to allow full poster display */
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.15);
+}
+
+.hologram-image {
+    width: 100%;
+    height: auto;
+    /* Allow image to define height */
+    display: block;
+    filter: brightness(1.1) contrast(1.1);
+}
+
+.hologram-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255, 0, 0, 0) 0%, rgba(239, 68, 68, 0.1) 50%, rgba(239, 68, 68, 0.05) 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(239, 68, 68, 0.5);
+    opacity: 0.7;
+    animation: scan 3s linear infinite;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
+    z-index: 3;
+}
+
+@keyframes scan {
+    0% {
+        top: 0%;
+    }
+
+    100% {
+        top: 100%;
+    }
+}
+
+/* Content Panel */
+.content-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.event-title-holo {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #ff0055;
+    /* Red Title */
+    line-height: 1.1;
+    margin: 0;
+    text-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
+    letter-spacing: 2px;
+}
+
+.category-tag {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid #ef4444;
+    color: #ef4444;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.9rem;
+    width: fit-content;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+}
+
+.description-box {
+    border-left: 3px solid #ef4444;
+    padding-left: 1.5rem;
+    background: linear-gradient(90deg, rgba(239, 68, 68, 0.05), transparent);
+}
+
+.event-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #f8f6f7;
+    /* Full Red Text */
+    white-space: pre-wrap;
+    text-shadow: 0 0 5px rgba(255, 0, 85, 0.3);
+    /* Subtle Glow */
+}
+
+/* Registration Section */
+.registration-panel {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: rgba(40, 20, 20, 0.6);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.registration-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #ef4444;
+}
+
+.register-title {
+    font-size: 1.5rem;
+    color: #ff0055;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.register-btn-large {
+    width: 100%;
+    padding: 1.2rem;
+    background: rgba(0, 0, 0, 0.6);
+    color: #ef4444;
+    border: 1px solid #ef4444;
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 10px) 100%, 0 100%, 0 15px);
+}
+
+.register-btn-large:hover {
+    background: #ef4444;
+    color: #000;
+    box-shadow: 0 0 40px rgba(239, 68, 68, 0.7);
+    transform: scale(1.02);
+}
+
+/* Not Found State */
+.not-found-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #000;
+}
+
+.not-found-text {
+    font-size: 2.5rem;
+    color: #ef4444;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+}
+
+@media (max-width: 768px) {
+    .event-title-holo {
+        font-size: 2.2rem;
+    }
+
+    .detail-grid {
+        gap: 2rem;
+    }
+}
+
+/* Event Meta Grid */
+.event-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 0, 85, 0.3);
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.meta-label {
+    font-size: 0.8rem;
+    color: #ff0055;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.meta-value {
+    font-size: 1rem;
+    color: #fefbfc;
+    /* Full Red */
+    font-weight: 600;
+    text-shadow: 0 0 5px rgba(255, 0, 85, 0.4);
+}
+
+/* Coordinator Section */
+.coordinator-section {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 0, 85, 0.1);
+    font-size: 0.9rem;
+}
+
+.coordinator-label {
+    display: block;
+    color: #ff0055;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+}
+
+.coordinator-names {
+    color: #f5edf0;
+    /* Full Red */
+    font-style: italic;
+    text-shadow: 0 0 5px rgba(255, 0, 85, 0.3);
+}

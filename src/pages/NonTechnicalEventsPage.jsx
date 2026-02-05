@@ -1,24 +1,24 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import "../styles/technical-events-carousel.css";
+import "../styles/non-technical-events.css";
+// reusing the data source to ensure IDs match
 import { eventsData } from "../data/eventsData";
-import Antigravity from "../components/Antigravity";
 
-export default function TechnicalEventsPage() {
+export default function NonTechnicalEventsPage() {
     const navigate = useNavigate();
 
-    // Filter only technical events
-    const technicalEvents = eventsData.filter(e => e.category === 'Technical');
+    // Filter only non-technical events
+    const nonTechnicalEvents = eventsData.filter(e => e.category === 'Non Technical');
 
-    const [activeIndex, setActiveIndex] = useState(Math.floor(technicalEvents.length / 2));
+    const [activeIndex, setActiveIndex] = useState(Math.floor(nonTechnicalEvents.length / 2));
 
     const handleNext = () => {
-        setActiveIndex((prev) => (prev + 1) % technicalEvents.length);
+        setActiveIndex((prev) => (prev + 1) % nonTechnicalEvents.length);
     };
 
     const handlePrev = () => {
-        setActiveIndex((prev) => (prev - 1 + technicalEvents.length) % technicalEvents.length);
+        setActiveIndex((prev) => (prev - 1 + nonTechnicalEvents.length) % nonTechnicalEvents.length);
     };
 
     // Keyboard navigation
@@ -33,12 +33,12 @@ export default function TechnicalEventsPage() {
 
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [technicalEvents.length]);
+    }, [nonTechnicalEvents.length]);
 
     const getCardStyle = (index) => {
         // Calculate distance from active index
         // Handle wrapping logic for endless feel creation
-        const total = technicalEvents.length;
+        const total = nonTechnicalEvents.length;
 
         // Find shortest distance in circular array
         let diff = (index - activeIndex + total) % total;
@@ -51,7 +51,7 @@ export default function TechnicalEventsPage() {
 
         // X translation based on visual offset
         const xOffset = diff * 400; // Adjusted for wider cards (380px)
-        const scale = isActive ? 1.0 : 0.8;
+        const scale = isActive ? 1.0 : 0.8; // Scale logic slightly adjusted for new cards
         const zIndex = 10 - Math.abs(diff);
         const opacity = 1 - Math.abs(diff) * 0.3;
 
@@ -64,22 +64,22 @@ export default function TechnicalEventsPage() {
     };
 
     return (
-        <div className="tech-events-page-carousel">
+        <div className="non-tech-events-page">
             {/* PAGE HEADER */}
             <motion.div
-                className="tech-events-header"
+                className="non-tech-events-header"
                 initial={{ opacity: 0, y: -40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
             >
-                <h1 className="tech-title">TECHNICAL EVENTS</h1>
-                <p className="tech-subtitle">
-                    Showcase your skills. Think fast. Build smarter.
+                <h1 className="non-tech-title">NON-TECHNICAL EVENTS</h1>
+                <p className="non-tech-subtitle">
+                    Unleash your creativity. Have Fun. Win Big.
                 </p>
             </motion.div>
 
             {/* CAROUSEL CONTAINER */}
-            <div className="tech-carousel-container">
+            <div className="non-tech-carousel-container">
                 {/* NAVIGATION BUTTONS */}
                 <button className="carousel-btn left" onClick={handlePrev}>
                     &#8249;
@@ -89,12 +89,12 @@ export default function TechnicalEventsPage() {
                 </button>
 
                 {/* ITEMS */}
-                <div className="tech-carousel-track">
+                <div className="non-tech-carousel-track">
                     <AnimatePresence>
-                        {technicalEvents.map((event, index) => {
+                        {nonTechnicalEvents.map((event, index) => {
                             const style = getCardStyle(index);
                             // Need to calculate if it is "active" for class styling
-                            const total = technicalEvents.length;
+                            const total = nonTechnicalEvents.length;
                             let diff = (index - activeIndex + total) % total;
                             if (diff > total / 2) diff -= total;
                             const isActive = diff === 0;
@@ -102,7 +102,7 @@ export default function TechnicalEventsPage() {
                             return (
                                 <motion.div
                                     key={event.id}
-                                    className={`tech-card-wrapper ${isActive ? 'active' : 'inactive'}`}
+                                    className={`non-tech-card-wrapper ${isActive ? 'active' : 'inactive'}`}
                                     initial={false}
                                     animate={{
                                         x: style.x,
@@ -114,38 +114,38 @@ export default function TechnicalEventsPage() {
                                     style={{ display: style.display }}
                                     onClick={() => {
                                         if (isActive) {
-                                            navigate(`/technical/${event.id}`);
+                                            navigate(`/non-technical/${event.id}`);
                                         } else {
                                             setActiveIndex(index);
                                         }
                                     }}
                                 >
-                                    {/* NEW TECH CARD STRUCTURE */}
-                                    <div className="tech-card-frame">
-                                        <div className="tech-card-internal">
+                                    {/* NEW CARD STRUCTURE */}
+                                    <div className="nt-card-frame">
+                                        <div className="nt-card-internal">
                                             {/* Image Section - Full Card */}
-                                            <div className="tech-image-wrapper">
-                                                <div className="tech-scan-line"></div>
-                                                <div className="tech-image-overlay"></div>
+                                            <div className="nt-image-wrapper">
+                                                <div className="nt-scan-line"></div>
+                                                <div className="nt-image-overlay"></div>
                                                 <img
-                                                    src={event.image || "https://placehold.co/400x600/003300/00ff00?text=Event"}
+                                                    src={event.image || "https://placehold.co/400x600/330000/ff0000?text=CLASSIFIED"}
                                                     alt={event.title}
-                                                    className="tech-card-image"
+                                                    className="nt-card-image"
                                                 />
                                             </div>
 
                                             {/* Content Section - Overlay */}
-                                            <div className="tech-content-wrapper">
-                                                <div className="tech-index-mark">0{index + 1}</div>
-                                                <h3 className="tech-card-title">
+                                            <div className="nt-content-wrapper">
+                                                <div className="nt-index-mark">0{index + 1}</div>
+                                                <h3 className="nt-title">
                                                     {event.title}
                                                 </h3>
-                                                <div className="tech-decoration-bar"></div>
+                                                <div className="nt-decoration-bar"></div>
                                             </div>
                                         </div>
 
                                         {/* Background Glow */}
-                                        <div className="tech-card-glow"></div>
+                                        <div className="nt-card-glow"></div>
                                     </div>
                                 </motion.div>
                             );

@@ -1,0 +1,299 @@
+/* =========================
+   NON-TECHNICAL EVENTS PAGE
+   ========================= */
+
+.non-tech-events-page {
+    position: relative;
+    min-height: 100vh;
+    padding: 6rem 0 4rem;
+    color: #e5e7eb;
+    z-index: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================
+   HEADER
+   ========================= */
+
+.non-tech-events-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 0 1.5rem;
+}
+
+.non-tech-title {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    font-weight: 900;
+    letter-spacing: 0.25em;
+    background: linear-gradient(180deg, #ffffff, #ff0055);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(255, 0, 85, 0.4);
+}
+
+.non-tech-subtitle {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+/* =========================
+   CAROUSEL CONTAINER
+   ========================= */
+
+.non-tech-carousel-container {
+    position: relative;
+    width: 100%;
+    height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+}
+
+/* Navigation Buttons */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 0, 85, 0.5);
+    color: #ff0055;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.carousel-btn:hover {
+    background: #ff0055;
+    color: #000;
+    box-shadow: 0 0 20px rgba(255, 0, 85, 0.6);
+}
+
+.carousel-btn.left {
+    left: 2rem;
+}
+
+.carousel-btn.right {
+    right: 2rem;
+}
+
+/* Track */
+.non-tech-carousel-track {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* =========================
+   NEW CARD DESIGN (FULL IMAGE FIT)
+   ========================= */
+
+.non-tech-card-wrapper {
+    position: absolute;
+    width: 380px;
+    height: 560px;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.non-tech-card-wrapper.active {
+    z-index: 10;
+}
+
+.non-tech-card-wrapper.inactive {
+    opacity: 0.5;
+    transform: scale(0.8);
+    z-index: 1;
+    filter: brightness(0.5);
+}
+
+
+/* Inner Frame */
+.nt-card-frame {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #000;
+    border: 1px solid rgba(255, 0, 85, 0.3);
+    /* Clean rectangle, no clip-path cuts */
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(255, 0, 85, 0.1);
+    transition: box-shadow 0.3s ease;
+    border-radius: 12px;
+    /* Soft rounding */
+}
+
+/* Active State Styles */
+.non-tech-card-wrapper.active .nt-card-frame {
+    box-shadow: 0 0 40px rgba(255, 0, 85, 0.5);
+    border-color: rgba(255, 0, 85, 0.8);
+}
+
+/* Internal Structure */
+.nt-card-internal {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* ImageWrapper - Full Fill */
+.nt-image-wrapper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    /* No clip-path, full rectangle */
+}
+
+.nt-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ensures image covers entire card */
+    filter: grayscale(80%) sepia(20%) hue-rotate(-50deg) contrast(1.2);
+    transition: all 0.5s ease;
+}
+
+.non-tech-card-wrapper:hover .nt-card-image,
+.non-tech-card-wrapper.active .nt-card-image {
+    filter: grayscale(0%) contrast(1.1);
+}
+
+/* Overlay for text readability */
+.nt-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            transparent 40%,
+            rgba(0, 0, 0, 0.6) 70%,
+            rgba(255, 0, 85, 0.2) 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Scanline Animation */
+.nt-scan-line {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 0, 85, 0.8), transparent);
+    animation: nt-scan 3s infinite linear;
+    z-index: 5;
+    opacity: 0.3;
+}
+
+@keyframes nt-scan {
+    0% {
+        top: -20%;
+    }
+
+    100% {
+        top: 120%;
+    }
+}
+
+/* Content */
+.nt-content-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    z-index: 10;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+}
+
+.nt-index-mark {
+    position: absolute;
+    top: -40px;
+    right: 20px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: rgba(255, 0, 85, 0.15);
+    z-index: 0;
+}
+
+.nt-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #ff0055;
+    text-transform: uppercase;
+    margin: 0;
+    z-index: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    line-height: 1.1;
+    letter-spacing: 0.08em;
+}
+
+.nt-decoration-bar {
+    width: 50px;
+    height: 4px;
+    background: #ff0055;
+    margin-top: 15px;
+    box-shadow: 0 0 10px #ff0055;
+    transition: width 0.3s ease;
+}
+
+.non-tech-card-wrapper:hover .nt-decoration-bar,
+.non-tech-card-wrapper.active .nt-decoration-bar {
+    width: 100%;
+}
+
+/* Glow on Active/Hover */
+.nt-card-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 20px rgba(255, 0, 85, 0.2);
+    pointer-events: none;
+    z-index: 20;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.non-tech-card-wrapper.active .nt-card-glow {
+    opacity: 1;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .non-tech-carousel-container {
+        height: 600px;
+    }
+
+    .non-tech-card-wrapper {
+        width: 280px;
+        height: 420px;
+    }
+
+    .nt-title {
+        font-size: 1.4rem;
+    }
+}
