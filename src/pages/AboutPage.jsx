@@ -39,31 +39,41 @@ export default function AboutPage() {
         <h2 className="organizers-title">JOINT ORGANIZERS</h2>
         <div className="organizers-content">
           <div className="organizer-column">
-            <img src={deptLogo} alt="AI Dept Logo" className="dept-top-logo" />
             <h3>Department of Artificial Intelligence and Data Science</h3>
+            <div className="logo-container">
+              <img src={deptLogo} alt="AI Dept Logo" className="circular-dept-logo" />
+            </div>
             <p className="dept-description">
               The Department of Artificial Intelligence is dedicated to advancing the frontiers of intelligent systems and machine learning. Through a curriculum rooted in computational logic and data science, it empowers students to design innovative solutions that address complex real-world challenges.
             </p>
+<<<<<<< HEAD
             <img src="/ADS_HOD.png" alt="ADS HOD" className="dept-photo" />
             <div className="hod-details">
               <div className="hod-designation">HEAD OF DEPARTMENT</div>
               <div className="hod-name">Dr. P. Arulprakash, M.E., Ph.D</div>
             </div>
+=======
+>>>>>>> edad2203bfa6434a59d3fc6931d8cf37d3ab782e
           </div>
 
           <div className="divider-vertical"></div>
 
           <div className="organizer-column">
-            <img src={deptLogo2} alt="IT Dept Logo" className="dept-top-logo" />
             <h3>Department of Information Technology</h3>
+            <div className="logo-container">
+              <img src={deptLogo2} alt="IT Dept Logo" className="circular-dept-logo" />
+            </div>
             <p className="dept-description">
               The Department of Information Technology fosters excellence in computing infrastructure, software engineering, and digital connectivity. It is committed to equipping future professionals with the technical adaptability and strategic insight required to drive the rapidly evolving global digital landscape.
             </p>
+<<<<<<< HEAD
             <img src="/IT_HOD.png" alt="IT HOD" className="dept-photo" />
             <div className="hod-details">
               <div className="hod-designation">HEAD OF DEPARTMENT</div>
               <div className="hod-name">Ms. B. Mythily, M.E. (Ph.D)</div>
             </div>
+=======
+>>>>>>> edad2203bfa6434a59d3fc6931d8cf37d3ab782e
           </div>
         </div>
       </section>

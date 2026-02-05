@@ -1,0 +1,215 @@
+import webtrixBuilder from "../assets/webtrix-builder.png";
+import botrixBuilter from "../assets/botrix-builter.png";
+import cosmicVision from "../assets/cosmic-vision.png";
+import glanticIntel from "../assets/glantic-intel.jpeg";
+import dnaDecode from "../assets/dna-decode.jpeg";
+import dataSpectrum from "../assets/data-spectrum.png";
+import battleArena from "../assets/battle-arena.png";
+import neural from "../assets/neural-nexus.png"
+import dnaHunter from "../assets/dna-hunter.png";
+import freakyLens from "../assets/freaky-lens-capture.jpeg";
+import iplAuction from "../assets/ipl-auction.png";
+import mindMorph from "../assets/mind-morph.png";
+
+export const eventsData = [
+    // ======================
+    // TECHNICAL EVENTS
+    // ======================
+    {
+        id: 'web-duplication',
+        title: 'WEBTRIX REBUILD',
+        category: 'Technical',
+        size: 'large',
+        image: webtrixBuilder,
+        coordinator: "ELANGO P - 9597617402, NAVEEN M S - 6379479890",
+        time: "11:00 am - 01:00pm",
+        participation: "Team (2-4 members only)",
+        venue: "AI & DS LAB",
+        description: `Deploy a high-fidelity digital twin of provided web architecture in two hours. Our "Vibe Coding" methodology fuses rapid-response engineering with premium aesthetic standards to deliver flawless, production-ready environments with unmatched speed.
+
+We eliminate the traditional development bottleneck, ensuring structural integrity and brand consistency are preserved in every deployment. Experience the pinnacle of technical agility—enterprise-grade web duplication, finalized and live within two hours.`
+    },
+    {
+        id: 'chatbot',
+        title: 'BOT-TRIX BUILDER',
+        category: 'Technical',
+        size: 'medium',
+        image: botrixBuilter,
+        coordinator: "KESAV ADITHYA - 7010614463, PREETHI - 8610224428",
+        time: "11:20 am - 12:20 pm",
+        participation: "Team (3-4 members only)",
+        venue: "Data Analytics Lab",
+        description: `This event focuses on designing and developing a functional chatbot that can respond to user queries effectively based on a given problem statement.
+
+Rules & Guidelines:
+1. A problem statement will be provided on the spot.
+2. The chatbot must be developed during the event.
+3. Participants may use any suitable programming language or framework.
+4. The chatbot should handle queries relevant to the problem statement.
+5. Participants must demonstrate the chatbot to the panelists.
+6. Evaluation will be based on functionality, logic, and effectiveness.
+7. Judges’ decision will be final.`
+    },
+    {
+        id: 'vr-ai-video',
+        title: 'COSMIC VISION',
+        category: 'Technical',
+        size: 'medium',
+        image: cosmicVision,
+        coordinator: "HARIDAS - 9080253396, KAVYA SHREE - 6381487932",
+        time: "12:00 pm - 01:00 pm",
+        participation: "Team (3-4 members only)",
+        venue: "LH205",
+        description: `This event showcases pre-created videos developed using AI and/or VR technologies. Participants will present their work during the event.
+
+Rules & Guidelines:
+1. Videos must be created prior to the event using AI and/or VR tools.
+2. The video must be original and not submitted to any other event.
+3. Maximum video duration: 2–3 minutes.
+4. Participants must present their video during the event.
+5. Participants must briefly explain the concept and tools used.
+6. Offensive, plagiarized, or copyrighted content is not allowed.
+7. Videos must be submitted in the specified format within the given time.
+8. Evaluation will be based on creativity and effective use of AI/VR.
+9. Judges’ decision will be final.`
+    },
+    {
+        id: 'google-challenge',
+        title: 'GALACTIC INTEL HUNT',
+        category: 'Technical',
+        size: 'large',
+        image: glanticIntel,
+        coordinator: "KARTHIKEYAN.B - 7339181902, ANITHA - 9342596175",
+        time: "03:30 pm - 04:00 pm",
+        participation: "Team(3-4 members) / Individual",
+        venue: "LH206",
+        description: `Prepare for an interstellar scavenger hunt for information. Utilize your search skills to gather intelligence across the digital galaxy.`
+    },
+    {
+        id: 'escape-code',
+        title: 'DNA DECODE',
+        category: 'Technical',
+        size: 'medium',
+        image: dnaDecode,
+        coordinator: "AHISH - 6374766056, AARTHI - 8838984960",
+        time: "02:30 pm - 03:30 pm",
+        participation: "To Be Decided",
+        venue: "AI & DS LAB",
+        description: `Crack the genetic code of complex algorithms. Unravel the sequences and debug the strands to reveal the ultimate solution.`
+    },
+    {
+        id: 'data-vis',
+        title: 'DATA SPECTRUM',
+        category: 'Technical',
+        size: 'medium',
+        image: dataSpectrum,
+        coordinator: "VISHWANATHAN - 6381103509, NANDINI - 9003942936",
+        time: "02:30 pm - 03:30 pm",
+        participation: "Team(2-3 members only)",
+        venue: "Data Analytics Lab",
+        description: `Participants will be given on-spot dirty or mismatched datasets and must clean, analyze, and visualize the data. Visualizations should be created based on panelists’ requirements and presented during the event.
+
+Rules & Guidelines:
+1. Datasets will be provided on the spot.
+2. Data must be cleaned and visualized during the event.
+3. Participants must present visualizations as requested by the panelists.
+4. Visualizations must be accurate and clear.
+5. Evaluation will be based on data handling and visualization effectiveness.
+6. Judges’ decision will be final.`
+    },
+
+    // ======================
+    // NON-TECHNICAL EVENTS
+    // ======================
+    {
+        id: 'connection',
+        title: 'NEURAL NEXUS',
+        category: 'Non Technical',
+        size: 'medium',
+        image: neural,
+        coordinator: "JAYASRI - 8667803947, PRABHU - 9080523755",
+        time: "11:20 am - 12:20 pm",
+        participation: "Team(3-4 members) / Individual",
+        venue: "LH206",
+        description: `Connection is a fun, interactive, non-technical event that challenges participants to identify logical links between given images, words, or clues, enhancing observation skills, creative thinking, teamwork, and quick decision-making while delivering an engaging and enjoyable competitive experience.`
+    },
+    {
+        id: 'ipl-auction',
+        title: 'IPL AUCTION',
+        category: 'Non Technical',
+        size: 'large',
+        image: iplAuction,
+        coordinator: "DINESH - 7806879335, GUNA - 8122572420, KAMAL - 9943043274",
+        time: "11:00 am - 01:20 pm",
+        participation: "Team (3–4 members only)",
+        venue: "Seminar Hall",
+        description: `IPL Auction is a fun and interactive event inspired by the Indian Premier League auction, where participants act as team owners and bid on players using a fixed virtual budget to form a balanced team. The event tests strategic thinking, budgeting, teamwork, and quick decision-making.
+
+Rules and Restrictions:
+• Each team is given a fixed virtual budget that must not be exceeded.
+• Players are auctioned one at a time, and bids once placed cannot be withdrawn.
+• Teams must complete the required number of players and follow team composition rules.
+• Players once sold cannot be re-auctioned or exchanged.
+• Any violation of rules or use of unfair means will result in disqualification.
+• The decision of the event coordinators will be final.`
+    },
+    {
+        id: 'esports',
+        title: 'M1 BATTLE ARENA',
+        category: 'Non Technical',
+        size: 'large',
+        image: battleArena,
+        coordinator: "CHANDRU.R - 8838908544, DANIEL.T - 6384259096, SANJEEVI - 8015065789",
+        time: "11:00 am - 01:30 pm",
+        participation: "Team (4 members only)",
+        venue: "LH201",
+        description: `E-Sports (Free Fire) is a competitive gaming event where teams compete in Free Fire matches to test their skills and teamwork.
+
+Rules:
+• Match format and schedule will be decided based on the number of teams arriving and will be informed on the spot.
+• The game played will be Free Fire.`
+    },
+    {
+        id: 'memory-challenge',
+        title: 'MIND MORPH CHALLENGE',
+        category: 'Non Technical',
+        size: 'medium',
+        image: mindMorph,
+        coordinator: "ROBERT - 9342614082, VIGNESH - 9787458920",
+        time: "02:30 PM - 03:30 PM",
+        participation: "Team(3-4 members) / Individual",
+        venue: "LH206",
+        description: `MIND MORPH CHALLENGE (Memory Challenge) is an engaging game that tests participants’ memory, focus, and recall ability through various tasks and activities.
+
+This game can be played either individually or as a team, which will be decided on the spot based on the number of participants enrolled in the event.`
+    },
+    {
+        id: 'treasure-hunt',
+        title: 'DNA HUNT',
+        category: 'Non Technical',
+        size: 'medium',
+        image: dnaHunter,
+        coordinator: "HARINI - 9344822595, KAVIARASI - 8682915728",
+        time: "02:30 pm - 03:30 pm",
+        participation: "Team (4-5 members only)",
+        venue: "LH102",
+        description: `DNA HUNT (Treasure Hunt) is an exciting team-based game where participants solve clues and complete tasks to reach the final objective, testing their problem-solving skills and teamwork.`
+    },
+    {
+        id: 'photography',
+        title: 'FREAKY LENS CAPTURE',
+        category: 'Non Technical',
+        size: 'medium',
+        image: freakyLens,
+        coordinator: "KRISHNA KUMAR - 9600396542, SURYA - 9360623439",
+        time: "11:00am - 11:20pm & 12:20pm - 01:00pm",
+        participation: "Individual",
+        venue: "LH205",
+        description: `Rules for Lens Capture:
+• Don't use DSLR Camera
+• Don't capture your friends and College Campus students
+• Capture The spot photos Only
+• Staff descision is a final decision don't argue with a coordinators.
+• Don't edit a photo it's not acceptable`
+    },
+];

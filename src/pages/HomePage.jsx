@@ -1,38 +1,28 @@
-import { motion, useMotionValue, animate } from "framer-motion";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+// Removed unused React hooks
 import OmnitrixBackground from "../components/Background";
 import omniText from "../assets/omni-tech-full.png";
+import workshopCard from "../assets/workshop_card.png";
 import deptLogo1 from "../assets/dept-logo-1.png";
 import deptLogo2 from "../assets/dept-logo-2.png";
 import collegeLogo from "../assets/college-logo.png";
-import webtrixBuilder from "../assets/webtrix-builder.png";
-import botrixBuilter from "../assets/botrix-builter.png";
-import cosmicVision from "../assets/cosmic-vision.png";
-import glanticIntel from "../assets/glantic-intel.jpeg";
-import dnaDecode from "../assets/dna-decode.jpeg";
-import dataSpectrum from "../assets/data-spectrum.png";
-import battleArena from "../assets/battle-arena.png";
-import neural from "../assets/neural-nexus.png"
-import dnaHunter from "../assets/dna-hunter.png";
-import freakyLens from "../assets/freaky-lens-capture.jpeg";
-import iplAuction from "../assets/ipl-auction.png";
-import mindMorph from "../assets/mind-morph.png";
 import "../styles/home.css";
+import { eventsData } from "../data/eventsData";
 import ProductCard from "../components/ProductCard";
-import ElectricBorder from "../components/Antigravity";
+// Removed ElectricBorder import
 import AssociationHeadCard from "../components/AssociationHeadCard";
+
+import panelist1 from "../assets/panelist1.png";
+import panelist2 from "../assets/panelist2.png";
+import panelist3 from "../assets/panelist3.png";
+import panelist4 from "../assets/panelist4.png";
+import panelist5 from "../assets/panelist5.png";
+import panelist6 from "../assets/panelist6.png";
+import panelist7 from "../assets/panelist7.png";
 export default function HomePage() {
   const navigate = useNavigate();
-  const [width, setWidth] = useState(0);
-  const carouselRef = useRef();
-  const x = useMotionValue(0);
-
-  useEffect(() => {
-    if (carouselRef.current) {
-      setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth);
-    }
-  }, []);
+  // Removed carousel state and logic
 
   return (
     <div className="home-page">
@@ -203,83 +193,64 @@ export default function HomePage() {
         <h2 className="events-title">EVENTS</h2>
         <p className="events-subtitle">Explore our lineup of exciting events</p>
 
-        <div
-          className="events-showcase-wrapper"
-          ref={carouselRef}
-          onWheel={(e) => {
-            const currentX = x.get();
-            const newX = currentX - e.deltaY; // Convert vertical scroll to horizontal
-            // Clamp value
-            const clampedX = Math.max(Math.min(newX, 0), -width);
-            x.set(clampedX);
-          }}
-        >
-          {/* Navigation Buttons */}
-          <button
-            className="carousel-btn left"
-            onClick={() => {
-              const currentX = x.get();
-              const newX = Math.min(currentX + 350, 0);
-              animate(x, newX, { type: "spring", stiffness: 300, damping: 30 });
-            }}
-          >
-            &#8249;
-          </button>
+        <div className="events-grid-container">
+          {/* NEW CATEGORY CARDS - JUST 3 CARDS */}
+          {[
+            {
+              id: 'technical',
+              title: 'TECHNICAL EVENTS',
+              subtitle: 'Showcase your coding prowess',
+              category: 'Technical',
+              image: 'https://placehold.co/600x400/003300/39ff14?text=Technical',
+              link: '/technical'
+            },
+            {
+              id: 'non-technical',
+              title: 'NON-TECHNICAL EVENTS',
+              subtitle: 'Unleash your creativity',
+              category: 'Non Technical',
+              image: 'https://placehold.co/600x400/330000/ff0055?text=Non+Tech',
+              link: '/non-technical'
+            },
+            {
+              id: 'workshop',
+              title: 'WORKSHOPS',
+              subtitle: "Welcome to Grandpa's Workshop!",
+              category: 'Workshop',
+              image: workshopCard,
+              link: '/workshops'
+            }
+          ].map((card) => (
+            <motion.div
+              key={card.id}
+              className={`event-showcase-card ${card.category.replace(/\s+/g, '-').toLowerCase()}`}
+              whileHover={{
+                scale: 1.05,
+                zIndex: 10
+              }}
+              transition={{ type: "spring", stiffness: 300 }}
+              onClick={() => navigate(card.link)}
+            >
+              <div className="card-glass-effect"></div>
+              <div className="card-content">
+                {/* Poster Image */}
+                <div className="card-image-container">
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    className="card-image"
+                  />
+                </div>
 
-          <button
-            className="carousel-btn right"
-            onClick={() => {
-              const currentX = x.get();
-              const newX = Math.max(currentX - 350, -width);
-              animate(x, newX, { type: "spring", stiffness: 300, damping: 30 });
-            }}
-          >
-            &#8250;
-          </button>
-
-          <motion.div
-            className="events-showcase-track"
-            drag="x"
-            dragConstraints={{ right: 0, left: -width }}
-            whileTap={{ cursor: "grabbing" }}
-            style={{ x }}
-          >
-            {eventsData.map((event) => (
-              <motion.div
-                key={event.id}
-                className={`event-showcase-card ${event.category.replace(/\s+/g, '-').toLowerCase()}`}
-                whileHover={{
-                  scale: 1.05,
-                  rotateY: 10,
-                  zIndex: 10
-                }}
-                transition={{ type: "spring", stiffness: 300 }}
-                onClick={() => navigate(`/${event.id}`)}
-              >
-                <ElectricBorder
-                  color={event.category === 'Technical' ? '#39ff14' : '#ff0055'}
-                  className="w-full h-full"
-                >
-                  <div className="card-glass-effect"></div>
-                  <div className="card-content">
-                    {/* Poster Image */}
-                    <div className="card-image-container">
-                      <img
-                        src={event.image || "https://placehold.co/600x400/000000/FFF?text=Event+Image"}
-                        alt={event.title}
-                        className="card-image"
-                      />
-                    </div>
-
-                    <h3 className="card-title">{event.title}</h3>
-                    {event.subtitle && <p className="card-subtitle">{event.subtitle}</p>}
-                    <span className="card-category">{event.category}</span>
-                    <div className="card-decoration-corn"></div>
-                  </div>
-                </ElectricBorder>
-              </motion.div>
-            ))}
-          </motion.div>
+                <h3 className="card-title">{card.title}</h3>
+                <p className="card-subtitle">{card.subtitle}</p>
+                <div className="card-footer">
+                  <span className="card-category">{card.category}</span>
+                </div>
+                <div className="card-decoration-corn"></div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
@@ -297,6 +268,7 @@ export default function HomePage() {
               image={speaker.image}
               name={speaker.name}
               dept={speaker.dept}
+              description={speaker.description}
             />
           ))}
         </div>
@@ -366,39 +338,51 @@ const associationHeadsAIDS = [
   { name: 'GNANA PRAKASH V', role: 'JOINT-TREASURER', number: '+91 7825996108' },
 ];
 
-const eventsData = [
-  // User Text: 
-  // Technical: Web Duplication, Chatbot Building, VR/AI Video Generation, Google-based Challenges, Escape Code, Data Visualization
-  // Non-Technical: Connection, Start Music, E-Sports, Anime Verse, Treasure Hunt, Photography, IPL Auction
-  // Workshops: Workshop 1, Workshop 2
 
-  // Row 1
-  { id: 'web-duplication', title: 'Web Duplication', category: 'Technical', size: 'large', image: webtrixBuilder },
-  { id: 'chatbot', title: 'Chatbot Building', category: 'Technical', size: 'medium', image: botrixBuilter },
-
-  // Row 2
-  { id: 'vr-ai-video', title: 'VR/AI Video Gen', category: 'Technical', size: 'medium', image: cosmicVision },
-  { id: 'google-challenge', title: 'Google Challenges', category: 'Technical', size: 'large', image: glanticIntel },
-
-  // Row 3
-  { id: 'escape-code', title: 'Escape Code', category: 'Technical', size: 'medium', image: dnaDecode },
-  { id: 'data-vis', title: 'Data Visualization', category: 'Technical', size: 'medium', image: dataSpectrum },
-
-  // Non-Technical
-  { id: 'memory-challenge', title: 'MIND MORPH CHALLENGE', category: 'Non Technical', size: 'medium', image: mindMorph },
-  { id: 'connection', title: 'NEURAL NEXUS', category: 'Non Technical', size: 'medium', image: neural },
-  { id: 'esports', title: 'E-Sports', category: 'Non Technical', size: 'large', image: battleArena },
-  { id: 'treasure-hunt', title: 'Treasure Hunt', category: 'Non Technical', size: 'medium', image: dnaHunter },
-  { id: 'photography', title: 'Photography', category: 'Non Technical', size: 'medium', image: freakyLens },
-  { id: 'ipl-auction', title: 'IPL Auction', category: 'Non Technical', size: 'large', image: iplAuction },
-];
 
 const speakersData = [
-  { id: 1, name: "Dr. Azmuth", dept: "Galvan Prime", image: "https://placehold.co/400x400/003300/00ff00?text=Azmuth" },
-  { id: 2, name: "Prof. Paradox", dept: "Time Travel", image: "https://placehold.co/400x400/003300/00ff00?text=Paradox" },
-  { id: 3, name: "Max Tennyson", dept: "Plumbers", image: "https://placehold.co/400x400/003300/00ff00?text=Max" },
-  { id: 4, name: "Gwen Tennyson", dept: "Mana Arts", image: "https://placehold.co/400x400/003300/00ff00?text=Gwen" },
-  { id: 5, name: "Kevin Levin", dept: "Matter Absorption", image: "https://placehold.co/400x400/003300/00ff00?text=Kevin" },
-  { id: 6, name: "Rook Blonko", dept: "Plumbers Academy", image: "https://placehold.co/400x400/003300/00ff00?text=Rook" },
-  { id: 7, name: "Tetrax Shard", dept: "Bounty Hunter", image: "https://placehold.co/400x400/003300/00ff00?text=Tetrax" },
+  {
+    id: 1,
+    name: "Mrs. K. Kanakambal , M.E",
+    image: panelist1,
+    description: "Expertise: Cybersecurity "
+  },
+  {
+    id: 2,
+    name: "Mr. C. Vignesh Manikadan, M.E",
+    image: panelist2,
+    description: "Expertise: Data Analytics"
+  },
+  {
+    id: 3,
+    name: "Mrs. C. Rajanayaki @ Sindhuja, M.E",
+    image: panelist3,
+    description: "Expertise: Computer Vision and Artificial Intelligence"
+  },
+  {
+    id: 4,
+    name: "Ms. Gayathri , M.E.",
+    image: panelist4,
+    description: "Expertise: Networks"
+  },
+  {
+    id: 5,
+    name: "Mrs. Suganya A, M.E., M.B.A",
+    image: panelist5,
+    description: "Expertise: Networks"
+  },
+  {
+    id: 6,
+    name: "Mr. S. Sivaraja, M.E",
+   
+    image: panelist6,
+    description: "Expertise: Cloud Computing"
+  },
+  {
+    id: 7,
+    name: "Mrs. C. Eyamini, M.E. (Ph.D)",
+    
+    image: panelist7,
+    description: "Expertise: Data Science and Cybersecurity"
+  },
 ];
