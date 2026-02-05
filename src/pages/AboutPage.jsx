@@ -1,9 +1,9 @@
-import React from 'react'
-// import AboutBackground from '../components/AboutBackground'
 import '../styles/about.css'
 import deptLogo from '../assets/dept-logo-1.png'
 import deptLogo2 from '../assets/dept-logo-2.png'
-
+import Antigravity from '../components/Antigravity'
+import ADS_HOD from '../assets/ADS_HOD.png'
+import IT_HOD from '../assets/IT_HOD.png'
 export default function AboutPage() {
   return (
     <main className="about-page">
@@ -46,7 +46,7 @@ export default function AboutPage() {
             <p className="dept-description">
               The Department of Artificial Intelligence is dedicated to advancing the frontiers of intelligent systems and machine learning. Through a curriculum rooted in computational logic and data science, it empowers students to design innovative solutions that address complex real-world challenges.
             </p>
-            <img src="/ADS_HOD.png" alt="ADS HOD" className="dept-photo" />
+            <img src={ADS_HOD} alt="ADS HOD" className="dept-photo" />
             <div className="hod-details">
               <div className="hod-designation">HEAD OF DEPARTMENT</div>
               <div className="hod-name">Dr. P. Arulprakash, M.E., Ph.D</div>
@@ -63,7 +63,7 @@ export default function AboutPage() {
             <p className="dept-description">
               The Department of Information Technology fosters excellence in computing infrastructure, software engineering, and digital connectivity. It is committed to equipping future professionals with the technical adaptability and strategic insight required to drive the rapidly evolving global digital landscape.
             </p>
-            <img src="/IT_HOD.png" alt="IT HOD" className="dept-photo" />
+            <img src={IT_HOD} alt="IT HOD" className="dept-photo" />
             <div className="hod-details">
               <div className="hod-designation">HEAD OF DEPARTMENT</div>
               <div className="hod-name">Ms. B. Mythily, M.E. (Ph.D)</div>

@@ -107,6 +107,13 @@ export default function TechnicalEventDetail() {
                                 {event.description}
                             </p>
 
+                            {event.rules && (
+                                <div className="rules-section">
+                                    <h3 className="rules-title">RULES & GUIDELINES</h3>
+                                    <p className="event-rules">{event.rules}</p>
+                                </div>
+                            )}
+
                             {event.coordinator && (
                                 <div className="coordinator-section">
                                     <span className="coordinator-label">COORDINATORS:</span>
@@ -118,10 +125,16 @@ export default function TechnicalEventDetail() {
                         {/* Registration Panel */}
                         <div className="registration-panel">
                             <h3 className="register-title">STATUS: OPEN</h3>
-                            <button className="register-btn-large">
+                            <button
+                                className="register-btn-large"
+                                onClick={() => navigate('/packages')}
+                            >
                                 INITIATE REGISTRATION
                             </button>
                         </div>
+
+                        {/* Spacer for Scrolling */}
+                        <div style={{ height: '150px', width: '100%' }}></div>
                     </motion.div>
                 </div>
             </div>

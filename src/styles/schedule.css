@@ -1,0 +1,254 @@
+.schedule-page {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 80px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+}
+
+.schedule-title {
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    font-size: 3rem;
+    color: #39ff14;
+    text-shadow: 0 0 10px #39ff14;
+    margin-bottom: 3rem;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 1rem;
+    backdrop-filter: blur(5px);
+}
+
+/* Legend Styles */
+.legend-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    color: #e0e0e0;
+    letter-spacing: 1px;
+}
+
+.legend-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    box-shadow: 0 0 5px currentColor;
+}
+
+.legend-color.tech {
+    background-color: #00f3ff;
+    color: #00f3ff;
+}
+
+.legend-color.non-tech {
+    background-color: #ff0055;
+    color: #ff0055;
+}
+
+.legend-color.common {
+    background-color: #ffd700;
+    color: #ffd700;
+}
+
+.timeline-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* The vertical line */
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #39ff14;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px #39ff14;
+    z-index: 1;
+}
+
+.timeline-item {
+    position: relative;
+    width: 50%;
+    padding: 20px 40px;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+.timeline-item.left {
+    left: 0;
+    text-align: right;
+}
+
+.timeline-item.right {
+    left: 50%;
+    text-align: left;
+}
+
+/* The cards */
+.event-card-inner {
+    background: rgba(0, 20, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(57, 255, 20, 0.3);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.event-card-inner:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(57, 255, 20, 0.2);
+    border-color: #39ff14;
+}
+
+/* Event Types Colors */
+.event-card-inner.tech {
+    border-left: 5px solid #00f3ff;
+    /* Cyan for Tech */
+}
+
+.event-card-inner.non-tech {
+    border-left: 5px solid #ff0055;
+    /* Red/Pink for Non-Tech */
+}
+
+.event-card-inner.common {
+    border-left: 5px solid #ffd700;
+    /* Gold for Common */
+    background: rgba(30, 30, 0, 0.8);
+}
+
+.event-time {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.9rem;
+    color: #aaddaa;
+    margin-bottom: 5px;
+}
+
+.event-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    margin: 5px 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.event-type-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Dots on the timeline */
+.timeline-dot {
+    position: absolute;
+    top: 50%;
+    /* Center dot vertically relative to item container */
+    right: -10px;
+    /* For left items */
+    width: 20px;
+    height: 20px;
+    background: #000;
+    border: 3px solid #39ff14;
+    border-radius: 50%;
+    z-index: 3;
+    box-shadow: 0 0 10px #39ff14;
+    transform: translateY(-50%);
+}
+
+.timeline-item.right .timeline-dot {
+    left: -10px;
+    /* For right items */
+    right: auto;
+}
+
+/* Connectors */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 40px;
+    height: 2px;
+    background: #39ff14;
+    z-index: 1;
+    transform: translateY(-50%);
+}
+
+.timeline-item.right::before {
+    left: 0;
+    right: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .timeline-line {
+        left: 30px;
+        /* Move line to left */
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        /* Make space for line */
+        padding-right: 20px;
+    }
+
+    .timeline-item.left,
+    .timeline-item.right {
+        left: 0;
+        text-align: left;
+        /* Align text left for all */
+    }
+
+    .timeline-dot {
+        left: 20px;
+        /* Adjust dot position to match line */
+        right: auto;
+    }
+
+    .timeline-item.right .timeline-dot {
+        left: 20px;
+    }
+
+    .timeline-item::before {
+        left: 40px;
+        /* Adjust connector */
+        width: 30px;
+    }
+
+    .timeline-item.right::before {
+        left: 40px;
+    }
+
+    .event-card-inner.tech,
+    .event-card-inner.non-tech,
+    .event-card-inner.common {
+        border-right: none;
+        border-left-width: 5px;
+        /* Ensure uniform border side */
+    }
+}
