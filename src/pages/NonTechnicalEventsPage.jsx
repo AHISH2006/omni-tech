@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import "../styles/non-technical-events.css";
@@ -21,6 +21,20 @@ export default function NonTechnicalEventsPage() {
         setActiveIndex((prev) => (prev - 1 + nonTechnicalEvents.length) % nonTechnicalEvents.length);
     };
 
+    // Keyboard navigation
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === "ArrowRight") {
+                handleNext();
+            } else if (e.key === "ArrowLeft") {
+                handlePrev();
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [nonTechnicalEvents.length]);
+
     const getCardStyle = (index) => {
         // Calculate distance from active index
         // Handle wrapping logic for endless feel creation
@@ -36,8 +50,8 @@ export default function NonTechnicalEventsPage() {
         if (Math.abs(diff) > 2) return { display: 'none' };
 
         // X translation based on visual offset
-        const xOffset = diff * 320; // 320px spacing
-        const scale = isActive ? 1.2 : 0.8;
+        const xOffset = diff * 400; // Adjusted for wider cards (380px)
+        const scale = isActive ? 1.0 : 0.8; // Scale logic slightly adjusted for new cards
         const zIndex = 10 - Math.abs(diff);
         const opacity = 1 - Math.abs(diff) * 0.3;
 
@@ -106,21 +120,32 @@ export default function NonTechnicalEventsPage() {
                                         }
                                     }}
                                 >
-                                    <div className="non-tech-event-card image-card">
-                                        <div className="card-image-placeholder">
-                                            <img
-                                                src={event.image || "https://placehold.co/400x600/001133/00f3ff?text=Event"}
-                                                alt={event.title}
-                                                className="card-image-bg"
-                                            />
-                                            <div className="placeholder-overlay"></div>
+                                    {/* NEW CARD STRUCTURE */}
+                                    <div className="nt-card-frame">
+                                        <div className="nt-card-internal">
+                                            {/* Image Section - Full Card */}
+                                            <div className="nt-image-wrapper">
+                                                <div className="nt-scan-line"></div>
+                                                <div className="nt-image-overlay"></div>
+                                                <img
+                                                    src={event.image || "https://placehold.co/400x600/330000/ff0000?text=CLASSIFIED"}
+                                                    alt={event.title}
+                                                    className="nt-card-image"
+                                                />
+                                            </div>
+
+                                            {/* Content Section - Overlay */}
+                                            <div className="nt-content-wrapper">
+                                                <div className="nt-index-mark">0{index + 1}</div>
+                                                <h3 className="nt-title">
+                                                    {event.title}
+                                                </h3>
+                                                <div className="nt-decoration-bar"></div>
+                                            </div>
                                         </div>
-                                        {/* Content only clearly visible on active */}
-                                        <div className="card-content">
-                                            <span className="event-index">{String(index + 1).padStart(2, '0')}</span>
-                                            <h3 className="event-name">{event.title}</h3>
-                                            <div className="card-glow"></div>
-                                        </div>
+
+                                        {/* Background Glow */}
+                                        <div className="nt-card-glow"></div>
                                     </div>
                                 </motion.div>
                             );

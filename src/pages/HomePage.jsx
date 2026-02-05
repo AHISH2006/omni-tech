@@ -1,27 +1,20 @@
-import { motion, useMotionValue, animate } from "framer-motion";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+// Removed unused React hooks
 import OmnitrixBackground from "../components/Background";
 import omniText from "../assets/omni-tech-full.png";
+import workshopCard from "../assets/workshop_card.png";
 import deptLogo1 from "../assets/dept-logo-1.png";
 import deptLogo2 from "../assets/dept-logo-2.png";
 import collegeLogo from "../assets/college-logo.png";
 import "../styles/home.css";
 import { eventsData } from "../data/eventsData";
 import ProductCard from "../components/ProductCard";
-import ElectricBorder from "../components/Antigravity";
+// Removed ElectricBorder import
 import AssociationHeadCard from "../components/AssociationHeadCard";
 export default function HomePage() {
   const navigate = useNavigate();
-  const [width, setWidth] = useState(0);
-  const carouselRef = useRef();
-  const x = useMotionValue(0);
-
-  useEffect(() => {
-    if (carouselRef.current) {
-      setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth);
-    }
-  }, []);
+  // Removed carousel state and logic
 
   return (
     <div className="home-page">
@@ -192,89 +185,64 @@ export default function HomePage() {
         <h2 className="events-title">EVENTS</h2>
         <p className="events-subtitle">Explore our lineup of exciting events</p>
 
-        <div
-          className="events-showcase-wrapper"
-          ref={carouselRef}
-          onWheel={(e) => {
-            const currentX = x.get();
-            const newX = currentX - e.deltaY; // Convert vertical scroll to horizontal
-            // Clamp value
-            const clampedX = Math.max(Math.min(newX, 0), -width);
-            x.set(clampedX);
-          }}
-        >
-          {/* Navigation Buttons */}
-          <button
-            className="carousel-btn left"
-            onClick={() => {
-              const currentX = x.get();
-              const newX = Math.min(currentX + 350, 0);
-              animate(x, newX, { type: "spring", stiffness: 300, damping: 30 });
-            }}
-          >
-            &#8249;
-          </button>
+        <div className="events-grid-container">
+          {/* NEW CATEGORY CARDS - JUST 3 CARDS */}
+          {[
+            {
+              id: 'technical',
+              title: 'TECHNICAL EVENTS',
+              subtitle: 'Showcase your coding prowess',
+              category: 'Technical',
+              image: 'https://placehold.co/600x400/003300/39ff14?text=Technical',
+              link: '/technical'
+            },
+            {
+              id: 'non-technical',
+              title: 'NON-TECHNICAL EVENTS',
+              subtitle: 'Unleash your creativity',
+              category: 'Non Technical',
+              image: 'https://placehold.co/600x400/330000/ff0055?text=Non+Tech',
+              link: '/non-technical'
+            },
+            {
+              id: 'workshop',
+              title: 'WORKSHOPS',
+              subtitle: "Welcome to Grandpa's Workshop!",
+              category: 'Workshop',
+              image: workshopCard,
+              link: '/workshops'
+            }
+          ].map((card) => (
+            <motion.div
+              key={card.id}
+              className={`event-showcase-card ${card.category.replace(/\s+/g, '-').toLowerCase()}`}
+              whileHover={{
+                scale: 1.05,
+                zIndex: 10
+              }}
+              transition={{ type: "spring", stiffness: 300 }}
+              onClick={() => navigate(card.link)}
+            >
+              <div className="card-glass-effect"></div>
+              <div className="card-content">
+                {/* Poster Image */}
+                <div className="card-image-container">
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    className="card-image"
+                  />
+                </div>
 
-          <button
-            className="carousel-btn right"
-            onClick={() => {
-              const currentX = x.get();
-              const newX = Math.max(currentX - 350, -width);
-              animate(x, newX, { type: "spring", stiffness: 300, damping: 30 });
-            }}
-          >
-            &#8250;
-          </button>
-
-          <motion.div
-            className="events-showcase-track"
-            drag="x"
-            dragConstraints={{ right: 0, left: -width }}
-            whileTap={{ cursor: "grabbing" }}
-            style={{ x }}
-          >
-            {eventsData.map((event) => (
-              <motion.div
-                key={event.id}
-                className={`event-showcase-card ${event.category.replace(/\s+/g, '-').toLowerCase()}`}
-                whileHover={{
-                  scale: 1.05,
-                  rotateY: 10,
-                  zIndex: 10
-                }}
-                transition={{ type: "spring", stiffness: 300 }}
-                onClick={() => {
-                  if (event.category === 'Non Technical') {
-                    navigate(`/non-technical/${event.id}`);
-                  } else {
-                    navigate('/technical');
-                  }
-                }}
-              >
-                <ElectricBorder
-                  color={event.category === 'Technical' ? '#39ff14' : '#ff0055'}
-                  className="w-full h-full"
-                >
-                  <div className="card-glass-effect"></div>
-                  <div className="card-content">
-                    {/* Poster Image */}
-                    <div className="card-image-container">
-                      <img
-                        src={event.image || "https://placehold.co/600x400/000000/FFF?text=Event+Image"}
-                        alt={event.title}
-                        className="card-image"
-                      />
-                    </div>
-
-                    <h3 className="card-title">{event.title}</h3>
-                    {event.subtitle && <p className="card-subtitle">{event.subtitle}</p>}
-                    <span className="card-category">{event.category}</span>
-                    <div className="card-decoration-corn"></div>
-                  </div>
-                </ElectricBorder>
-              </motion.div>
-            ))}
-          </motion.div>
+                <h3 className="card-title">{card.title}</h3>
+                <p className="card-subtitle">{card.subtitle}</p>
+                <div className="card-footer">
+                  <span className="card-category">{card.category}</span>
+                </div>
+                <div className="card-decoration-corn"></div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </section>
 

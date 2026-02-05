@@ -1,11 +1,10 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { eventsData } from "../data/eventsData";
+import "../styles/technical-detail.css";
 import Antigravity from "../components/Antigravity";
 
-import "../styles/non-tech-detail.css";
-
-export default function NonTechnicalEventDetail() {
+export default function TechnicalEventDetail() {
     const { eventId } = useParams();
     const navigate = useNavigate();
 
@@ -15,34 +14,17 @@ export default function NonTechnicalEventDetail() {
     if (!event) {
         return (
             <div className="not-found-container">
-                <Antigravity
-                    count={200}
-                    magnetRadius={10}
-                    ringRadius={12}
-                    waveSpeed={0.3}
-                    waveAmplitude={1}
-                    particleSize={1.2}
-                    lerpSpeed={0.05}
-                    color="#ff0055"
-                    autoAnimate
-                    particleVariance={1}
-                    rotationSpeed={0}
-                    depthFactor={1}
-                    pulseSpeed={2}
-                    particleShape="sphere"
-                    fieldStrength={8}
-                />
-                <h1 className="not-found-text">ACCESS DENIED: Event Not Found</h1>
-                <button onClick={() => navigate('/non-technical')} className="back-button">
-                    Return to Database
+                <h1 className="not-found-text">Event Not Found</h1>
+                <button onClick={() => navigate('/technical')} className="back-button">
+                    Return to Grid
                 </button>
             </div>
         );
     }
 
     return (
-        <div className="non-tech-detail-page">
-            <Antigravity
+        <div className="tech-detail-page">
+            <Antigravity // Replaced OmnitrixBackground with Antigravity
                 count={200}
                 magnetRadius={10}
                 ringRadius={12}
@@ -50,7 +32,7 @@ export default function NonTechnicalEventDetail() {
                 waveAmplitude={1}
                 particleSize={1.2}
                 lerpSpeed={0.05}
-                color="#ff0055"
+                color="#39ff14"
                 autoAnimate
                 particleVariance={1}
                 rotationSpeed={0}
@@ -60,7 +42,7 @@ export default function NonTechnicalEventDetail() {
                 fieldStrength={8}
             />
 
-            <div className="non-tech-container">
+            <div className="tech-container">
                 {/* Back Button */}
                 <motion.div
                     className="back-button-container"
@@ -68,8 +50,8 @@ export default function NonTechnicalEventDetail() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.2 }}
                 >
-                    <button onClick={() => navigate('/non-technical')} className="back-button">
-                        &lt; BACK TO EVENTS
+                    <button onClick={() => navigate('/technical')} className="back-button">
+                        ← Back to Events
                     </button>
                 </motion.div>
 
@@ -85,7 +67,7 @@ export default function NonTechnicalEventDetail() {
                             <div className="scan-line"></div>
                             <div className="hologram-overlay"></div>
                             <img
-                                src={event.image || "https://placehold.co/800x600/330000/ff0000?text=CLASSIFIED"}
+                                src={event.image || "https://placehold.co/800x600/003300/00ff00?text=CLASSIFIED"}
                                 alt={event.title}
                                 className="hologram-image"
                             />
