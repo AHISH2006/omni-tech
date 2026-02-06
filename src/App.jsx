@@ -11,6 +11,7 @@ import OmnitrixNav from "./components/OmnitrixNav";
 import Packages from "./pages/Packages";
 import SchedulePage from "./pages/SchedulePage";
 import WorkshopsPage from "./pages/WorkshopsPage";
+import GlobalAudio from "./components/GlobalAudio";
 
 function App() {
   const location = useLocation();
@@ -39,6 +40,9 @@ function App() {
 
       {/* COMMON OMNITRIX NAV - Shows on all pages except intro */}
       {!isIntroPage && <OmnitrixNav />}
+
+      {/* GLOBAL AUDIO PLAYER */}
+      <GlobalAudio />
     </div>
   );
 }

@@ -9,13 +9,13 @@ import "../styles/omnitrix-nav.css"
 import { House, User, Wrench, Cpu, Gamepad2, CalendarClock, Boxes } from "lucide-react"
 
 const OPTIONS = [
-    { id: "home", label: "HOME", icon: "🏠" },
+    { id: "home", label: "HOME", icon: "🏫" },
     { id: "about", label: "ABOUT", icon: "👽" },
     { id: "workshops", label: "WORKSHOPS", icon: "⚙️" },
     { id: "technical", label: "TECHNICAL", icon: "⚡" },
     { id: "non-technical", label: "NON-TECHNICAL", icon: "🎮" },
-    { id: "schedule", label: "SCHEDULE", icon: "📅" },
-    { id: "packages", label: "PACKAGES", icon: "💎" },
+    { id: "schedule", label: "SCHEDULE", icon: "⏳" },
+    { id: "packages", label: "PACKAGES", icon: "🎫" },
 ]
 
 export default function OmnitrixNav() {

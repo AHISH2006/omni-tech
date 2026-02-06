@@ -82,7 +82,11 @@ We eliminate the traditional development bottleneck, ensuring structural integri
         time: "03:30 pm - 04:00 pm",
         participation: "Team(3-4 members) / Individual",
         venue: "LH206",
-        description: `Prepare for an interstellar scavenger hunt for information. Utilize your search skills to gather intelligence across the digital galaxy.`
+        description: `Galactic Intel Hunt is an exciting technical treasure hunt where participants must use their logical thinking, technical knowledge, and fast research skills to uncover hidden clues and solve futuristic missions. The event is designed like an interstellar intelligence operation, where teams act as space agents collecting critical “galactic data” by decoding puzzles, cracking ciphers, and solving tech-based riddles.
+
+Participants will be given a series of clues related to technology, science, coding concepts, cybersecurity, space-tech, AI, or general engineering topics. Each solved clue leads to the next checkpoint, pushing the team closer to the final mission.
+
+This event is a perfect blend of fun + technical challenge, where speed, accuracy, teamwork, and smart searching play a key role.`
     },
     {
         id: 'escape-code',

@@ -28,7 +28,7 @@ const PackagesPage = () => {
             title: 'SILVER',
             type: 'silver',
             image: silverImg,
-            link: "https://docs.google.com/forms/d/e/1FAIpQLSdTGS_b-3YqGnRl0qXFBh0sgS9Q56B9dxGA-o52k1NiSg1S_g/viewform?usp=publish-editor"
+            link: "https://forms.gle/gXSM2qn2vZpSAfBJ6"
         },
         {
             id: 2,

@@ -140,7 +140,7 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2.0, duration: 0.6 }}
           >
-            March 15-16, 2026
+            March 06, 2026
           </motion.p>
 
           {/* Event Venue */}

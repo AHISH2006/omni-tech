@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import "../styles/non-technical-events.css";
 // reusing the data source to ensure IDs match
 import { eventsData } from "../data/eventsData";
+import rotateSound from "../assets/sounds/rotate.mp3";
 
 export default function NonTechnicalEventsPage() {
     const navigate = useNavigate();
@@ -12,6 +13,13 @@ export default function NonTechnicalEventsPage() {
     const nonTechnicalEvents = eventsData.filter(e => e.category === 'Non Technical');
 
     const [activeIndex, setActiveIndex] = useState(Math.floor(nonTechnicalEvents.length / 2));
+    const audioRef = useRef(new Audio(rotateSound));
+
+    useEffect(() => {
+        // Play sound whenever activeIndex changes
+        audioRef.current.currentTime = 0;
+        audioRef.current.play().catch(e => console.log("Audio play failed (user interaction needed):", e));
+    }, [activeIndex]);
 
     const handleNext = () => {
         setActiveIndex((prev) => (prev + 1) % nonTechnicalEvents.length);

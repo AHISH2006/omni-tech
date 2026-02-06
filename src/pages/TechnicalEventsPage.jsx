@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import "../styles/technical-events-carousel.css";
 import { eventsData } from "../data/eventsData";
 import Antigravity from "../components/Antigravity";
+import rotateSound from "../assets/sounds/rotate.mp3";
 
 export default function TechnicalEventsPage() {
     const navigate = useNavigate();
@@ -12,6 +13,13 @@ export default function TechnicalEventsPage() {
     const technicalEvents = eventsData.filter(e => e.category === 'Technical');
 
     const [activeIndex, setActiveIndex] = useState(Math.floor(technicalEvents.length / 2));
+    const audioRef = useRef(new Audio(rotateSound));
+
+    useEffect(() => {
+        // Play sound whenever activeIndex changes
+        audioRef.current.currentTime = 0;
+        audioRef.current.play().catch(e => console.log("Audio play failed (user interaction needed):", e));
+    }, [activeIndex]);
 
     const handleNext = () => {
         setActiveIndex((prev) => (prev + 1) % technicalEvents.length);

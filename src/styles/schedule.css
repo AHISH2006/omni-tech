@@ -46,13 +46,18 @@
 }
 
 .legend-color.tech {
-    background-color: #00f3ff;
-    color: #00f3ff;
+    background-color: #39ff14;
+    color: #39ff14;
 }
 
 .legend-color.non-tech {
     background-color: #ff0055;
     color: #ff0055;
+}
+
+.legend-color.workshop {
+    background-color: #0088ff;
+    color: #0088ff;
 }
 
 .legend-color.common {
@@ -119,13 +124,18 @@
 
 /* Event Types Colors */
 .event-card-inner.tech {
-    border-left: 5px solid #00f3ff;
-    /* Cyan for Tech */
+    border-left: 5px solid #39ff14;
+    /* Green for Tech */
 }
 
 .event-card-inner.non-tech {
     border-left: 5px solid #ff0055;
     /* Red/Pink for Non-Tech */
+}
+
+.event-card-inner.workshop {
+    border-left: 5px solid #0088ff;
+    /* Blue for Workshop */
 }
 
 .event-card-inner.common {

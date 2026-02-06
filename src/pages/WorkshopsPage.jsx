@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import "../styles/workshop-detail.css"; // BLUE THEME with Scroll Logic
 import { eventsData } from "../data/eventsData";
 import Antigravity from "../components/Antigravity";
 import { ChevronRight, ChevronLeft } from "lucide-react";
+import rotateSound from "../assets/sounds/rotate.mp3";
 
 export default function WorkshopsPage() {
     const navigate = useNavigate();
@@ -12,6 +13,13 @@ export default function WorkshopsPage() {
     // Filter only workshop events
     const workshopEvents = eventsData.filter(e => e.category === 'Workshop');
     const [currentIndex, setCurrentIndex] = useState(0);
+    const audioRef = useRef(new Audio(rotateSound));
+
+    useEffect(() => {
+        // Play sound whenever currentIndex changes
+        audioRef.current.currentTime = 0;
+        audioRef.current.play().catch(e => console.log("Audio play failed (user interaction needed):", e));
+    }, [currentIndex]);
 
     const handleNext = () => {
         setCurrentIndex((prev) => (prev + 1) % workshopEvents.length);
@@ -127,7 +135,7 @@ export default function WorkshopsPage() {
 
                                 {event.coordinator && (
                                     <div className="coordinator-section">
-                                        <span className="coordinator-label">COORDINATORS:</span>
+                                        <span className="coordinator-label">COORDINATOR:</span>
                                         <span className="coordinator-names">{event.coordinator}</span>
                                     </div>
                                 )}
