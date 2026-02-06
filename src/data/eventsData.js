@@ -39,10 +39,8 @@ We eliminate the traditional development bottleneck, ensuring structural integri
         time: "11:20 am - 12:20 pm",
         participation: "Team (3-4 members only)",
         venue: "Data Analytics Lab",
-        description: `This event focuses on designing and developing a functional chatbot that can respond to user queries effectively based on a given problem statement.
-
-Rules & Guidelines:
-1. A problem statement will be provided on the spot.
+        description: `This event focuses on designing and developing a functional chatbot that can respond to user queries effectively based on a given problem statement.`,
+        rules: `1. A problem statement will be provided on the spot.
 2. The chatbot must be developed during the event.
 3. Participants may use any suitable programming language or framework.
 4. The chatbot should handle queries relevant to the problem statement.
@@ -60,10 +58,8 @@ Rules & Guidelines:
         time: "12:00 pm - 01:00 pm",
         participation: "Team (3-4 members only)",
         venue: "LH205",
-        description: `This event showcases pre-created videos developed using AI and/or VR technologies. Participants will present their work during the event.
-
-Rules & Guidelines:
-1. Videos must be created prior to the event using AI and/or VR tools.
+        description: `This event showcases pre-created videos developed using AI and/or VR technologies. Participants will present their work during the event.`,
+        rules: `1. Videos must be created prior to the event using AI and/or VR tools.
 2. The video must be original and not submitted to any other event.
 3. Maximum video duration: 2–3 minutes.
 4. Participants must present their video during the event.
@@ -87,15 +83,25 @@ Rules & Guidelines:
     },
     {
         id: 'escape-code',
-        title: 'DNA DECODE',
+        title: 'ESCAPE CODE',
         category: 'Technical',
         size: 'medium',
         image: dnaDecode,
-        coordinator: "AHISH - 6374766056, AARTHI - 8838984960",
+        coordinator: "AHISH S M - 6374766056, AARTHI M - 8838984960",
         time: "02:30 pm - 03:30 pm",
         participation: "To Be Decided",
         venue: "AI & DS LAB",
-        description: `Crack the genetic code of complex algorithms. Unravel the sequences and debug the strands to reveal the ultimate solution.`
+        description: `Escape Code is a technical event focused on testing participants’ programming and debugging skills. In this challenge, participants will be provided with a problem statement along with error-filled code. The task is to analyze, identify, and correct the errors in the given program to produce the correct output.
+
+This event aims to enhance logical thinking, problem-solving ability, and real-time debugging skills. Only participants who successfully debug the code and generate accurate results will complete the challenge.`,
+        rules: `1. Participants must solve the given problems independently using their own knowledge and skills.
+2. The use of any AI tools or platforms (such as ChatGPT, Copilot, or similar services) is strictly prohibited.
+3. Participants are not allowed to use search engines, online platforms, or external websites to find solutions.
+4. Only the provided system, tools, and resources are permitted during the event.
+5. Any form of copying, sharing answers, or external assistance is not allowed.
+6. Participants must complete the challenge within the allotted time.
+7. Violation of any rules or protocols will result in immediate disqualification of the individual or team.
+8. The decision of the event coordinators will be final and binding.`
     },
     {
         id: 'data-vis',
@@ -107,10 +113,8 @@ Rules & Guidelines:
         time: "02:30 pm - 03:30 pm",
         participation: "Team(2-3 members only)",
         venue: "Data Analytics Lab",
-        description: `Participants will be given on-spot dirty or mismatched datasets and must clean, analyze, and visualize the data. Visualizations should be created based on panelists’ requirements and presented during the event.
-
-Rules & Guidelines:
-1. Datasets will be provided on the spot.
+        description: `Participants will be given on-spot dirty or mismatched datasets and must clean, analyze, and visualize the data. Visualizations should be created based on panelists’ requirements and presented during the event.`,
+        rules: `1. Datasets will be provided on the spot.
 2. Data must be cleaned and visualized during the event.
 3. Participants must present visualizations as requested by the panelists.
 4. Visualizations must be accurate and clear.
@@ -143,10 +147,8 @@ Rules & Guidelines:
         time: "11:00 am - 01:20 pm",
         participation: "Team (3–4 members only)",
         venue: "Seminar Hall",
-        description: `IPL Auction is a fun and interactive event inspired by the Indian Premier League auction, where participants act as team owners and bid on players using a fixed virtual budget to form a balanced team. The event tests strategic thinking, budgeting, teamwork, and quick decision-making.
-
-Rules and Restrictions:
-• Each team is given a fixed virtual budget that must not be exceeded.
+        description: `IPL Auction is a fun and interactive event inspired by the Indian Premier League auction, where participants act as team owners and bid on players using a fixed virtual budget to form a balanced team. The event tests strategic thinking, budgeting, teamwork, and quick decision-making.`,
+        rules: `• Each team is given a fixed virtual budget that must not be exceeded.
 • Players are auctioned one at a time, and bids once placed cannot be withdrawn.
 • Teams must complete the required number of players and follow team composition rules.
 • Players once sold cannot be re-auctioned or exchanged.
@@ -163,10 +165,8 @@ Rules and Restrictions:
         time: "11:00 am - 01:30 pm",
         participation: "Team (4 members only)",
         venue: "LH201",
-        description: `E-Sports (Free Fire) is a competitive gaming event where teams compete in Free Fire matches to test their skills and teamwork.
-
-Rules:
-• Match format and schedule will be decided based on the number of teams arriving and will be informed on the spot.
+        description: `E-Sports (Free Fire) is a competitive gaming event where teams compete in Free Fire matches to test their skills and teamwork.`,
+        rules: `• Match format and schedule will be decided based on the number of teams arriving and will be informed on the spot.
 • The game played will be Free Fire.`
     },
     {
@@ -205,11 +205,11 @@ This game can be played either individually or as a team, which will be decided 
         time: "11:00am - 11:20pm & 12:20pm - 01:00pm",
         participation: "Individual",
         venue: "LH205",
-        description: `Rules for Lens Capture:
-• Don't use DSLR Camera
+        rules: `• Don't use DSLR Camera
 • Don't capture your friends and College Campus students
 • Capture The spot photos Only
 • Staff descision is a final decision don't argue with a coordinators.
-• Don't edit a photo it's not acceptable`
+• Don't edit a photo it's not acceptable`,
+        description: `Capture the best moments of the event with your unique perspective!`
     },
 ];

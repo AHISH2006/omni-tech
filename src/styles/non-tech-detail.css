@@ -61,10 +61,44 @@
     .detail-grid {
         grid-template-columns: 1.2fr 1fr;
         gap: 4rem;
+        height: calc(100vh - 150px);
+        align-items: start;
+    }
+
+    .content-panel {
+        height: 100%;
+        overflow-y: auto;
+        padding-right: 1rem;
+        padding-bottom: 2rem;
+    }
+
+    /* Custom Scrollbar for Content Panel */
+    .content-panel::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .content-panel::-webkit-scrollbar-track {
+        background: rgba(239, 68, 68, 0.05);
+        border-radius: 4px;
+    }
+
+    .content-panel::-webkit-scrollbar-thumb {
+        background: rgba(239, 68, 68, 0.5);
+        border-radius: 4px;
+    }
+
+    .content-panel::-webkit-scrollbar-thumb:hover {
+        background: #ff0055;
     }
 }
 
 /* Image Hologram Effect */
+.visual-section {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
 .hologram-image-container {
     position: relative;
     width: 100%;
@@ -163,16 +197,6 @@
     /* Subtle Glow */
 }
 
-/* Registration Section */
-.registration-panel {
-    margin-top: 2rem;
-    padding: 2rem;
-    background: rgba(40, 20, 20, 0.6);
-    border: 1px solid rgba(239, 68, 68, 0.2);
-    border-radius: 8px;
-    position: relative;
-    overflow: hidden;
-}
 
 .registration-panel::before {
     content: '';
@@ -294,4 +318,28 @@
     /* Full Red */
     font-style: italic;
     text-shadow: 0 0 5px rgba(255, 0, 85, 0.3);
+}
+
+/* Rules Section */
+.rules-section {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 0, 85, 0.2);
+}
+
+.rules-title {
+    color: #ff0055;
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 10px rgba(255, 0, 85, 0.4);
+}
+
+.event-rules {
+    color: #ffffff;
+    font-size: 1rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
 }

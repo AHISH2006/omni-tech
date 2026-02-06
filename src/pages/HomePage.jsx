@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 // Removed unused React hooks
@@ -12,8 +13,21 @@ import { eventsData } from "../data/eventsData";
 import ProductCard from "../components/ProductCard";
 // Removed ElectricBorder import
 import AssociationHeadCard from "../components/AssociationHeadCard";
+
+import panelist1 from "../assets/panelist1.png";
+import panelist2 from "../assets/panelist2.png";
+import panelist3 from "../assets/panelist3.png";
+import panelist4 from "../assets/panelist4.png";
+import panelist5 from "../assets/panelist5.png";
+import panelist6 from "../assets/panelist6.png";
+import panelist7 from "../assets/panelist7.png";
 export default function HomePage() {
   const navigate = useNavigate();
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const toggleFAQ = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
   // Removed carousel state and logic
 
   return (
@@ -161,22 +175,7 @@ export default function HomePage() {
 
       </div>
 
-      {/* =========================
-          CHIEF GUEST SECTION
-          ========================= */}
-      <section id="chief-guest-section" className="chief-guest-section">
-        <h2 className="events-title">CHIEF GUEST</h2>
-        <p className="events-subtitle">Honoring our special guest</p>
 
-        <div className="chief-guest-container">
-          <ProductCard
-            image="https://placehold.co/400x400/003300/00ff00?text=Chief+Guest"
-            name="Dr. Albedo"
-            dept="Galvan Assistant"
-            description="A brilliant scientist from Galvan Prime, known for his work on the Omnitrix and deep understanding of genetic alteration."
-          />
-        </div>
-      </section>
 
       {/* =========================
           EVENTS SECTION
@@ -260,7 +259,30 @@ export default function HomePage() {
               image={speaker.image}
               name={speaker.name}
               dept={speaker.dept}
+              description={speaker.description}
             />
+          ))}
+        </div>
+      </section>
+
+      {/* =========================
+          FAQ SECTION
+          ========================= */}
+      <section id="faq-section" className="faq-section">
+        <h2 className="events-title">FAQ</h2>
+        <p className="events-subtitle">Common Questions & Answers</p>
+
+        <div className="faq-container">
+          {faqData.map((faq, index) => (
+            <div key={index} className={`faq-item ${activeIndex === index ? 'active' : ''}`} onClick={() => toggleFAQ(index)}>
+              <div className="faq-header">
+                <h3 className="faq-question">{faq.question}</h3>
+                <span className="faq-icon">{activeIndex === index ? '-' : '+'}</span>
+              </div>
+              {activeIndex === index && (
+                <p className="faq-answer">{faq.answer}</p>
+              )}
+            </div>
           ))}
         </div>
       </section>
@@ -274,8 +296,24 @@ export default function HomePage() {
         <p className="events-subtitle">Leading the Charge</p>
 
         <div className="heads-container">
-          {/* Left Column: IT Department */}
-          <div className="heads-column left-column">
+          {/* Left Column: AI&DS Department */}
+                    <div className="heads-column right-column">
+            <h3 className="dept-title">DEPARTMENT OF AI&DS</h3>
+            <div className="heads-grid">
+              {associationHeadsAIDS.map((head, index) => (
+                <AssociationHeadCard
+                  key={index}
+                  name={head.name}
+                  position={head.role}
+                  number={head.number}
+                  department="AI&DS"
+                />
+              ))}
+            </div>
+          </div>
+          
+          {/* Right Column: IT Department */}
+<div className="heads-column left-column">
             <h3 className="dept-title">DEPARTMENT OF IT</h3>
             <div className="heads-grid">
               {associationHeadsIT.map((head, index) => (
@@ -290,21 +328,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Right Column: AI&DS Department */}
-          <div className="heads-column right-column">
-            <h3 className="dept-title">DEPARTMENT OF AI&DS</h3>
-            <div className="heads-grid">
-              {associationHeadsAIDS.map((head, index) => (
-                <AssociationHeadCard
-                  key={index}
-                  name={head.name}
-                  position={head.role}
-                  number={head.number}
-                  department="AI&DS"
-                />
-              ))}
-            </div>
-          </div>
         </div>
       </section>
     </div>
@@ -332,11 +355,91 @@ const associationHeadsAIDS = [
 
 
 const speakersData = [
-  { id: 1, name: "Dr. Azmuth", dept: "Galvan Prime", image: "https://placehold.co/400x400/003300/00ff00?text=Azmuth" },
-  { id: 2, name: "Prof. Paradox", dept: "Time Travel", image: "https://placehold.co/400x400/003300/00ff00?text=Paradox" },
-  { id: 3, name: "Max Tennyson", dept: "Plumbers", image: "https://placehold.co/400x400/003300/00ff00?text=Max" },
-  { id: 4, name: "Gwen Tennyson", dept: "Mana Arts", image: "https://placehold.co/400x400/003300/00ff00?text=Gwen" },
-  { id: 5, name: "Kevin Levin", dept: "Matter Absorption", image: "https://placehold.co/400x400/003300/00ff00?text=Kevin" },
-  { id: 6, name: "Rook Blonko", dept: "Plumbers Academy", image: "https://placehold.co/400x400/003300/00ff00?text=Rook" },
-  { id: 7, name: "Tetrax Shard", dept: "Bounty Hunter", image: "https://placehold.co/400x400/003300/00ff00?text=Tetrax" },
+  {
+    id: 1,
+    name: "Mrs. K. Kanakambal , M.E",
+    image: panelist1,
+    description: "Expertise: Cybersecurity "
+  },
+  {
+    id: 2,
+    name: "Mr. C. Vignesh Manikadan, M.E",
+    image: panelist2,
+    description: "Expertise: Data Analytics"
+  },
+  {
+    id: 3,
+    name: "Mrs. C. Rajanayaki @ Sindhuja, M.E",
+    image: panelist3,
+    description: "Expertise: Computer Vision and Artificial Intelligence"
+  },
+  {
+    id: 4,
+    name: "Ms. Gayathri , M.E.",
+    image: panelist4,
+    description: "Expertise: Networks"
+  },
+  {
+    id: 5,
+    name: "Mrs. Suganya A, M.E., M.B.A",
+    image: panelist5,
+    description: "Expertise: Networks"
+  },
+  {
+    id: 6,
+    name: "Mr. S. Sivaraja, M.E",
+
+    image: panelist6,
+    description: "Expertise: Cloud Computing"
+  },
+  {
+    id: 7,
+    name: "Mrs. C. Eyamini, M.E. (Ph.D)",
+
+    image: panelist7,
+    description: "Expertise: Data Science and Cybersecurity"
+  },
+];
+
+const faqData = [
+  {
+    question: "1. What is OMNI-TECH?",
+    answer: "OMNI-TECH is a national-level technical symposium aimed at promoting engineering creativity through technical events, non-technical events, and workshops."
+  },
+  {
+    question: "2. Who can participate in OMNI-TECH?",
+    answer: "The symposium is open to students from engineering colleges and universities across India. Participation may be individual or team-based depending on the event."
+  },
+  {
+    question: "3. What types of events are conducted?",
+    answer: "OMNI-TECH features a wide range of events including: Technical competitions, Coding & data challenges, Gaming and auction-based events, and Hands-on workshops (2 workshops will be conducted)."
+  },
+  {
+    question: "4. Can I participate in more than one event?",
+    answer: "Yes, participants can take part in multiple events based on the pass package they choose. Participation is governed by the Silver, Gold, and Diamond pass packages, with the number of events varying according to the selected pass."
+  },
+  {
+    question: "5. Is there any registration fee?",
+    answer: "Yes, the registration fee is based on the selected pass package. Fee details vary for Silver, Gold, and Diamond packages. Participants are requested to go through the packages section for complete fee information."
+  },
+  {
+    question: "6. How do I register for the symposium?",
+    answer: "Participants can click the Register button, which will redirect them to the registration page. Fill in the required details and confirm the payment to complete the registration."
+  },
+  {
+    question: "7. Will certificates be provided?",
+    answer: "Yes, participation certificates will be issued to all registered participants, and winner certificates will be awarded to top performers."
+  },
+  {
+    question: "8. Are there prizes for winners?",
+    answer: "Yes, exciting prizes and recognition will be awarded to winners of each event."
+  },
+  {
+    question: "9. What should participants bring on the event day?",
+    answer: "Participants must carry: College ID card, Event registration confirmation, Personal laptop (mandatory for all technical events), and any additional equipment required for specific events."
+  },
+  {
+    question: "10. How can I contact the organizers?",
+    answer: "You can contact the organizing team through Email: omnitech2k26sce@gmail.com or through Student and faculty coordinators mentioned on the symposium poster."
+  }
 ];

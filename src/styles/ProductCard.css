@@ -1,7 +1,8 @@
 /* Ben 10 Themed Card Styles */
 .ben10-card-container {
     width: 280px;
-    height: 380px;
+    height: 450px;
+    /* Increased height for visible text */
     perspective: 1000px;
     margin: 15px;
     position: relative;
@@ -20,7 +21,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    /* Changed from center to accommodate content */
+    padding-top: 20px;
+    /* Add top padding */
     transition: all 0.3s ease;
     clip-path: polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%);
 }
@@ -41,18 +45,19 @@
 }
 
 .ben10-image-wrapper {
-    width: 240px;
-    height: 240px;
+    width: 200px;
+    /* Slightly reduced image size */
+    height: 200px;
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .ben10-profile-img {
-    width: 180px;
-    height: 180px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid #00ff00;
@@ -69,8 +74,8 @@
 /* Holographic Effect */
 .holographic-ring {
     position: absolute;
-    width: 220px;
-    height: 220px;
+    width: 180px;
+    height: 180px;
     border: 2px dashed rgba(0, 255, 0, 0.5);
     border-radius: 50%;
     animation: spin 10s linear infinite;
@@ -107,22 +112,28 @@
     color: #fff;
     z-index: 2;
     position: relative;
+    width: 100%;
 }
 
 .ben10-name {
     font-family: 'Orbitron', 'Segoe UI', sans-serif;
     /* Tech-looking font */
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin: 0;
     text-transform: uppercase;
     color: #00ff00;
     text-shadow: 0 0 5px rgba(0, 255, 0, 0.8);
     letter-spacing: 1px;
+    min-height: 3rem;
+    /* Ensure height for 2 lines of name */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .ben10-dept {
     font-family: 'Roboto', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #aaddaa;
     margin-top: 5px;
     text-transform: uppercase;
@@ -131,15 +142,17 @@
 
 .ben10-description {
     font-family: 'Roboto', sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: #ccc;
     margin-top: 8px;
-    line-height: 1.4;
-    max-width: 90%;
+    line-height: 1.5;
+    max-width: 100%;
+    /* Allow full width */
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
+    -webkit-line-clamp: 6;
+    /* Show more lines */
+    line-clamp: 6;
     -webkit-box-orient: vertical;
 }
 
