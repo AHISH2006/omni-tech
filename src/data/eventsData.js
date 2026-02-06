@@ -10,6 +10,9 @@ import dnaHunter from "../assets/dna-hunter.png";
 import freakyLens from "../assets/freaky-lens-capture.jpeg";
 import iplAuction from "../assets/ipl-auction.png";
 import mindMorph from "../assets/mind-morph.png";
+import workshop1 from "../assets/workshop1.jpeg"
+import workshop2 from "../assets/workshop2.jpeg"
+
 
 export const eventsData = [
     // ======================
@@ -212,4 +215,60 @@ This game can be played either individually or as a team, which will be decided 
 • Don't edit a photo it's not acceptable`,
         description: `Capture the best moments of the event with your unique perspective!`
     },
+    // ======================
+    // WORKSHOPS
+    // ======================
+    {
+        id: 'flutter-workshop',
+        title: 'MOBILE APP DEV WITH FLUTTER',
+        category: 'Workshop',
+        size: 'large',
+        image: workshop1, // Placeholder will be used
+        coordinator: "POOJA - 9345485257",
+        speaker: "Mrs. C. Eyamini, M.E. (Ph.D)",
+        time: "11:00 am Onwards",
+        participation: "Individual",
+        venue: "IT LAB",
+        description: `Explore the world of cross-platform mobile app development with Flutter.
+        
+• Introduction to Mobile App
+• Features of Flutter
+• Advantages & Disadvantages
+• Flutter installation in Windows
+• Architecture of Flutter
+• Introduction to Dart Programming
+• Variables, Data Types, Decision Making & Looping
+• Functions
+• Creating Simple Applications`
+    },
+    {
+        id: 'streamlit-workshop',
+        title: 'WEB APP DEV WITH STREAMLIT',
+        category: 'Workshop',
+        size: 'large',
+        image: workshop2, // Placeholder will be used
+        coordinator: "T. MANOJI - 8248207843",
+        speaker: "Mr. C Vignesh Manikandan M.E",
+        time: "02:30 pm Onwards",
+        participation: "Individual",
+        venue: "IT LAB",
+        description: `Build data-driven web apps in minutes with Streamlit.
+
+Phase 1: The Basics (0:00 – 0:30)
+• What is Streamlit? (No HTML/CSS/JS required)
+• Setup: Python, pip install streamlit
+• Displaying Data: st.title(), st.write(), Pandas DataFrame
+
+Phase 2: Interactivity & Widgets (0:30 – 1:00)
+• Input Widgets: st.slider(), st.selectbox(), st.text_input()
+• State & Flow: Understanding script reruns
+
+Phase 3: The Build – Data Dashboard (1:00 – 1:45)
+• Charting: st.line_chart(), st.plotly_chart()
+• Layouts: st.sidebar, st.columns(), st.tabs()
+• The "Final Touch": Dynamic sidebar filters
+
+Phase 4: Deployment & Wrap-up (1:45 – 2:00)
+• Sharing: Deploy to Streamlit Community Cloud from GitHub`
+    }
 ];

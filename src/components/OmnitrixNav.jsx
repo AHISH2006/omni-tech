@@ -1,10 +1,12 @@
 
 import { useState, useRef, useEffect } from "react"
 import { useNavigate, useLocation } from "react-router-dom"
+import { motion } from "framer-motion"
 import omniLogo from "../assets/omnitrix.png"
 import rotateSound from "../assets/sounds/rotate.mp3"
 import activateSound from "../assets/sounds/activate.mp3"
 import "../styles/omnitrix-nav.css"
+import { House, User, Wrench, Cpu, Gamepad2, CalendarClock, Boxes } from "lucide-react"
 
 const OPTIONS = [
     { id: "home", label: "HOME", icon: "🏠" },
@@ -20,15 +22,18 @@ export default function OmnitrixNav() {
     const [open, setOpen] = useState(false)
     const [active, setActive] = useState(0)
     const [rotation, setRotation] = useState(0)
+    const [hasOpened, setHasOpened] = useState(false)
 
     const navigate = useNavigate()
     const location = useLocation()
     const rotateAudio = useRef(new Audio(rotateSound))
     const activateAudio = useRef(new Audio(activateSound))
     const ringRef = useRef(null)
+
+    // Using refs for drag state to avoid stale closures in event listeners
     const dragging = useRef(false)
     const lastAngle = useRef(0)
-    const lastSnappedIndex = useRef(0)
+    const currentRotation = useRef(0) // Track rotation locally during drag
 
     const step = 360 / OPTIONS.length
 
@@ -38,8 +43,10 @@ export default function OmnitrixNav() {
         const index = OPTIONS.findIndex(o => o.id === currentPath)
         if (index !== -1) {
             setActive(index)
-            setRotation(-index * step)
-            lastSnappedIndex.current = index
+            // Initial rotation setup
+            const targetRot = -index * step
+            setRotation(targetRot)
+            currentRotation.current = targetRot
         }
     }, [location.pathname])
 
@@ -57,7 +64,7 @@ export default function OmnitrixNav() {
         return () => window.removeEventListener("keydown", onKey)
     }, [open, active])
 
-    /* 🖱️ Drag to rotate */
+    /* 🖱️ Drag Logic (Global Event Listeners) */
     const getAngle = (cx, cy, x, y) => {
         return Math.atan2(y - cy, x - cx) * (180 / Math.PI)
     }
@@ -68,66 +75,95 @@ export default function OmnitrixNav() {
         return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 }
     }
 
+    const handleMove = (e) => {
+        if (!dragging.current) return
+
+        const p = e.touches ? e.touches[0] : e
+        const center = getCenter()
+        const angle = getAngle(center.x, center.y, p.clientX, p.clientY)
+
+        let diff = angle - lastAngle.current
+        // Normalize jump when crossing -180/180 boundary
+        if (diff > 180) diff -= 360
+        if (diff < -180) diff += 360
+
+        // Update rotation
+        currentRotation.current += diff
+        setRotation(currentRotation.current)
+        lastAngle.current = angle
+
+        // Calculate active item visually (no sound yet, just update holo)
+        const normalized = ((currentRotation.current % 360) + 360) % 360
+        const index = Math.round(-normalized / step) % OPTIONS.length
+        const finalIndex = ((index % OPTIONS.length) + OPTIONS.length) % OPTIONS.length
+
+        setActive(finalIndex)
+    }
+
+    const handleUp = () => {
+        if (!dragging.current) return
+        dragging.current = false
+
+        // Remove global listeners
+        window.removeEventListener("mousemove", handleMove)
+        window.removeEventListener("mouseup", handleUp)
+        window.removeEventListener("touchmove", handleMove)
+        window.removeEventListener("touchend", handleUp)
+
+        // SNAP Logic
+        const normalized = ((currentRotation.current % 360) + 360) % 360
+        const index = Math.round(-normalized / step) // Nearest index
+        const snapAngle = -index * step // Exact angle for that index
+
+        setRotation(snapAngle)
+        currentRotation.current = snapAngle
+
+        // Find true index for active state
+        const finalIndex = ((index % OPTIONS.length) + OPTIONS.length) % OPTIONS.length
+
+        // Play sound on snap
+        rotateAudio.current.currentTime = 0
+        rotateAudio.current.play()
+        setActive(finalIndex)
+    }
+
     const startDrag = (e) => {
         dragging.current = true
         const p = e.touches ? e.touches[0] : e
         const center = getCenter()
         lastAngle.current = getAngle(center.x, center.y, p.clientX, p.clientY)
-        lastSnappedIndex.current = active
+
+        // Add GLOBAL listeners
+        window.addEventListener("mousemove", handleMove)
+        window.addEventListener("mouseup", handleUp)
+        window.addEventListener("touchmove", handleMove)
+        window.addEventListener("touchend", handleUp)
     }
 
-    const onDrag = (e) => {
-        if (!dragging.current) return
-
-        const p = e.touches ? e.touches[0] : e
-        const center = getCenter()
-        const currentAngle = getAngle(center.x, center.y, p.clientX, p.clientY)
-
-        let diff = currentAngle - lastAngle.current
-        if (diff > 180) diff -= 360
-        if (diff < -180) diff += 360
-
-        const newRotation = rotation + diff
-        setRotation(newRotation)
-
-        // Calculate which option should be active based on rotation
-        const normalizedRotation = ((newRotation % 360) + 360) % 360
-        const targetIndex = Math.round(-normalizedRotation / step) % OPTIONS.length
-        const finalIndex = ((targetIndex % OPTIONS.length) + OPTIONS.length) % OPTIONS.length
-
-        // Snap to option and play sound when crossing threshold
-        if (finalIndex !== lastSnappedIndex.current) {
-            rotateAudio.current.currentTime = 0
-            rotateAudio.current.play()
-            setActive(finalIndex)
-            lastSnappedIndex.current = finalIndex
-        }
-
-        lastAngle.current = currentAngle
-    }
-
-    const endDrag = () => {
-        if (!dragging.current) return
-        dragging.current = false
-        // No snap-back - keep the rotation where user left it for continuous circular motion
-    }
-
+    /* 🔄 Arrow Button Rotate */
     const rotate = (dir) => {
         rotateAudio.current.currentTime = 0
         rotateAudio.current.play()
 
         const newIndex = (active + dir + OPTIONS.length) % OPTIONS.length
         setActive(newIndex)
-        setRotation(-newIndex * step)
-        lastSnappedIndex.current = newIndex
+        const newRot = -newIndex * step
+        setRotation(newRot)
+        currentRotation.current = newRot
     }
 
     const activate = () => {
         activateAudio.current.currentTime = 0
         activateAudio.current.play()
-
         setOpen(false)
         navigate(`/${OPTIONS[active].id}`)
+    }
+
+    const handleOpen = () => {
+        rotateAudio.current.currentTime = 0
+        rotateAudio.current.play()
+        setOpen(true)
+        setHasOpened(true)
     }
 
     return (
@@ -135,15 +171,30 @@ export default function OmnitrixNav() {
             {/* Dark overlay when open */}
             {open && <div className="omni-overlay" onClick={() => setOpen(false)} />}
 
-            <div className={`omni-wrapper ${open ? "centered" : ""}`}>
+            <motion.div
+                className={`omni-wrapper ${open ? "centered" : ""}`}
+                drag={!open} // Only draggable when closed
+                dragMomentum={false}
+                layout
+                animate={open ? { x: 0, y: 0 } : {}}
+            >
                 {!open && (
-                    <button className="omni-logo" onClick={() => {
-                        rotateAudio.current.currentTime = 0
-                        rotateAudio.current.play()
-                        setOpen(true)
-                    }}>
-                        <img src={omniLogo} alt="Omnitrix" />
-                    </button>
+                    <div className="omni-closed-container">
+                        <button className="omni-logo" onClick={handleOpen}>
+                            <img src={omniLogo} alt="Omnitrix" />
+                        </button>
+                        {/* Show hint only on Home page AND if never opened before */}
+                        {OPTIONS[active]?.id === 'home' && !hasOpened && (
+                            <motion.p
+                                className="omni-hint"
+                                initial={{ opacity: 0, x: 10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ repeat: Infinity, duration: 1.5, repeatType: "reverse" }}
+                            >
+                                Tap to navigate
+                            </motion.p>
+                        )}
+                    </div>
                 )}
 
                 {open && (
@@ -157,24 +208,33 @@ export default function OmnitrixNav() {
                         <div
                             ref={ringRef}
                             className="omni-ring"
-                            style={{ transform: `rotate(${rotation}deg)` }}
+                            style={{
+                                transform: `rotate(${rotation}deg)`,
+                                cursor: dragging.current ? "grabbing" : "grab"
+                            }}
                             onMouseDown={startDrag}
-                            onMouseMove={onDrag}
-                            onMouseUp={endDrag}
-                            onMouseLeave={endDrag}
                             onTouchStart={startDrag}
-                            onTouchMove={onDrag}
-                            onTouchEnd={endDrag}
                         >
                             {OPTIONS.map((o, i) => (
                                 <div
                                     key={o.id}
                                     className={`ring-item ${i === active ? "active" : ""}`}
                                     style={{
-                                        transform: `rotate(${i * step}deg) translateY(-85px)`,
+                                        transform: `rotate(${i * step}deg) translateY(-85px) rotate(${-rotation}deg)`,
+                                        // Counter-rotation ensures icons stay upright if desired, 
+                                        // OR remove the 2nd rotation if you want them to turn with the ring.
+                                        // Let's keep them upright for better readability:
+                                        transition: "transform 0.1s ease-out"
                                     }}
                                 >
-                                    {o.icon}
+                                    <div style={{ transform: `rotate(${rotation}deg)` }}>
+                                        {/* Inner wrapper to counter-rotate if needed, or just let them spin. 
+                                            Currently, the outer div rotates with the ring. 
+                                            If we want upright icons, we need to counter-rotate. 
+                                            Let's implement simple rotation first. */
+                                            o.icon
+                                        }
+                                    </div>
                                 </div>
                             ))}
                         </div>
@@ -184,7 +244,7 @@ export default function OmnitrixNav() {
                         </button>
                     </div>
                 )}
-            </div>
+            </motion.div>
         </>
     )
 }

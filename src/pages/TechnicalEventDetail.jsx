@@ -25,7 +25,7 @@ export default function TechnicalEventDetail() {
     return (
         <div className="tech-detail-page">
             <Antigravity // Replaced OmnitrixBackground with Antigravity
-                count={200}
+                count={2000}
                 magnetRadius={10}
                 ringRadius={12}
                 waveSpeed={0.3}

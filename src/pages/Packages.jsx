@@ -4,6 +4,7 @@ import activateSound from '../assets/sounds/activate.mp3';
 import goldImg from '../assets/gold-package-new.png';
 import platinumImg from '../assets/diamond-package-new.png'; // Using diamond image for Platinum
 import silverImg from '../assets/silver-package-new.png';
+import Antigravity from '../components/Antigravity';
 
 const PackagesPage = () => {
     const activateAudio = useRef(new Audio(activateSound));
@@ -24,16 +25,22 @@ const PackagesPage = () => {
     const packages = [
         {
             id: 1,
+            title: 'SILVER',
+            type: 'silver',
             image: silverImg,
-            link: "https://docs.google.com/forms/d/e/1FAIpQLScdSMnDWDd6hDu0jey21uUv6VuDShUoIvK1AkffV-C2VkXKBg/viewform?usp=header"
+            link: "https://docs.google.com/forms/d/e/1FAIpQLSdTGS_b-3YqGnRl0qXFBh0sgS9Q56B9dxGA-o52k1NiSg1S_g/viewform?usp=publish-editor"
         },
         {
             id: 2,
+            title: 'GOLD',
+            type: 'gold',
             image: goldImg,
             link: "https://docs.google.com/forms/d/e/1FAIpQLScsJFBAy0SDtz5rbqtflsykt3zwkoOv6Vd1jGh3TvaIYwmirA/viewform?usp=publish-editor"
         },
         {
             id: 3,
+            title: 'DIAMOND',
+            type: 'diamond',
             image: platinumImg, // Diamond
             link: "https://docs.google.com/forms/d/e/1FAIpQLSeln3y7MJjrA3zRLphUtjku6MilsnhNuIUGq49y0AXDPP25FA/viewform?usp=publish-editor"
         }
@@ -41,7 +48,25 @@ const PackagesPage = () => {
 
     return (
         <div className="packages-container">
-            <h1 className="packages-title">Choose Your <span style={{ color: '#fff' }}>Plan</span></h1>
+            <Antigravity
+                count={150}
+                magnetRadius={15}
+                ringRadius={15}
+                waveSpeed={0.2}
+                waveAmplitude={1.5}
+                particleSize={1.5}
+                lerpSpeed={0.05}
+                color="#00ff00" // Green for Packages
+                autoAnimate
+                particleVariance={1.2}
+                rotationSpeed={0}
+                depthFactor={1.2}
+                pulseSpeed={1.5}
+                particleShape="circle"
+                fieldStrength={10}
+            />
+
+            <h1 className="packages-title" style={{ position: 'relative', zIndex: 2 }}>Choose Your <span style={{ color: '#fff' }}>Plan</span></h1>
 
             <div className="packages-grid">
                 {packages.map((pkg) => (

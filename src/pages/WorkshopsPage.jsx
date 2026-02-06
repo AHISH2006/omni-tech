@@ -1,157 +1,154 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import "../styles/workshops-carousel.css";
+import "../styles/workshop-detail.css"; // BLUE THEME with Scroll Logic
 import { eventsData } from "../data/eventsData";
 import Antigravity from "../components/Antigravity";
+import { ChevronRight, ChevronLeft } from "lucide-react";
 
 export default function WorkshopsPage() {
     const navigate = useNavigate();
 
     // Filter only workshop events
     const workshopEvents = eventsData.filter(e => e.category === 'Workshop');
-
-    const [activeIndex, setActiveIndex] = useState(Math.floor(workshopEvents.length / 2));
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     const handleNext = () => {
-        setActiveIndex((prev) => (prev + 1) % workshopEvents.length);
+        setCurrentIndex((prev) => (prev + 1) % workshopEvents.length);
     };
 
     const handlePrev = () => {
-        setActiveIndex((prev) => (prev - 1 + workshopEvents.length) % workshopEvents.length);
+        setCurrentIndex((prev) => (prev - 1 + workshopEvents.length) % workshopEvents.length);
     };
 
     // Keyboard navigation
     useEffect(() => {
         const handleKeyDown = (e) => {
-            if (e.key === "ArrowRight") {
-                handleNext();
-            } else if (e.key === "ArrowLeft") {
-                handlePrev();
-            }
+            if (e.key === "ArrowRight") handleNext();
+            if (e.key === "ArrowLeft") handlePrev();
         };
-
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [workshopEvents.length]);
 
-    const getCardStyle = (index) => {
-        // Calculate distance from active index
-        // Handle wrapping logic for endless feel creation
-        const total = workshopEvents.length;
-
-        // Find shortest distance in circular array
-        let diff = (index - activeIndex + total) % total;
-        if (diff > total / 2) diff -= total;
-
-        const isActive = diff === 0;
-
-        // Only show items within a certain range to avoid clutter
-        if (Math.abs(diff) > 2) return { display: 'none' };
-
-        // X translation based on visual offset
-        const xOffset = diff * 400; // Adjusted for wider cards (380px)
-        const scale = isActive ? 1.0 : 0.8;
-        const zIndex = 10 - Math.abs(diff);
-        const opacity = 1 - Math.abs(diff) * 0.3;
-
-        return {
-            x: xOffset,
-            scale: scale,
-            zIndex: zIndex,
-            opacity: opacity,
-        };
-    };
+    const event = workshopEvents[currentIndex];
 
     return (
-        <div className="tech-events-page-carousel">
-            {/* PAGE HEADER */}
-            <motion.div
-                className="tech-events-header"
-                initial={{ opacity: 0, y: -40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-            >
-                <h1 className="tech-title">WORKSHOPS</h1>
-                <p className="tech-subtitle">
-                    Learn. Create. Innovate.
-                </p>
-            </motion.div>
+        <div className="workshop-detail-page">
+            <Antigravity
+                count={200}
+                magnetRadius={10}
+                ringRadius={12}
+                waveSpeed={0.3}
+                waveAmplitude={1}
+                particleSize={1.2}
+                lerpSpeed={0.05}
+                color="#00f3ff" // Blue/Cyan for Workshops
+                autoAnimate
+                particleVariance={1}
+                rotationSpeed={0}
+                depthFactor={1}
+                pulseSpeed={2}
+                particleShape="sphere"
+                fieldStrength={8}
+            />
 
-            {/* CAROUSEL CONTAINER */}
-            <div className="tech-carousel-container">
-                {/* NAVIGATION BUTTONS */}
-                <button className="carousel-btn left" onClick={handlePrev}>
-                    &#8249;
-                </button>
-                <button className="carousel-btn right" onClick={handleNext}>
-                    &#8250;
-                </button>
+            <div className="tech-container">
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={event.id}
+                        className="detail-grid"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.4 }}
+                    >
+                        {/* Visual Section - Matches TechnicalEventDetail layout but with Arrows */}
+                        <div className="visual-section">
+                            <div className="slider-wrapper">
 
-                {/* ITEMS */}
-                <div className="tech-carousel-track">
-                    <AnimatePresence>
-                        {workshopEvents.map((event, index) => {
-                            const style = getCardStyle(index);
-                            // Need to calculate if it is "active" for class styling
-                            const total = workshopEvents.length;
-                            let diff = (index - activeIndex + total) % total;
-                            if (diff > total / 2) diff -= total;
-                            const isActive = diff === 0;
+                                {/* LEFT ARROW */}
+                                <button className="nav-arrow left" onClick={handlePrev}>
+                                    <ChevronLeft size={24} />
+                                </button>
 
-                            return (
-                                <motion.div
-                                    key={event.id}
-                                    className={`tech-card-wrapper ${isActive ? 'active' : 'inactive'}`}
-                                    initial={false}
-                                    animate={{
-                                        x: style.x,
-                                        scale: style.scale,
-                                        zIndex: style.zIndex,
-                                        opacity: style.opacity,
-                                    }}
-                                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                    style={{ display: style.display }}
-                                    onClick={() => {
-                                        if (isActive) {
-                                            navigate(`/workshops/${event.id}`);
-                                        } else {
-                                            setActiveIndex(index);
-                                        }
-                                    }}
-                                >
-                                    {/* NEW TECH CARD STRUCTURE */}
-                                    <div className="tech-card-frame">
-                                        <div className="tech-card-internal">
-                                            {/* Image Section - Full Card */}
-                                            <div className="tech-image-wrapper">
-                                                <div className="tech-scan-line"></div>
-                                                <div className="tech-image-overlay"></div>
-                                                <img
-                                                    src={event.image || "https://placehold.co/400x600/003300/00ff00?text=Event"}
-                                                    alt={event.title}
-                                                    className="tech-card-image"
-                                                />
-                                            </div>
+                                {/* IMAGE CONTAINER - Full width like Technical */}
+                                <div className="hologram-image-container">
+                                    <img
+                                        src={event.image || "https://placehold.co/800x600/003300/00aaff?text=WORKSHOP"}
+                                        alt={event.title}
+                                        className="hologram-image"
+                                    />
+                                </div>
 
-                                            {/* Content Section - Overlay */}
-                                            <div className="tech-content-wrapper">
-                                                <div className="tech-index-mark">0{index + 1}</div>
-                                                <h3 className="tech-card-title">
-                                                    {event.title}
-                                                </h3>
-                                                <div className="tech-decoration-bar"></div>
-                                            </div>
-                                        </div>
+                                {/* RIGHT ARROW */}
+                                <button className="nav-arrow right" onClick={handleNext}>
+                                    <ChevronRight size={24} />
+                                </button>
+                            </div>
+                        </div>
 
-                                        {/* Background Glow */}
-                                        <div className="tech-card-glow"></div>
+                        {/* Info Section - Scrollable Panel */}
+                        <div className="content-panel">
+                            <div>
+                                <span className="category-tag">
+                                    {event.category}
+                                </span>
+                                <h1 className="event-title-holo">
+                                    {event.title}
+                                </h1>
+                                {event.speaker && (
+                                    <h3 style={{ color: '#fff', marginTop: '10px', fontSize: '1.2rem', fontFamily: 'Orbitron, sans-serif' }}>
+                                        SPEAKER: <span style={{ color: '#00f3ff' }}>{event.speaker}</span>
+                                    </h3>
+                                )}
+                            </div>
+
+                            {/* Event Details Grid */}
+                            <div className="event-meta-grid">
+                                <div className="meta-item">
+                                    <span className="meta-label">TIME</span>
+                                    <span className="meta-value">{event.time || "TBA"}</span>
+                                </div>
+                                <div className="meta-item">
+                                    <span className="meta-label">VENUE</span>
+                                    <span className="meta-value">{event.venue || "TBA"}</span>
+                                </div>
+                                <div className="meta-item">
+                                    <span className="meta-label">PARTICIPATION</span>
+                                    <span className="meta-value">{event.participation || "Individual"}</span>
+                                </div>
+                            </div>
+
+                            <div className="description-box">
+                                <div className="event-description">
+                                    {event.description}
+                                </div>
+
+                                {event.coordinator && (
+                                    <div className="coordinator-section">
+                                        <span className="coordinator-label">COORDINATORS:</span>
+                                        <span className="coordinator-names">{event.coordinator}</span>
                                     </div>
-                                </motion.div>
-                            );
-                        })}
-                    </AnimatePresence>
-                </div>
+                                )}
+                            </div>
+
+                            {/* Registration Panel */}
+                            <div className="registration-panel">
+                                <h3 className="register-title">STATUS: OPEN</h3>
+                                <button
+                                    className="register-btn-large"
+                                    onClick={() => navigate('/packages')}
+                                >
+                                    INITIATE REGISTRATION
+                                </button>
+                            </div>
+
+                            {/* Spacer to Ensure Full Scrollability */}
+                            <div style={{ height: '200px' }}></div>
+                        </div>
+                    </motion.div>
+                </AnimatePresence>
             </div>
         </div>
     );

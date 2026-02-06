@@ -10,6 +10,7 @@ import NonTechnicalEventDetail from "./pages/NonTechnicalEventDetail";
 import OmnitrixNav from "./components/OmnitrixNav";
 import Packages from "./pages/Packages";
 import SchedulePage from "./pages/SchedulePage";
+import WorkshopsPage from "./pages/WorkshopsPage";
 
 function App() {
   const location = useLocation();
@@ -24,7 +25,7 @@ function App() {
         {/* MAIN PAGES */}
         <Route path="/home" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/workshops" element={<Page title="Workshops Page (Coming Soon)" />} />
+        <Route path="/workshops" element={<WorkshopsPage />} />
         <Route path="/technical" element={<TechnicalEventsPage />} />
         <Route path="/technical/:eventId" element={<TechnicalEventDetail />} />
         <Route path="/non-technical" element={<NonTechnicalEventsPage />} />

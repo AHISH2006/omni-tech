@@ -8,6 +8,8 @@ import workshopCard from "../assets/workshop_card.png";
 import deptLogo1 from "../assets/dept-logo-1.png";
 import deptLogo2 from "../assets/dept-logo-2.png";
 import collegeLogo from "../assets/college-logo.png";
+import techcard from "../assets/techcard.png";
+import nontechcard from "../assets/non-techcard.png";
 import "../styles/home.css";
 import { eventsData } from "../data/eventsData";
 import ProductCard from "../components/ProductCard";
@@ -181,6 +183,7 @@ export default function HomePage() {
           EVENTS SECTION
           ========================= */}
       <section id="events-section" className="events-section">
+        <div className="events-section-overlay"></div>
         <h2 className="events-title">EVENTS</h2>
         <p className="events-subtitle">Explore our lineup of exciting events</p>
 
@@ -188,60 +191,52 @@ export default function HomePage() {
           {/* NEW CATEGORY CARDS - JUST 3 CARDS */}
           {[
             {
-              id: 'technical',
-              title: 'TECHNICAL EVENTS',
-              subtitle: 'Showcase your coding prowess',
-              category: 'Technical',
-              image: 'https://placehold.co/600x400/003300/39ff14?text=Technical',
-              link: '/technical'
+              id: "technical",
+              title: "TECHNICAL EVENTS",
+              subtitle: "Showcase your coding prowess",
+              image: techcard,
+              link: "/technical",
+              type: "technical",
             },
             {
-              id: 'non-technical',
-              title: 'NON-TECHNICAL EVENTS',
-              subtitle: 'Unleash your creativity',
-              category: 'Non Technical',
-              image: 'https://placehold.co/600x400/330000/ff0055?text=Non+Tech',
-              link: '/non-technical'
+              id: "non-technical",
+              title: "NON-TECHNICAL EVENTS",
+              subtitle: "Unleash your creativity",
+              image: nontechcard,
+              link: "/non-technical",
+              type: "non-technical",
             },
             {
-              id: 'workshop',
-              title: 'WORKSHOPS',
+              id: "workshop",
+              title: "WORKSHOPS",
               subtitle: "Welcome to Grandpa's Workshop!",
-              category: 'Workshop',
               image: workshopCard,
-              link: '/workshops'
-            }
+              link: "/workshops",
+              type: "workshop",
+            },
           ].map((card) => (
             <motion.div
               key={card.id}
-              className={`event-showcase-card ${card.category.replace(/\s+/g, '-').toLowerCase()}`}
-              whileHover={{
-                scale: 1.05,
-                zIndex: 10
-              }}
-              transition={{ type: "spring", stiffness: 300 }}
+              className={`event-product-card ${card.type}`}
+              whileHover={{ scale: 1.05 }}
               onClick={() => navigate(card.link)}
             >
-              <div className="card-glass-effect"></div>
-              <div className="card-content">
-                {/* Poster Image */}
-                <div className="card-image-container">
-                  <img
-                    src={card.image}
-                    alt={card.title}
-                    className="card-image"
-                  />
-                </div>
+              {/* Background Image */}
+              <img src={card.image} className="event-bg" />
 
-                <h3 className="card-title">{card.title}</h3>
-                <p className="card-subtitle">{card.subtitle}</p>
-                <div className="card-footer">
-                  <span className="card-category">{card.category}</span>
-                </div>
-                <div className="card-decoration-corn"></div>
+              {/* Overlay */}
+              <div className="event-overlay"></div>
+
+              {/* Content */}
+              <div className="event-content">
+                <h3>{card.title}</h3>
+                <p>{card.subtitle}</p>
+
+                <button className="event-btn">EXPLORE</button>
               </div>
             </motion.div>
           ))}
+
         </div>
       </section>
 
@@ -249,8 +244,8 @@ export default function HomePage() {
           SPEAKERS & PANELISTS SECTION
           ========================= */}
       <section id="speakers-section" className="speakers-section">
-        <h2 className="events-title">SPEAKERS & PANELISTS</h2>
-        <p className="events-subtitle">Meet our distinguished guests</p>
+        <h2 className="events-title">JUDGING PANELS</h2>
+        <p className="events-subtitle">Our Faculty Judges</p>
 
         <div className="speakers-grid">
           {speakersData.map((speaker) => (
@@ -297,7 +292,7 @@ export default function HomePage() {
 
         <div className="heads-container">
           {/* Left Column: AI&DS Department */}
-                    <div className="heads-column right-column">
+          <div className="heads-column right-column">
             <h3 className="dept-title">DEPARTMENT OF AI&DS</h3>
             <div className="heads-grid">
               {associationHeadsAIDS.map((head, index) => (
@@ -311,9 +306,9 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-          
+
           {/* Right Column: IT Department */}
-<div className="heads-column left-column">
+          <div className="heads-column left-column">
             <h3 className="dept-title">DEPARTMENT OF IT</h3>
             <div className="heads-grid">
               {associationHeadsIT.map((head, index) => (

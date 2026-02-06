@@ -1,6 +1,7 @@
 :root {
   --omni-green: #22c55e;
-  --omni-glow: #54de4a;
+  --omni-glow: #39ff14;
+  /* Neon Green */
   --omni-dark: #020617;
 }
 
@@ -16,7 +17,7 @@
 }
 
 /* ======================
-   WRAPPER
+   WRAPPER (Draggable)
 ====================== */
 .omni-wrapper {
   position: fixed;
@@ -25,55 +26,43 @@
   z-index: 1000;
   touch-action: none;
   cursor: grab;
+  width: auto;
+  height: auto;
 }
 
+/* ======================
+   WRAPPER (Centered / Open)
+====================== */
 .omni-wrapper.centered {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
   cursor: default;
 }
 
-@media (max-width: 768px) {
-  .omni-wrapper.centered {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .omni-open {
-    width: 180px;
-    height: 180px;
-  }
-
-  .ring-item {
-    width: 38px;
-    height: 38px;
-    margin-left: -19px;
-    margin-top: -19px;
-    font-size: 20px;
-  }
-
-  .omni-activate {
-    width: 56px;
-    height: 56px;
-  }
-
-  .holo-projector {
-    top: -150px;
-  }
-
-  .holo-icon {
-    font-size: 44px;
-  }
-
-  .holo-text {
-    font-size: 0.65rem;
-  }
+.omni-closed-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-
+/* ======================
+   HINT TEXT
+====================== */
+.omni-hint {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  color: var(--omni-glow);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.8);
+  white-space: nowrap;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(57, 255, 20, 0.3);
+}
 
 /* ======================
    CLOSED LOGO
@@ -88,6 +77,11 @@
   display: grid;
   place-items: center;
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.omni-logo:active {
+  transform: scale(0.95);
 }
 
 .omni-logo img {
@@ -99,8 +93,11 @@
 ====================== */
 .omni-open {
   position: relative;
-  width: 220px;
-  height: 220px;
+  width: 260px;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ======================
@@ -124,68 +121,197 @@
   top: 50%;
   left: 50%;
   transform-origin: center;
-  width: 44px;
-  height: 44px;
-  margin-left: -22px;
-  margin-top: -22px;
+  width: 50px;
+  height: 50px;
+  margin-left: -25px;
+  margin-top: -25px;
   border-radius: 50%;
-  background: rgba(2, 6, 23, 0.7);
+  background: rgba(2, 6, 23, 0.9);
   border: 2px solid rgba(34, 197, 94, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 24px;
   opacity: 0.5;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .ring-item.active {
   opacity: 1;
   border-color: var(--omni-green);
-  box-shadow: 0 0 16px var(--omni-glow);
+  box-shadow: 0 0 20px var(--omni-glow);
+  background: rgba(0, 20, 5, 0.9);
+  z-index: 10;
 }
 
 /* ======================
-   HOLOGRAM
+   HOLOGRAM (Advanced Beam)
 ====================== */
 .holo-projector {
   position: absolute;
-  top: -170px;
+  top: -230px;
+  /* Moved up to clear the ring */
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
   pointer-events: none;
-  width: 200px;
-  height: 200px;
+  width: 220px;
+  height: 220px;
+  z-index: 5;
+  perspective: 1000px;
 }
 
 .holo-beam {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 200px;
-  height: 200px;
-  background: linear-gradient(to top, rgba(34, 197, 94, .6), transparent);
-  clip-path: polygon(50% 100%, 0 0, 100% 0);
-  filter: blur(10px);
+  width: 100%;
+  height: 100%;
+  /* Advanced Scanning Texture */
+  background:
+    linear-gradient(to top, rgba(34, 197, 94, 0.6) 0%, rgba(34, 197, 94, 0) 90%),
+    repeating-linear-gradient(0deg,
+      transparent 0,
+      transparent 2px,
+      rgba(57, 255, 20, 0.2) 3px,
+      rgba(57, 255, 20, 0.05) 6px);
+  background-size: 100% 100%, 100% 20px;
+
+  /* CONE SHAPE: Narrow base, Wide top */
+  clip-path: polygon(45% 100%, 55% 100%, 100% 0, 0 0);
+
+  filter: blur(1px) drop-shadow(0 0 15px rgba(34, 197, 94, 0.5));
   z-index: 1;
+  animation: scanline-move 2.5s linear infinite, hologram-flicker 4s infinite alternate;
+  transform-origin: bottom center;
 }
 
 .holo-icon {
   position: relative;
   z-index: 2;
-  font-size: 52px;
+  font-size: 60px;
   color: var(--omni-glow);
-  text-shadow: 0 0 20px rgba(34, 197, 94, 0.8);
+  text-shadow:
+    0 0 10px rgba(34, 197, 94, 1),
+    0 0 20px rgba(34, 197, 94, 0.8),
+    0 0 40px rgba(34, 197, 94, 0.5);
+  margin-top: 40px;
+  animation: icon-float 3s ease-in-out infinite, hologram-flicker 0.1s infinite alternate-reverse;
 }
 
 .holo-text {
   position: relative;
   z-index: 2;
-  margin-top: 8px;
-  font-size: .7rem;
-  letter-spacing: .25em;
+  margin-top: 10px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
   color: #eafff3;
-  text-shadow: 0 0 12px rgba(34, 197, 94, 0.6);
+  text-shadow: 0 0 15px rgba(34, 197, 94, 1);
+  text-transform: uppercase;
+  animation: text-glitch 5s infinite;
+}
+
+/* ======================
+   ANIMATIONS
+====================== */
+@keyframes scanline-move {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+
+  100% {
+    background-position: 0 0, 0 -200%;
+  }
+}
+
+@keyframes hologram-flicker {
+
+  0%,
+  100% {
+    opacity: 0.9;
+    transform: scaleX(1);
+  }
+
+  3% {
+    opacity: 0.8;
+  }
+
+  5% {
+    opacity: 0.9;
+  }
+
+  7% {
+    opacity: 0.4;
+    transform: scaleX(0.98);
+  }
+
+  9% {
+    opacity: 0.95;
+    transform: scaleX(1);
+  }
+
+  11% {
+    opacity: 0.6;
+  }
+
+  13% {
+    opacity: 0.9;
+  }
+
+  50% {
+    opacity: 0.95;
+  }
+
+  70% {
+    opacity: 0.8;
+  }
+
+  90% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes icon-float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes text-glitch {
+
+  0%,
+  100% {
+    transform: skew(0deg);
+    filter: blur(0px);
+  }
+
+  92% {
+    transform: skew(0deg);
+    filter: blur(0px);
+  }
+
+  93% {
+    transform: skew(3deg);
+    filter: blur(1px);
+  }
+
+  94% {
+    transform: skew(-3deg);
+    filter: blur(0px);
+  }
+
+  95% {
+    transform: skew(1deg);
+  }
 }
 
 /* ======================
@@ -195,16 +321,63 @@
   position: absolute;
   inset: 50%;
   transform: translate(-50%, -50%);
-  width: 64px;
-  height: 64px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   border: 3px solid var(--omni-green);
   background: radial-gradient(circle, #020617 60%, #000);
-  box-shadow: 0 0 18px var(--omni-glow);
+  box-shadow: 0 0 20px var(--omni-glow);
   cursor: pointer;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  transition: all 0.2s ease;
+}
+
+.omni-activate:active {
+  transform: translate(-50%, -50%) scale(0.9);
+  box-shadow: 0 0 40px var(--omni-glow);
 }
 
 .activate-icon {
   color: var(--omni-green);
   font-weight: bold;
+  font-size: 24px;
+}
+
+/* ======================
+   RESPONSIVE (MOBILE)
+====================== */
+@media (max-width: 768px) {
+  .omni-open {
+    width: 220px;
+    height: 220px;
+  }
+
+  .ring-item {
+    width: 44px;
+    height: 44px;
+    margin-left: -22px;
+    margin-top: -22px;
+    font-size: 20px;
+  }
+
+  /* Adjust translate Y for items via JS or CSS override if possible, 
+     but JS handles rotation/translation. We rely on JS logic for spacing 
+     but can tweak icon sizes here */
+
+  .holo-projector {
+    top: -140px;
+    width: 180px;
+    height: 180px;
+  }
+
+  .holo-icon {
+    font-size: 48px;
+    margin-top: 30px;
+  }
+
+  .holo-text {
+    font-size: 0.85rem;
+  }
 }

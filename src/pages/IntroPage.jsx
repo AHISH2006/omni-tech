@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 import bgImage from "../assets/bg.png";
-import heroTimeSound from "../assets/herotime.m4a";
+import heroTimeSound from "../assets/sounds/herotime.m4a";
 import "../styles/intro.css";
 
 export default function IntroPage() {
