@@ -35,14 +35,14 @@ const PackagesPage = () => {
             title: 'GOLD',
             type: 'gold',
             image: goldImg,
-            link: "https://docs.google.com/forms/d/e/1FAIpQLScsJFBAy0SDtz5rbqtflsykt3zwkoOv6Vd1jGh3TvaIYwmirA/viewform?usp=publish-editor"
+            link: "https://docs.google.com/forms/d/e/1FAIpQLSdTGS_b-3YqGnRl0qXFBh0sgS9Q56B9dxGA-o52k1NiSg1S_g/viewform?usp=dialog"
         },
         {
             id: 3,
             title: 'DIAMOND',
             type: 'diamond',
             image: platinumImg, // Diamond
-            link: "https://docs.google.com/forms/d/e/1FAIpQLSeln3y7MJjrA3zRLphUtjku6MilsnhNuIUGq49y0AXDPP25FA/viewform?usp=publish-editor"
+            link: "https://forms.gle/vrJKrgMBqyVJZaAR8"
         }
     ];
 
