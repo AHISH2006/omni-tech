@@ -80,10 +80,10 @@ export default function GlobalAudio() {
     return (
         <button
             onClick={toggleMute}
-            className="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-black/50 border border-[#39ff14] text-[#39ff14] hover:bg-[#39ff14] hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(57,255,20,0.5)] backdrop-blur-sm"
+            className="audio-toggle-btn"
             aria-label={isMuted ? "Unmute Background Music" : "Mute Background Music"}
         >
-            {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
+            {isMuted ? <VolumeX /> : <Volume2 />}
         </button>
     );
 }

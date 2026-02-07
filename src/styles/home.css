@@ -50,6 +50,54 @@
    FOREGROUND CONTENT
    ========================= */
 
+/* =========================
+   AUDIO CONTROL
+   ========================= */
+
+.audio-toggle-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+  padding: 0.75rem;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid #39ff14;
+  color: #39ff14;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.5);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.audio-toggle-btn:hover {
+  background-color: #39ff14;
+  color: black;
+  box-shadow: 0 0 25px rgba(57, 255, 20, 1);
+  transform: scale(1.1);
+}
+
+.audio-toggle-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 768px) {
+  .audio-toggle-btn {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.6rem;
+  }
+
+  .audio-toggle-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
 .home-entry {
   position: relative;
   z-index: 10;
@@ -573,6 +621,40 @@
   text-shadow: 0 0 15px #00f3ff;
 }
 
+.event-product-card.technical .event-btn {
+  background: #39ff14;
+  box-shadow: 0 0 15px #39ff14;
+  color: black;
+}
+
+.event-product-card.technical .event-btn:hover {
+  background: white;
+  box-shadow: 0 0 25px white;
+}
+
+.event-product-card.non-technical .event-btn {
+  background: #ff0055;
+  box-shadow: 0 0 15px #ff0055;
+  color: white;
+}
+
+.event-product-card.non-technical .event-btn:hover {
+  background: white;
+  box-shadow: 0 0 25px white;
+  color: black;
+}
+
+.event-product-card.workshop .event-btn {
+  background: #00f3ff;
+  box-shadow: 0 0 15px #00f3ff;
+  color: black;
+}
+
+.event-product-card.workshop .event-btn:hover {
+  background: white;
+  box-shadow: 0 0 25px white;
+}
+
 /* ===========================
    RESPONSIVE
 =========================== */
@@ -629,6 +711,26 @@
   text-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
 }
 
+@media (max-width: 900px) {
+  .events-title {
+    font-size: 3rem;
+    letter-spacing: 0.15em;
+  }
+}
+
+@media (max-width: 600px) {
+  .events-title {
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+  }
+}
+
+@media (max-width: 400px) {
+  .events-title {
+    font-size: 1.5rem;
+  }
+}
+
 .events-subtitle {
   position: relative;
   z-index: 2;
@@ -639,6 +741,23 @@
   letter-spacing: 0.1em;
   text-align: center;
   text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+}
+
+.event-requirement-note {
+  position: relative;
+  z-index: 2;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  color: #1ef60a;
+  margin-top: 2rem;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(255, 0, 85, 0.5);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
+  font-weight: 700;
 }
 
 .events-grid-container {

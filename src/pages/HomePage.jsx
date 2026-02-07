@@ -99,7 +99,7 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.0, duration: 0.8 }}
           >
-            DEPARTMENT OF ARTIFICIAL INTELLIGENCE & DATA SCIENCE<br />
+            DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND DATA SCIENCE<br />&<br />
             DEPARTMENT OF INFORMATION TECHNOLOGY
           </motion.h1>
 
@@ -238,14 +238,18 @@ export default function HomePage() {
           ))}
 
         </div>
+
+        {/* Note about Laptop Requirement */}
+        <p className="event-requirement-note">
+          Note: Students Participating in Technical Events / attending workshop must bring their own Laptop
+        </p>
       </section>
 
       {/* =========================
           SPEAKERS & PANELISTS SECTION
           ========================= */}
       <section id="speakers-section" className="speakers-section">
-        <h2 className="events-title">JUDGING PANELS</h2>
-        <p className="events-subtitle">Our Faculty Judges</p>
+        <h2 className="events-title">JUDGING PANEL</h2>
 
         <div className="speakers-grid">
           {speakersData.map((speaker) => (
@@ -264,7 +268,7 @@ export default function HomePage() {
           FAQ SECTION
           ========================= */}
       <section id="faq-section" className="faq-section">
-        <h2 className="events-title">FAQ</h2>
+        <h2 className="events-title">QUARIES</h2>
         <p className="events-subtitle">Common Questions & Answers</p>
 
         <div className="faq-container">
@@ -435,6 +439,6 @@ const faqData = [
   },
   {
     question: "10. How can I contact the organizers?",
-    answer: "You can contact the organizing team through Email: omnitech2k26sce@gmail.com or through Student and faculty coordinators mentioned on the symposium poster."
+    answer: "You can contact the organizing team through Student and faculty coordinators mentioned on the symposium poster."
   }
 ];
