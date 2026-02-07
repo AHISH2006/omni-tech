@@ -374,13 +374,13 @@ const speakersData = [
   },
   {
     id: 4,
-    name: "Ms. Gayathri , M.E.",
+    name: "Mrs. S. Gayathri , M.E.",
     image: panelist4,
     description: "Expertise: Networks"
   },
   {
     id: 5,
-    name: "Mrs. Suganya A, M.E., M.B.A",
+    name: "Mrs. A. Suganya, M.E., M.B.A",
     image: panelist5,
     description: "Expertise: Networks"
   },
