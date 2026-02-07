@@ -268,7 +268,7 @@ export default function HomePage() {
           FAQ SECTION
           ========================= */}
       <section id="faq-section" className="faq-section">
-        <h2 className="events-title">QUARIES</h2>
+        <h2 className="events-title">QUERIES</h2>
         <p className="events-subtitle">Common Questions & Answers</p>
 
         <div className="faq-container">
@@ -362,7 +362,7 @@ const speakersData = [
   },
   {
     id: 2,
-    name: "Mr. C. Vignesh Manikadan, M.E",
+    name: "Mr. C. Vignesh Manikandan, M.E",
     image: panelist2,
     description: "Expertise: Data Analytics"
   },
