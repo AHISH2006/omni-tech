@@ -422,9 +422,7 @@
   }
 
   .divider-vertical {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
+    display: none;
   }
 
   .organizer-column h3 {
@@ -433,6 +431,6 @@
   }
 
   .organizers-title {
-    background: #000;
+    background: transparent;
   }
 }

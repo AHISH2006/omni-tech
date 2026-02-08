@@ -140,7 +140,7 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2.0, duration: 0.6 }}
           >
-            March 06, 2026
+            March 06, 2k26
           </motion.p>
 
           {/* Event Venue */}
@@ -241,7 +241,7 @@ export default function HomePage() {
 
         {/* Note about Laptop Requirement */}
         <p className="event-requirement-note">
-          Note: Students Participating in Technical Events / attending workshop must bring their own Laptop
+          Note: Students Participating in Technical Events / attending workshops must bring their own Laptop
         </p>
       </section>
 
@@ -249,7 +249,7 @@ export default function HomePage() {
           SPEAKERS & PANELISTS SECTION
           ========================= */}
       <section id="speakers-section" className="speakers-section">
-        <h2 className="events-title">PANELISTS</h2>
+        <h2 className="events-title">PANEL OF JUDGES</h2>
 
         <div className="speakers-carousel-container">
           <button className="carousel-nav-btn left" onClick={() => {

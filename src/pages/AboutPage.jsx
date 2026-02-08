@@ -41,13 +41,13 @@ export default function AboutPage() {
         <h2 className="organizers-title">IN PRESENCE OF</h2>
         <div className="organizers-content">
           <div className="organizer-column">
-            
+
             <img src={chairmanImg} alt="Chairman" className="dept-photo" />
             <div className="hod-details">
               <div className="hod-designation">CHAIRMAN</div>
               <div className="hod-name">SHRI .V. LAKSHMINARAYANASAMY</div>
               <p className="hod-description">
-               SUGUNA INSTITUTIONS
+                SUGUNA INSTITUTIONS
               </p>
             </div>
           </div>
@@ -55,7 +55,7 @@ export default function AboutPage() {
           <div className="divider-vertical"></div>
 
           <div className="organizer-column">
-            
+
             <img src={presidentImg} alt="President" className="dept-photo" />
             <div className="hod-details">
               <div className="hod-designation">PRESIDENT</div>
