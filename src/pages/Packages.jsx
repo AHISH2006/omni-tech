@@ -3,7 +3,7 @@ import '../styles/packages.css';
 import activateSound from '../assets/sounds/activate.mp3';
 import goldImg from '../assets/gold-package-new.png';
 import platinumImg from '../assets/diamond-package-new.png'; // Using diamond image for Platinum
-import silverImg from '../assets/silver-package-new.png';
+import silverImg from '../assets/silver-package-new.jpeg';
 import Antigravity from '../components/Antigravity';
 
 const PackagesPage = () => {
@@ -28,7 +28,7 @@ const PackagesPage = () => {
             title: 'SILVER',
             type: 'silver',
             image: silverImg,
-            link: "https://forms.gle/gXSM2qn2vZpSAfBJ6"
+            link: "https://forms.gle/hg3QDxTWqon9iuVYA"
         },
         {
             id: 2,

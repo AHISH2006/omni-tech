@@ -4,6 +4,8 @@ import deptLogo2 from '../assets/dept-logo-2.png'
 import Antigravity from '../components/Antigravity'
 import ADS_HOD from '../assets/ADS_HOD.png'
 import IT_HOD from '../assets/IT_HOD.png'
+import chairmanImg from '../assets/chairman.jpeg'
+import presidentImg from '../assets/president.jpeg'
 export default function AboutPage() {
   return (
     <main className="about-page">
@@ -33,6 +35,37 @@ export default function AboutPage() {
             <strong>Real-World Impact:</strong> Transforming concepts into reality through immersive learning and intelligent systems.
           </li>
         </ul>
+      </section>
+
+      <section className="organizers-section-bordered">
+        <h2 className="organizers-title">IN PRESENCE OF</h2>
+        <div className="organizers-content">
+          <div className="organizer-column">
+            
+            <img src={chairmanImg} alt="Chairman" className="dept-photo" />
+            <div className="hod-details">
+              <div className="hod-designation">CHAIRMAN</div>
+              <div className="hod-name">SHRI .V. LAKSHMINARAYANASAMY</div>
+              <p className="hod-description">
+               SUGUNA INSTITUTIONS
+              </p>
+            </div>
+          </div>
+
+          <div className="divider-vertical"></div>
+
+          <div className="organizer-column">
+            
+            <img src={presidentImg} alt="President" className="dept-photo" />
+            <div className="hod-details">
+              <div className="hod-designation">PRESIDENT</div>
+              <div className="hod-name">SMT. L . SUGUNA</div>
+              <p className="hod-description">
+                SUGUNA INSTITUTIONS
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section className="organizers-section-bordered">

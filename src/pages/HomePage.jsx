@@ -23,6 +23,8 @@ import panelist4 from "../assets/panelist4.png";
 import panelist5 from "../assets/panelist5.png";
 import panelist6 from "../assets/panelist6.png";
 import panelist7 from "../assets/panelist7.png";
+import panelist8 from "../assets/panelist8.jpeg"
+import panelist9 from "../assets/panelist9.jpeg"
 export default function HomePage() {
   const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(null);
@@ -74,24 +76,22 @@ export default function HomePage() {
             />
           </a>
 
-          <a
-            href="https://www.sugunace.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="logo-link-right"
-          >
-            <motion.img
-              src={collegeLogo}
-              alt="College Logo"
-              className="dept-logo-small"
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            />
-          </a>
+
         </motion.div>
 
         {/* Main Content Container - No Scroll */}
         <div className="content-wrapper-no-scroll">
+          {/* Central College Logo */}
+          <a href="https://www.sugunace.com/" target="_blank">
+            <motion.div
+              className="college-logo-container-center"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+            >
+              <img src={collegeLogo} alt="College Logo" className="college-logo-main" />
+            </motion.div>
+          </a>
           {/* Department Headings */}
           <motion.h1
             className="dept-heading-main"
@@ -249,18 +249,35 @@ export default function HomePage() {
           SPEAKERS & PANELISTS SECTION
           ========================= */}
       <section id="speakers-section" className="speakers-section">
-        <h2 className="events-title">JUDGING PANEL</h2>
+        <h2 className="events-title">PANELISTS</h2>
 
-        <div className="speakers-grid">
-          {speakersData.map((speaker) => (
-            <ProductCard
-              key={speaker.id}
-              image={speaker.image}
-              name={speaker.name}
-              dept={speaker.dept}
-              description={speaker.description}
-            />
-          ))}
+        <div className="speakers-carousel-container">
+          <button className="carousel-nav-btn left" onClick={() => {
+            const container = document.querySelector('.speakers-grid');
+            container.scrollBy({ left: -300, behavior: 'smooth' });
+          }}>
+            &#10094;
+          </button>
+
+          <div className="speakers-grid">
+            {speakersData.map((speaker) => (
+              <ProductCard
+                key={speaker.id}
+                image={speaker.image}
+                name={speaker.name}
+                dept={speaker.dept}
+                description={speaker.description}
+                isEmpty={speaker.isEmpty}
+              />
+            ))}
+          </div>
+
+          <button className="carousel-nav-btn right" onClick={() => {
+            const container = document.querySelector('.speakers-grid');
+            container.scrollBy({ left: 300, behavior: 'smooth' });
+          }}>
+            &#10095;
+          </button>
         </div>
       </section>
 
@@ -355,48 +372,70 @@ const associationHeadsAIDS = [
 
 const speakersData = [
   {
-    id: 1,
-    name: "Mrs. K. Kanakambal , M.E",
-    image: panelist1,
-    description: "Expertise: Cybersecurity "
+    id: '8',
+    name: "SACHIN NANDHA SABARISH . J",
+    dept: "Learnlogicify Technologies LLP",
+    image: panelist8,
+    description: "Founder and CEO",
+   
   },
   {
+    id: '9',
+    name: "DHINAKARAN S N",
+    dept: "Video Creator/ Editor",
+    image: panelist9,
+    description: "CoolFire Media",
+   
+  },
+  {
+    id: 1,
+    name: "Mrs. C. Eyamini, M.E. (Ph.D)",
+    dept: "SCE - AP | DEPT. - AI&DS",
+    image: panelist7,
+    description: "Expertise: Data Science and Cybersecurity"
+  },
+    {
     id: 2,
-    name: "Mr. C. Vignesh Manikandan, M.E",
+    name: "Mr. C. Vignesh Manikadan, M.E",
+    dept: "SCE - AP | DEPT. - AI&DS",
     image: panelist2,
     description: "Expertise: Data Analytics"
   },
   {
     id: 3,
     name: "Mrs. C. Rajanayaki @ Sindhuja, M.E",
+    dept: "SCE - AP | DEPT. - AI&DS",
     image: panelist3,
     description: "Expertise: Computer Vision and Artificial Intelligence"
   },
+
   {
     id: 4,
-    name: "Mrs. S. Gayathri , M.E.",
-    image: panelist4,
-    description: "Expertise: Networks"
-  },
-  {
-    id: 5,
-    name: "Mrs. A. Suganya, M.E., M.B.A",
+    name: "Mrs. Suganya A, M.E., M.B.A",
+    dept: "SCE - AP | DEPT. - IT",
     image: panelist5,
     description: "Expertise: Networks"
   },
   {
-    id: 6,
+    id: 5,
     name: "Mr. S. Sivaraja, M.E",
-
+    dept: "SCE - AP | DEPT. - AI&DS",
     image: panelist6,
     description: "Expertise: Cloud Computing"
   },
   {
+    id: 6,
+    name: "Ms. Gayathri , M.E.",
+    dept: "SCE - AP | DEPT. - IT",
+    image: panelist4,
+    description: "Expertise: Networks"
+  },
+  {
     id: 7,
-    name: "Mrs. C. Eyamini, M.E. (Ph.D)",
-
-    image: panelist7,
-    description: "Expertise: Data Science and Cybersecurity"
+    name: "Mrs. K. Kanakambal , M.E",
+    dept: "SCE - AP | DEPT. - AI&DS",
+    image: panelist1,
+    description: "Expertise: Computer Science"
   },
 ];
 

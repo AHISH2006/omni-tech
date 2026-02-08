@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import '../styles/ProductCard.css';
 
-const ProductCard = ({ image, name, dept, description }) => {
+const ProductCard = ({ image, name, dept, description, isEmpty }) => {
     return (
         <motion.div
             className="ben10-card-container"
@@ -19,7 +19,7 @@ const ProductCard = ({ image, name, dept, description }) => {
                         <div className="holographic-ring"></div>
                     </div>
                     <div className="ben10-info">
-                        <h3 className="ben10-name">{name}</h3>
+                        <h3 className="ben10-name" style={isEmpty ? { color: '#00f3ff', textShadow: '0 0 10px #00f3ff' } : {}}>{name}</h3>
                         <p className="ben10-dept">{dept}</p>
                         {description && <p className="ben10-description">{description}</p>}
                     </div>
