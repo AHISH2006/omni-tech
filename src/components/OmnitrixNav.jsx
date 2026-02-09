@@ -166,6 +166,18 @@ export default function OmnitrixNav() {
         setHasOpened(true)
     }
 
+    const handleItemClick = (index) => {
+        if (index === active) return
+
+        rotateAudio.current.currentTime = 0
+        rotateAudio.current.play()
+
+        setActive(index)
+        const targetRot = -index * step
+        setRotation(targetRot)
+        currentRotation.current = targetRot
+    }
+
     return (
         <>
             {/* Dark overlay when open */}
@@ -225,6 +237,10 @@ export default function OmnitrixNav() {
                                         // OR remove the 2nd rotation if you want them to turn with the ring.
                                         // Let's keep them upright for better readability:
                                         transition: "transform 0.1s ease-out"
+                                    }}
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        handleItemClick(i)
                                     }}
                                 >
                                     <div style={{ transform: `rotate(${rotation}deg)` }}>

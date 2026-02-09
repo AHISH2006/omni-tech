@@ -38,7 +38,7 @@ We eliminate the traditional development bottleneck, ensuring structural integri
         category: 'Technical',
         size: 'medium',
         image: botrixBuilter,
-        coordinator: "KESAV ADITHYA - 7010614463, PREETHI - 8610224428",
+        coordinator: "KESAV ADITHYA - 9363294125, PREETHI - 8610224428",
         time: "11:20 am - 12:20 pm",
         participation: "Team (3-4 members only)",
         venue: "Data Analytics Lab",
@@ -85,7 +85,7 @@ We eliminate the traditional development bottleneck, ensuring structural integri
         description: 'Participants will be given an on-spot topic and a fixed time limit. They are required to search, analyze, and compile relevant information from the web and present it as a structured report in the prescribed documentation format.'},
     {
         id: 'escape-code',
-        title: 'ESCAPE CODE',
+        title: 'DNA DECODE',
         category: 'Technical',
         size: 'medium',
         image: dnaDecode,
