@@ -82,7 +82,7 @@ export default function AboutPage() {
             <img src={ADS_HOD} alt="ADS HOD" className="dept-photo" />
             <div className="hod-details">
               <div className="hod-designation">HEAD OF THE DEPARTMENT</div>
-              <div className="hod-name">Dr. P. Arulprakash, M.E., Ph.D</div>
+              <div className="hod-name">Dr. P. ARULPRAKASH, M.E., Ph.D</div>
             </div>
           </div>
 
@@ -99,7 +99,7 @@ export default function AboutPage() {
             <img src={IT_HOD} alt="IT HOD" className="dept-photo" />
             <div className="hod-details">
               <div className="hod-designation">HEAD OF THE DEPARTMENT</div>
-              <div className="hod-name">Ms. B. Mythily, M.E. (Ph.D)</div>
+              <div className="hod-name">Ms. B. MYTHILY, M.E. (Ph.D)</div>
             </div>
           </div>
         </div>
