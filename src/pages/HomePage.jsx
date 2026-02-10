@@ -173,6 +173,15 @@ export default function HomePage() {
           >
             <span className="cash-prize-text">WIN EXCITING CASH PRIZES!</span>
           </motion.div>
+
+          {/* Overall Trophy Text */}
+          <motion.div
+            className="trophy-container"
+          >
+            <span className="trophy-text">
+              🏆 OVERALL TROPHY FOR THE COLLEGE BAGGING MAXIMUM PRIZES 🏆
+            </span>
+          </motion.div>
         </div>
 
       </div>
@@ -377,7 +386,7 @@ const speakersData = [
     dept: "Learnlogicify Technologies LLP",
     image: panelist8,
     description: "Founder and CEO",
-   
+
   },
   {
     id: '9',
@@ -385,7 +394,7 @@ const speakersData = [
     dept: "Video Creator/ Editor",
     image: panelist9,
     description: "CoolFire Media",
-   
+
   },
   {
     id: 1,
@@ -394,7 +403,7 @@ const speakersData = [
     image: panelist7,
     description: "Expertise: Data Science and Cybersecurity"
   },
-    {
+  {
     id: 2,
     name: "Mr. C. Vignesh Manikandan, M.E",
     dept: "SCE - AP | DEPT. - AI&DS",
