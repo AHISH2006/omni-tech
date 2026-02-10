@@ -12,6 +12,7 @@ import Packages from "./pages/Packages";
 import SchedulePage from "./pages/SchedulePage";
 import WorkshopsPage from "./pages/WorkshopsPage";
 import GlobalAudio from "./components/GlobalAudio";
+import ChatbotWidget from "./components/ChatbotWidget";
 
 function App() {
   const location = useLocation();
@@ -43,6 +44,9 @@ function App() {
 
       {/* GLOBAL AUDIO PLAYER */}
       <GlobalAudio />
+
+      {/* CHATBOT WIDGET - Shows on all pages */}
+      <ChatbotWidget />
     </div>
   );
 }
