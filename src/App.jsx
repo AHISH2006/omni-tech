@@ -46,7 +46,7 @@ function App() {
       <GlobalAudio />
 
       {/* CHATBOT WIDGET - Shows on all pages */}
-      <ChatbotWidget />
+     {!isIntroPage && <ChatbotWidget />} 
     </div>
   );
 }

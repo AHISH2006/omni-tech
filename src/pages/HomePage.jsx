@@ -174,6 +174,15 @@ export default function HomePage() {
           >
             <span className="cash-prize-text">WIN EXCITING CASH PRIZES!</span>
           </motion.div>
+
+          {/* Overall Trophy Text */}
+          <motion.div
+            className="trophy-container"
+          >
+            <span className="trophy-text">
+              🏆 OVERALL TROPHY FOR THE COLLEGE BAGGING MAXIMUM PRIZES 🏆
+            </span>
+          </motion.div>
         </div>
 
       </div>
