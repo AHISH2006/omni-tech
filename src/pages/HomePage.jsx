@@ -396,7 +396,7 @@ const speakersData = [
   },
     {
     id: 2,
-    name: "Mr. C. Vignesh Manikadan, M.E",
+    name: "Mr. C. Vignesh Manikandan, M.E",
     dept: "SCE - AP | DEPT. - AI&DS",
     image: panelist2,
     description: "Expertise: Data Analytics"
