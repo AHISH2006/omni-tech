@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from "framer-motion";
+import { Linkedin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 // Removed unused React hooks
 import OmnitrixBackground from "../components/Background";
@@ -346,7 +347,28 @@ export default function HomePage() {
 
         </div>
       </section>
-    </div>
+
+
+      {/* =========================
+          WEBSITE DEVELOPED BY SECTION
+          ========================= */ }
+      <section id="developers-section" className="developers-section">
+        <h2 className="events-title">WEBSITE DEVELOPED BY</h2>
+        <div className="developers-grid">
+          {websiteDevelopers.map((dev, index) => (
+            <div key={index} className="developer-card">
+              <div className="developer-info">
+                <h3 className="developer-name">{dev.name}</h3>
+                <p className="developer-details">{dev.year} - {dev.dept}</p>
+              </div>
+              <a href={dev.linkedin} target="_blank" rel="noopener noreferrer" className="linkedin-link">
+                <Linkedin size={24} />
+              </a>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div >
   );
 }
 
@@ -368,7 +390,12 @@ const associationHeadsAIDS = [
   { name: 'GNANA PRAKASH V', role: 'JOINT-TREASURER', number: '+91 7825996108' },
 ];
 
-
+const websiteDevelopers = [
+  { name: "AHISH SM", year: "3rd Year", dept: "AI&DS", linkedin: "https://www.linkedin.com/in/ahishsm/" },
+  { name: "KARTHIKEYAN B", year: "3rd Year", dept: "AI&DS", linkedin: "https://www.linkedin.com/in/-karthikeyanb" },
+  { name: "PRAKASH K", year: "3rd Year", dept: "AI&DS", linkedin: "https://www.linkedin.com/in/prakash-k-a37bb93ab" },
+  { name: "SHOBIKA R", year: "3rd Year", dept: "IT", linkedin: "http://www.linkedin.com/in/shobika-r-47987b355" },
+];
 
 const speakersData = [
   {
@@ -377,7 +404,7 @@ const speakersData = [
     dept: "Learnlogicify Technologies LLP",
     image: panelist8,
     description: "Founder and CEO",
-   
+
   },
   {
     id: '9',
@@ -385,7 +412,7 @@ const speakersData = [
     dept: "Video Creator/ Editor",
     image: panelist9,
     description: "CoolFire Media",
-   
+
   },
   {
     id: 1,
@@ -394,7 +421,7 @@ const speakersData = [
     image: panelist7,
     description: "Expertise: Data Science and Cybersecurity"
   },
-    {
+  {
     id: 2,
     name: "Mr. C. Vignesh Manikandan, M.E",
     dept: "SCE - AP | DEPT. - AI&DS",

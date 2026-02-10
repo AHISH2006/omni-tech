@@ -1573,3 +1573,115 @@
     gap: 1.5rem;
   }
 }
+
+/* =========================
+   WEBSITE DEVELOPERS SECTION
+   ========================= */
+
+.developers-section {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgba(57, 255, 20, 0.1);
+}
+
+.developers-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.developer-card {
+  background: linear-gradient(135deg, rgba(10, 20, 30, 0.9) 0%, rgba(20, 40, 60, 0.8) 100%);
+  border: 1px solid rgba(57, 255, 20, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.developer-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(57, 255, 20, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.developer-card:hover::before {
+  left: 100%;
+}
+
+.developer-card:hover {
+  background: linear-gradient(135deg, rgba(2, 6, 23, 0.95) 0%, rgba(34, 197, 94, 0.15) 100%);
+  transform: translateY(-5px) scale(1.02);
+  border-color: #39ff14;
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
+}
+
+.developer-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.developer-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.3rem 0;
+  letter-spacing: 1px;
+  text-shadow: 0 0 5px rgba(57, 255, 20, 0.5);
+}
+
+.developer-details {
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.linkedin-link {
+  color: #0077b5;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.linkedin-link:hover {
+  background: #0077b5;
+  color: white;
+  box-shadow: 0 0 15px rgba(0, 119, 181, 0.6);
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .developer-card {
+    width: 100%;
+    max-width: 350px;
+  }
+}

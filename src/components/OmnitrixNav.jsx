@@ -9,15 +9,14 @@ import "../styles/omnitrix-nav.css"
 import { House, User, Wrench, Cpu, Gamepad2, CalendarClock, Boxes } from "lucide-react"
 
 const OPTIONS = [
-    { id: "home", label: "HOME", icon: "🏫" },
+    { id: "home", label: "HOME", icon: "🏠" },
     { id: "about", label: "ABOUT", icon: "👽" },
     { id: "workshops", label: "WORKSHOPS", icon: "⚙️" },
     { id: "technical", label: "TECHNICAL", icon: "⚡" },
     { id: "non-technical", label: "NON-TECHNICAL", icon: "🎮" },
-    { id: "schedule", label: "SCHEDULE", icon: "⏳" },
-    { id: "packages", label: "PACKAGES", icon: "🎫" },
+    { id: "schedule", label: "SCHEDULE", icon: "📅" },
+    { id: "packages", label: "PACKAGES", icon: "💎" },
 ]
-
 export default function OmnitrixNav() {
     const [open, setOpen] = useState(false)
     const [active, setActive] = useState(0)
@@ -213,7 +212,11 @@ export default function OmnitrixNav() {
                     <div className="omni-open">
                         <div className="holo-projector">
                             <div className="holo-beam" />
-                            <div className="holo-icon">{OPTIONS[active].icon}</div>
+                            <div className="holo-float">
+                                <div className="holo-flicker">
+                                    <div className="holo-icon" data-icon={OPTIONS[active].icon}>{OPTIONS[active].icon}</div>
+                                </div>
+                            </div>
                             <div className="holo-text">{OPTIONS[active].label}</div>
                         </div>
 
