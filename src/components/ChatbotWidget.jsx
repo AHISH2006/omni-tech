@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MessageCircle, X, XCircle } from 'lucide-react';
+import { Bot, X, XCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Chatbot from './chatbot';
 import '../styles/chatbot-widget.css';
@@ -44,7 +44,7 @@ function ChatbotWidget() {
                 animate={{ scale: 1 }}
                 title="Enable Chatbot"
             >
-                <MessageCircle size={20} />
+                <Bot size={20} />
             </motion.button>
         );
     }
@@ -80,7 +80,7 @@ function ChatbotWidget() {
                             exit={{ rotate: -90, opacity: 0 }}
                             transition={{ duration: 0.2 }}
                         >
-                            <MessageCircle size={28} />
+                            <Bot size={28} />
                         </motion.div>
                     )}
                 </AnimatePresence>
