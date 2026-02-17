@@ -40,7 +40,7 @@ We eliminate the traditional development bottleneck, ensuring structural integri
         image: botrixBuilter,
         coordinator: "KESAV ADITHYA - 9363294125, PREETHI - 8610224428",
         time: "11:20 am - 12:20 pm",
-        participation: "Team (3-4 members only)",
+        participation: "Team (1-2 members only)",
         venue: "Data Analytics Lab",
         description: `This event focuses on designing and developing a functional chatbot that can respond to user queries effectively based on a given problem statement.`,
         rules: `1. A problem statement will be provided on the spot.
@@ -59,7 +59,7 @@ We eliminate the traditional development bottleneck, ensuring structural integri
         image: cosmicVision,
         coordinator: "HARIDAS - 9080253396, KAVYA SHREE - 6381487932",
         time: "12:00 pm - 01:00 pm",
-        participation: "Team (3-4 members only)",
+        participation: "Team (1-2 members only)",
         venue: "LH205",
         description: `This event showcases pre-created videos developed using AI and/or VR technologies. Participants will present their work during the event.`,
         rules: `1. Videos must be created prior to the event using AI and/or VR tools.

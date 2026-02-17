@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from "framer-motion";
-import { Linkedin } from "lucide-react";
+import { Linkedin, MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 // Removed unused React hooks
 import OmnitrixBackground from "../components/Background";
@@ -26,6 +26,7 @@ import panelist6 from "../assets/panelist6.png";
 import panelist7 from "../assets/panelist7.png";
 import panelist8 from "../assets/panelist8.jpeg"
 import panelist9 from "../assets/panelist9.jpeg"
+import panelist10 from "../assets/panelist10.jpeg"
 export default function HomePage() {
   const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(null);
@@ -153,6 +154,27 @@ export default function HomePage() {
           >
             VENUE: SUGUNA COLLEGE OF ENGINEERING , COIMBATORE
           </motion.p>
+
+          <motion.div
+            className="location-wrapper"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 2.3, duration: 0.6 }}
+            whileHover={{ scale: 1.05 }}
+          >
+            <MapPin className="location-icon" size={24} />
+            <div className="location-details">
+              <span className="location-label">LOCATION:</span>
+              <a
+                href="https://maps.app.goo.gl/5yZ4zYtJehrW9qA68"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="location-link"
+              >
+                CLICK HERE TO VIEW ON GOOGLE MAPS
+              </a>
+            </div>
+          </motion.div>
 
           {/* Cash Prize Text */}
           <motion.div
@@ -400,13 +422,21 @@ const associationHeadsAIDS = [
 ];
 
 const websiteDevelopers = [
-  { name: "AHISH SM", year: "3rd Year", dept: "AI&DS", linkedin: "https://www.linkedin.com/in/ahishsm/" },
+  { name: "AHISH S M", year: "3rd Year", dept: "AI&DS", linkedin: "https://www.linkedin.com/in/ahishsm/" },
   { name: "KARTHIKEYAN B", year: "3rd Year", dept: "AI&DS", linkedin: "https://www.linkedin.com/in/-karthikeyanb" },
   { name: "PRAKASH K", year: "3rd Year", dept: "AI&DS", linkedin: "https://www.linkedin.com/in/prakash-k-a37bb93ab" },
   { name: "SHOBIKA R", year: "3rd Year", dept: "IT", linkedin: "http://www.linkedin.com/in/shobika-r-47987b355" },
 ];
 
 const speakersData = [
+  {
+    id: '10',
+    name: "Mr. JOEL JESU ROY M",
+    dept: "Head - Training & Placement Cell",
+    image:panelist10,
+    
+
+  },
   {
     id: '8',
     name: "SACHIN NANDHA SABARISH . J",
