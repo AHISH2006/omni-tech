@@ -673,6 +673,19 @@
    EVENTS SECTION
    ========================= */
 
+.events-section {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  padding: 6rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
 /* ===========================
    PRODUCT STYLE EVENT CARDS
 =========================== */
@@ -830,11 +843,37 @@
    RESPONSIVE
 =========================== */
 
+@media (max-width: 1024px) {
+  .event-product-card {
+    width: 320px;
+    height: 500px;
+  }
+}
+
 @media (max-width: 768px) {
+  .events-section {
+    padding: 4rem 1rem;
+  }
+
   .event-product-card {
     width: 100%;
     max-width: 350px;
-    height: 500px;
+    height: 480px;
+  }
+}
+
+@media (max-width: 480px) {
+  .events-title {
+    font-size: 2.5rem;
+  }
+
+  .event-product-card {
+    max-width: 100%;
+    height: 420px;
+  }
+
+  .event-content h3 {
+    font-size: 1.5rem;
   }
 }
 
