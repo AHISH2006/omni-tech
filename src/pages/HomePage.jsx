@@ -491,7 +491,7 @@ const speakersData = [
   },
   {
     id: 6,
-    name: "Ms. Gayathri , M.E.",
+    name: "Ms. Gayathri.S , M.E.",
     dept: "SCE - AP | DEPT. - IT",
     image: panelist4,
     description: "Expertise: Networks"

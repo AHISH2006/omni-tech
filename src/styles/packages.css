@@ -2,7 +2,8 @@
 .packages-container {
     min-height: 100vh;
     padding: 100px 20px 60px;
-    background: transparent; /* Ensures Antigravity background shows through */
+    background: transparent;
+    /* Ensures Antigravity background shows through */
     position: relative;
     display: flex;
     flex-direction: column;
@@ -148,6 +149,299 @@
     background-clip: text;
     color: transparent;
     text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+}
+
+/* === TEAM MEMBERS ROW === */
+.plan-members-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    margin: 0.8rem 0 0.5rem;
+    border-radius: 10px;
+    background: rgba(0, 255, 0, 0.05);
+    border: 1px solid rgba(0, 255, 0, 0.15);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.05rem;
+    justify-content: space-between;
+}
+
+.members-icon {
+    display: flex;
+    align-items: center;
+    color: #00ff00;
+    flex-shrink: 0;
+}
+
+.members-label {
+    flex: 1;
+    color: rgba(224, 252, 224, 0.75);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08rem;
+}
+
+.members-count {
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 0.15rem 0.6rem;
+    border-radius: 6px;
+    background: rgba(0, 255, 0, 0.12);
+    color: #00ff00;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+}
+
+/* Silver themed members */
+.plan-card.silver .plan-members-row {
+    background: rgba(192, 192, 192, 0.06);
+    border-color: rgba(192, 192, 192, 0.2);
+}
+
+.plan-card.silver .members-icon {
+    color: #c0c0c0;
+}
+
+.plan-card.silver .members-count {
+    background: rgba(192, 192, 192, 0.12);
+    color: #e0e0e0;
+    border-color: rgba(192, 192, 192, 0.35);
+}
+
+/* Gold themed members */
+.plan-card.gold .plan-members-row {
+    background: rgba(255, 215, 0, 0.06);
+    border-color: rgba(255, 215, 0, 0.2);
+}
+
+.plan-card.gold .members-icon {
+    color: #ffd700;
+}
+
+.plan-card.gold .members-count {
+    background: rgba(255, 215, 0, 0.12);
+    color: #ffd700;
+    border-color: rgba(255, 215, 0, 0.35);
+}
+
+/* Diamond themed members */
+.plan-card.diamond .plan-members-row {
+    background: rgba(0, 243, 255, 0.06);
+    border-color: rgba(0, 243, 255, 0.2);
+}
+
+.plan-card.diamond .members-icon {
+    color: #00f3ff;
+}
+
+.plan-card.diamond .members-count {
+    background: rgba(0, 243, 255, 0.12);
+    color: #00f3ff;
+    border-color: rgba(0, 243, 255, 0.35);
+}
+
+/* === PER HEAD PRICE ROW === */
+.plan-price-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    margin: 0.4rem 0 0.5rem;
+    border-radius: 10px;
+    background: rgba(0, 255, 0, 0.05);
+    border: 1px solid rgba(0, 255, 0, 0.15);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.05rem;
+    justify-content: space-between;
+}
+
+.price-icon {
+    display: flex;
+    align-items: center;
+    color: #00ff00;
+    flex-shrink: 0;
+}
+
+.price-label {
+    flex: 1;
+    color: rgba(224, 252, 224, 0.75);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07rem;
+}
+
+.price-amount {
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 0.15rem 0.6rem;
+    border-radius: 6px;
+    background: rgba(0, 255, 0, 0.12);
+    color: #00ff00;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+}
+
+/* Silver price row */
+.plan-card.silver .plan-price-row {
+    background: rgba(192, 192, 192, 0.06);
+    border-color: rgba(192, 192, 192, 0.2);
+}
+
+.plan-card.silver .price-icon {
+    color: #c0c0c0;
+}
+
+.plan-card.silver .price-amount {
+    background: rgba(192, 192, 192, 0.12);
+    color: #e0e0e0;
+    border-color: rgba(192, 192, 192, 0.35);
+}
+
+/* Gold price row */
+.plan-card.gold .plan-price-row {
+    background: rgba(255, 215, 0, 0.06);
+    border-color: rgba(255, 215, 0, 0.2);
+}
+
+.plan-card.gold .price-icon {
+    color: #ffd700;
+}
+
+.plan-card.gold .price-amount {
+    background: rgba(255, 215, 0, 0.12);
+    color: #ffd700;
+    border-color: rgba(255, 215, 0, 0.35);
+}
+
+/* Diamond price row */
+.plan-card.diamond .plan-price-row {
+    background: rgba(0, 243, 255, 0.06);
+    border-color: rgba(0, 243, 255, 0.2);
+}
+
+.plan-card.diamond .price-icon {
+    color: #00f3ff;
+}
+
+.plan-card.diamond .price-amount {
+    background: rgba(0, 243, 255, 0.12);
+    color: #00f3ff;
+    border-color: rgba(0, 243, 255, 0.35);
+}
+
+/* === PERKS LIST === */
+.plan-perks-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.4rem 0 0.6rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.perk-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 8px;
+    background: rgba(0, 255, 0, 0.04);
+    border: 1px solid rgba(0, 255, 0, 0.12);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.95rem;
+    transition: background 0.25s ease;
+}
+
+.perk-item:hover {
+    background: rgba(0, 255, 0, 0.1);
+}
+
+.perk-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 4px rgba(0, 255, 0, 0.4));
+}
+
+.perk-name {
+    flex: 1;
+    color: rgba(224, 252, 224, 0.85);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06rem;
+}
+
+.perk-qty {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.1rem 0.5rem;
+    border-radius: 5px;
+    background: rgba(0, 255, 0, 0.12);
+    color: #00ff00;
+    border: 1px solid rgba(0, 255, 0, 0.25);
+}
+
+/* Silver perks */
+.plan-card.silver .perk-item {
+    background: rgba(192, 192, 192, 0.04);
+    border-color: rgba(192, 192, 192, 0.12);
+}
+
+.plan-card.silver .perk-item:hover {
+    background: rgba(192, 192, 192, 0.1);
+}
+
+.plan-card.silver .perk-qty {
+    background: rgba(192, 192, 192, 0.12);
+    color: #e0e0e0;
+    border-color: rgba(192, 192, 192, 0.3);
+}
+
+.plan-card.silver .perk-icon {
+    filter: drop-shadow(0 0 4px rgba(192, 192, 192, 0.4));
+}
+
+/* Gold perks */
+.plan-card.gold .perk-item {
+    background: rgba(255, 215, 0, 0.04);
+    border-color: rgba(255, 215, 0, 0.12);
+}
+
+.plan-card.gold .perk-item:hover {
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.plan-card.gold .perk-qty {
+    background: rgba(255, 215, 0, 0.12);
+    color: #ffd700;
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+.plan-card.gold .perk-icon {
+    filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.4));
+}
+
+/* Diamond perks */
+.plan-card.diamond .perk-item {
+    background: rgba(0, 243, 255, 0.04);
+    border-color: rgba(0, 243, 255, 0.12);
+}
+
+.plan-card.diamond .perk-item:hover {
+    background: rgba(0, 243, 255, 0.1);
+}
+
+.plan-card.diamond .perk-qty {
+    background: rgba(0, 243, 255, 0.12);
+    color: #00f3ff;
+    border-color: rgba(0, 243, 255, 0.3);
+}
+
+.plan-card.diamond .perk-icon {
+    filter: drop-shadow(0 0 4px rgba(0, 243, 255, 0.4));
 }
 
 /* === DYNAMIC BUTTON COLORS === */
