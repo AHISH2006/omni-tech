@@ -110,6 +110,7 @@
   border: 4px solid rgba(34, 197, 94, 0.3);
   touch-action: none;
   cursor: grab;
+  --ring-dist: -85px;
 }
 
 .omni-ring:active {
@@ -468,34 +469,49 @@
 ====================== */
 @media (max-width: 768px) {
   .omni-open {
-    width: 220px;
-    height: 220px;
+    width: 200px;
+    height: 200px;
+  }
+
+  .omni-ring {
+    --ring-dist: -75px;
   }
 
   .ring-item {
-    width: 44px;
-    height: 44px;
-    margin-left: -22px;
-    margin-top: -22px;
-    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    margin-left: -20px;
+    margin-top: -20px;
+    font-size: 18px;
   }
 
-  /* Adjust translate Y for items via JS or CSS override if possible, 
-     but JS handles rotation/translation. We rely on JS logic for spacing 
-     but can tweak icon sizes here */
-
   .holo-projector {
-    top: -140px;
-    width: 180px;
-    height: 180px;
+    top: -210px;
+    /* Moved up to clear the ring completely */
+    width: 160px;
+    height: 220px;
+    /* Increased height to give more room for beam + text */
+  }
+
+  .holo-beam {
+    height: 100%;
+  }
+
+  .holo-float {
+    margin-top: 20px;
   }
 
   .holo-icon {
-    font-size: 48px;
-    margin-top: 30px;
+    font-size: 42px;
   }
 
   .holo-text {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    margin-top: 5px;
+  }
+
+  .omni-activate {
+    width: 60px;
+    height: 60px;
   }
 }
