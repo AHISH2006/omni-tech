@@ -12,6 +12,7 @@ import iplAuction from "../assets/ipl-auction.png";
 import mindMorph from "../assets/mind-morph.png";
 import workshop1 from "../assets/workshop1.jpeg"
 import workshop2 from "../assets/workshop2.jpeg"
+import paperPresentation from "../assets/ppt.jpeg"
 
 
 export const eventsData = [
@@ -82,7 +83,8 @@ We eliminate the traditional development bottleneck, ensuring structural integri
         time: "03:30 pm - 04:00 pm",
         participation: "Team(3-4 members) / Individual",
         venue: "LH206",
-        description: 'Participants will be given an on-spot topic and a fixed time limit. They are required to search, analyze, and compile relevant information from the web and present it as a structured report in the prescribed documentation format.'},
+        description: 'Participants will be given an on-spot topic and a fixed time limit. They are required to search, analyze, and compile relevant information from the web and present it as a structured report in the prescribed documentation format.'
+    },
     {
         id: 'escape-code',
         title: 'DNA DECODE',
@@ -122,6 +124,31 @@ This event aims to enhance logical thinking, problem-solving ability, and real-t
 4. Visualizations must be accurate and clear.
 5. Evaluation will be based on data handling and visualization effectiveness.
 6. Judges’ decision will be final.`
+    },
+
+    {
+        id: 'paper-presentation',
+        title: 'PAPER PRESENTATION',
+        category: 'Technical',
+        size: 'large',
+        image: paperPresentation,
+        coordinator: "SADHANA GAYATHRI - 7871250418, SUBALAKSHMI - 9786147866",
+        time: "02:30 PM Onwards",
+        duration: "5 Minutes per Team",
+        format: "PPT Presentation + Model",
+        participation: "Team (2-3 members) / Individual",
+        venue: "LH205",
+        description: `Paper Presentation is a prestigious technical event where participants present their innovative ideas and working models on any topic related to technology. Each team gets 5 minutes to deliver their presentation and demonstrate their model to the expert panel.
+
+The event combines a PPT presentation with a physical or working model, giving participants the opportunity to showcase both their theoretical knowledge and practical implementation skills.`,
+        rules: `1. Topic must be related to any field of technology (AI, IoT, Robotics, Web, Data Science, etc.).
+2. Each team must prepare both a PPT presentation and a model (physical or working prototype).
+3. Total time per team: 5 minutes — covering explanation of the PPT and model review.
+4. Presentation must be in English.
+5. The model must be brought ready on the day of the event — no assembly time will be provided.
+6. Plagiarism or copied work will lead to immediate disqualification.
+7. Evaluation will be based on innovation, technical depth, clarity of explanation, and model effectiveness.
+8. The panel of judges' decision will be final and binding.`
     },
 
     // ======================

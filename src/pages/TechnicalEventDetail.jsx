@@ -100,6 +100,18 @@ export default function TechnicalEventDetail() {
                                 <span className="meta-label">TEAM SIZE</span>
                                 <span className="meta-value">{event.participation || "Individual"}</span>
                             </div>
+                            {event.format && (
+                                <div className="meta-item">
+                                    <span className="meta-label">FORMAT</span>
+                                    <span className="meta-value">{event.format}</span>
+                                </div>
+                            )}
+                            {event.duration && (
+                                <div className="meta-item">
+                                    <span className="meta-label">DURATION</span>
+                                    <span className="meta-value">{event.duration}</span>
+                                </div>
+                            )}
                         </div>
 
                         <div className="description-box">
