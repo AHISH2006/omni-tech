@@ -136,19 +136,17 @@ This event aims to enhance logical thinking, problem-solving ability, and real-t
         time: "02:30 PM Onwards",
         duration: "5 Minutes per Team",
         format: "PPT Presentation + Model",
-        participation: "Team (2-3 members) / Individual",
+        participation: "Team (1-4 members) / Individual",
         venue: "LH205",
         description: `Paper Presentation is a prestigious technical event where participants present their innovative ideas and working models on any topic related to technology. Each team gets 5 minutes to deliver their presentation and demonstrate their model to the expert panel.
 
 The event combines a PPT presentation with a physical or working model, giving participants the opportunity to showcase both their theoretical knowledge and practical implementation skills.`,
-        rules: `1. Topic must be related to any field of technology (AI, IoT, Robotics, Web, Data Science, etc.).
-2. Each team must prepare both a PPT presentation and a model (physical or working prototype).
+        rules: `1. Topic must be related to any field of technology.
+2. Each team must prepare both a PPT presentation and a model.
 3. Total time per team: 5 minutes — covering explanation of the PPT and model review.
-4. Presentation must be in English.
-5. The model must be brought ready on the day of the event — no assembly time will be provided.
-6. Plagiarism or copied work will lead to immediate disqualification.
-7. Evaluation will be based on innovation, technical depth, clarity of explanation, and model effectiveness.
-8. The panel of judges' decision will be final and binding.`
+4. The model must be brought ready on the day of the event.
+5. Evaluation will be based on innovation, technical depth, clarity of explanation, and model effectiveness.
+6. The panel of judges' decision will be final and binding.`
     },
 
     // ======================
