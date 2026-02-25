@@ -235,7 +235,7 @@ export default function OmnitrixNav() {
                                     key={o.id}
                                     className={`ring-item ${i === active ? "active" : ""}`}
                                     style={{
-                                        transform: `rotate(${i * step}deg) translateY(-85px) rotate(${-rotation}deg)`,
+                                        transform: `rotate(${i * step}deg) translateY(var(--ring-dist, -85px)) rotate(${-rotation}deg)`,
                                         // Counter-rotation ensures icons stay upright if desired, 
                                         // OR remove the 2nd rotation if you want them to turn with the ring.
                                         // Let's keep them upright for better readability:

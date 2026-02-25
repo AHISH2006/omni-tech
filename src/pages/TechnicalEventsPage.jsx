@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import "../styles/technical-events-carousel.css";
 import { eventsData } from "../data/eventsData";
-import Antigravity from "../components/Antigravity";
 import rotateSound from "../assets/sounds/rotate.mp3";
 
 export default function TechnicalEventsPage() {
@@ -90,7 +89,7 @@ export default function TechnicalEventsPage() {
             <div className="tech-carousel-container">
                 {/* NAVIGATION BUTTONS */}
                 <button className="carousel-btn left" onClick={handlePrev}>
-                    &#8249;
+                    
                 </button>
                 <button className="carousel-btn right" onClick={handleNext}>
                     &#8250;
