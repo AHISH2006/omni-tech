@@ -34,7 +34,7 @@ const PackagesPage = () => {
             title: 'SILVER',
             type: 'silver',
             image: silverImg,
-            members: '1 - 4',
+            
             pricePerHead: '₹250 / Head',
             link: "https://forms.gle/hg3QDxTWqon9iuVYA"
         },
@@ -43,7 +43,7 @@ const PackagesPage = () => {
             title: 'GOLD',
             type: 'gold',
             image: goldImg,
-            members: '1 - 4',
+            
             pricePerHead: '₹300 / Head',
             link: "https://docs.google.com/forms/d/e/1FAIpQLSdTGS_b-3YqGnRl0qXFBh0sgS9Q56B9dxGA-o52k1NiSg1S_g/viewform?usp=dialog"
         },
@@ -52,7 +52,6 @@ const PackagesPage = () => {
             title: 'DIAMOND',
             type: 'diamond',
             image: platinumImg,
-            members: '1 - 4',
             pricePerHead: '₹350 / Head',
             link: "https://forms.gle/vrJKrgMBqyVJZaAR8"
         }
@@ -88,15 +87,7 @@ const PackagesPage = () => {
                         <img src={pkg.image} alt={pkg.title} className="plan-image" />
 
                         {/* Team Members Badge */}
-                        <div className="plan-members-row">
-                            <span className="members-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-                                    <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
-                                </svg>
-                            </span>
-                            <span className="members-label">Team Members</span>
-                            <span className="members-count">{pkg.members}</span>
-                        </div>
+
 
                         {/* Per Head Registration */}
                         <div className="plan-price-row">
