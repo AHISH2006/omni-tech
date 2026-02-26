@@ -1,0 +1,359 @@
+/* ========== Circuit Background ========== */
+.circuit-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, #061a06 0%, #020c02 40%, #000000 100%);
+}
+
+.circuit-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* ========== Grid Lines ========== */
+.grid-lines {
+    animation: gridFadeIn 2s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes gridFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* ========== Center HUD Animations ========== */
+.core-pulse {
+    animation: corePulse 2s ease-in-out infinite;
+    transform-origin: center;
+}
+
+@keyframes corePulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        r: 12;
+    }
+
+    50% {
+        opacity: 1;
+        r: 18;
+    }
+}
+
+.ring-rotate {
+    animation: ringRotate 12s linear infinite;
+    transform-origin: 700px 400px;
+}
+
+@keyframes ringRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.ring-rotate-reverse {
+    animation: ringRotateReverse 18s linear infinite;
+    transform-origin: 700px 400px;
+}
+
+@keyframes ringRotateReverse {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+/* ========== Node Pulse ========== */
+.node-pulse {
+    animation: nodePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes nodePulse {
+
+    0%,
+    100% {
+        opacity: 0.4;
+        r: 3;
+    }
+
+    50% {
+        opacity: 1;
+        r: 6;
+    }
+}
+
+.node-pulse-slow {
+    animation: nodePulseSlow 4s ease-in-out infinite;
+}
+
+@keyframes nodePulseSlow {
+
+    0%,
+    100% {
+        opacity: 0.2;
+        r: 2;
+    }
+
+    50% {
+        opacity: 0.7;
+        r: 4;
+    }
+}
+
+/* ========== Chevron Animations ========== */
+.chevron-left-anim {
+    animation: chevronPulseLeft 1.5s ease-in-out infinite;
+}
+
+@keyframes chevronPulseLeft {
+
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.chevron-right-anim {
+    animation: chevronPulseRight 1.5s ease-in-out infinite;
+    animation-delay: 0.75s;
+}
+
+@keyframes chevronPulseRight {
+
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ========== Scanning Line ========== */
+.scan-line {
+    animation: scanLine 6s linear infinite;
+}
+
+@keyframes scanLine {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 0.2;
+    }
+
+    50% {
+        opacity: 0.12;
+    }
+
+    95% {
+        opacity: 0.2;
+    }
+
+    100% {
+        transform: translateY(800px);
+        opacity: 0;
+    }
+}
+
+/* ========== Arc Dash Animations ========== */
+.arc-dash-anim {
+    animation: arcDash 4s linear infinite;
+}
+
+.arc-dash-anim-reverse {
+    animation: arcDashReverse 4s linear infinite;
+}
+
+@keyframes arcDash {
+    from {
+        stroke-dashoffset: 0;
+    }
+
+    to {
+        stroke-dashoffset: 40;
+    }
+}
+
+@keyframes arcDashReverse {
+    from {
+        stroke-dashoffset: 0;
+    }
+
+    to {
+        stroke-dashoffset: -40;
+    }
+}
+
+/* ========== Orbiting Dot ========== */
+.orbit-dot {
+    animation: orbitDot 8s linear infinite;
+    transform-origin: 700px 400px;
+    cx: 700;
+    cy: 270;
+}
+
+@keyframes orbitDot {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ========== Data Stream / Bit Animation ========== */
+.data-bit {
+    animation: dataBitBlink 2s ease-in-out infinite;
+}
+
+.data-bit-0 {
+    animation-delay: 0s;
+}
+
+.data-bit-1 {
+    animation-delay: 0.3s;
+}
+
+.data-bit-2 {
+    animation-delay: 0.6s;
+}
+
+.data-bit-3 {
+    animation-delay: 0.9s;
+}
+
+.data-bit-4 {
+    animation-delay: 1.2s;
+}
+
+@keyframes dataBitBlink {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    20%,
+    40% {
+        opacity: 0.8;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ========== Spark Particles (dense, full page) ========== */
+.spark {
+    animation: sparkBlink 3s ease-in-out infinite;
+}
+
+.spark-0 {
+    animation-delay: 0s;
+}
+
+.spark-1 {
+    animation-delay: 0.4s;
+}
+
+.spark-2 {
+    animation-delay: 0.8s;
+}
+
+.spark-3 {
+    animation-delay: 1.2s;
+}
+
+.spark-4 {
+    animation-delay: 1.6s;
+}
+
+.spark-5 {
+    animation-delay: 2s;
+}
+
+.spark-6 {
+    animation-delay: 2.4s;
+}
+
+.spark-7 {
+    animation-delay: 2.8s;
+}
+
+@keyframes sparkBlink {
+
+    0%,
+    100% {
+        opacity: 0;
+        r: 1;
+    }
+
+    40%,
+    60% {
+        opacity: 0.7;
+        r: 1.5;
+    }
+
+    50% {
+        opacity: 1;
+        r: 2.5;
+    }
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 1024px) {
+    .circuit-bg {
+        background: radial-gradient(ellipse at center, #061a06 0%, #020c02 50%, #000000 100%);
+    }
+}
+
+@media (max-width: 768px) {
+    .circuit-svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .circuit-bg {
+        background: radial-gradient(ellipse at center, #071f07 0%, #020c02 45%, #000000 100%);
+    }
+}
+
+@media (max-width: 480px) {
+    .circuit-bg {
+        background: radial-gradient(ellipse at center, #081a08 0%, #010a01 50%, #000000 100%);
+    }
+}

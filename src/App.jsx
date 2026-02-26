@@ -36,7 +36,7 @@ function App() {
         <Route path="/packages" element={<Packages />} />
 
         {/* FALLBACK */}
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Navigate to="/home" replace />} />
       </Routes>
 
       {/* COMMON OMNITRIX NAV - Shows on all pages except intro */}
@@ -46,7 +46,7 @@ function App() {
       <GlobalAudio />
 
       {/* CHATBOT WIDGET - Shows on all pages */}
-     {!isIntroPage && <ChatbotWidget />} 
+      {!isIntroPage && <ChatbotWidget />}
     </div>
   );
 }

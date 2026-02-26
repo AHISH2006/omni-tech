@@ -1,4 +1,10 @@
 /* About Page Styles - OMNI TECH Sci-Fi Theme */
+
+/* Make CircuitBackground transparent inside About page */
+.about-page .circuit-bg {
+  background: transparent;
+}
+
 .about-page {
   max-width: 1200px;
   margin: 4rem auto;

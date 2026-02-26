@@ -14,7 +14,7 @@ const OPTIONS = [
     { id: "workshops", label: "WORKSHOPS", icon: "⚙️" },
     { id: "technical", label: "TECHNICAL", icon: "⚡" },
     { id: "non-technical", label: "NON-TECHNICAL", icon: "🎮" },
-    { id: "schedule", label: "SCHEDULE", icon: "📅" },
+    { id: "schedule", label: "SCHEDULE", icon: "🗓️" },
     { id: "packages", label: "PACKAGES", icon: "💎" },
 ]
 export default function OmnitrixNav() {
@@ -28,6 +28,13 @@ export default function OmnitrixNav() {
     const rotateAudio = useRef(new Audio(rotateSound))
     const activateAudio = useRef(new Audio(activateSound))
     const ringRef = useRef(null)
+
+    // Helper: only play audio if user allowed it from intro page
+    const playAudio = (audioRef) => {
+        if (localStorage.getItem("omni_audio_allowed") === "false") return
+        audioRef.current.currentTime = 0
+        audioRef.current.play().catch(() => { })
+    }
 
     // Using refs for drag state to avoid stale closures in event listeners
     const dragging = useRef(false)
@@ -121,8 +128,7 @@ export default function OmnitrixNav() {
         const finalIndex = ((index % OPTIONS.length) + OPTIONS.length) % OPTIONS.length
 
         // Play sound on snap
-        rotateAudio.current.currentTime = 0
-        rotateAudio.current.play()
+        playAudio(rotateAudio)
         setActive(finalIndex)
     }
 
@@ -141,8 +147,7 @@ export default function OmnitrixNav() {
 
     /* 🔄 Arrow Button Rotate */
     const rotate = (dir) => {
-        rotateAudio.current.currentTime = 0
-        rotateAudio.current.play()
+        playAudio(rotateAudio)
 
         const newIndex = (active + dir + OPTIONS.length) % OPTIONS.length
         setActive(newIndex)
@@ -152,15 +157,13 @@ export default function OmnitrixNav() {
     }
 
     const activate = () => {
-        activateAudio.current.currentTime = 0
-        activateAudio.current.play()
+        playAudio(activateAudio)
         setOpen(false)
         navigate(`/${OPTIONS[active].id}`)
     }
 
     const handleOpen = () => {
-        rotateAudio.current.currentTime = 0
-        rotateAudio.current.play()
+        playAudio(rotateAudio)
         setOpen(true)
         setHasOpened(true)
     }
@@ -168,8 +171,7 @@ export default function OmnitrixNav() {
     const handleItemClick = (index) => {
         if (index === active) return
 
-        rotateAudio.current.currentTime = 0
-        rotateAudio.current.play()
+        playAudio(rotateAudio)
 
         setActive(index)
         const targetRot = -index * step

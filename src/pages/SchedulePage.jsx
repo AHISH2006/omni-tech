@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import CircuitBackground from '../components/CircuitBackground';
 import '../styles/schedule.css';
 
 const scheduleData = [
@@ -15,6 +16,7 @@ const scheduleData = [
     { time: "1:30 PM - 2:25 PM", title: "LUNCH BREAK", type: "common" },
     { time: "2:25 PM - 3:30 PM", title: "MIND MORPH CHALLENGE", type: "non-tech" },
     { time: "2:30 PM Onwards", title: "WEB APP DEV WITH STREAMLIT", type: "workshop" },
+    { time: "2:30 PM Onwards", title: "PAPER PRESENTATION", type: "tech" },
     { time: "2:25 PM - 3:30 PM", title: "DNA DECODE", type: "tech" },
     { time: "2:30 PM - 4:10 PM", title: "DNA HUNT", type: "non-tech" },
     { time: "2:30 PM - 4:10 PM", title: "DATA SPECTRUM", type: "tech" },
@@ -25,6 +27,7 @@ const scheduleData = [
 const SchedulePage = () => {
     return (
         <div className="schedule-page">
+            <CircuitBackground />
 
             <div className="schedule-content">
                 <h1 className="schedule-title">EVENT SCHEDULE</h1>
@@ -43,10 +46,9 @@ const SchedulePage = () => {
                         <motion.div
                             key={index}
                             className={`timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            initial={{ opacity: 0, y: -30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4, delay: index * 0.08 }}
                         >
                             <div className="timeline-content">
                                 <div className={`event-card-inner ${event.type}`}>

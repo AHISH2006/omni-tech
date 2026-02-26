@@ -28,6 +28,8 @@ import panelist8 from "../assets/panelist8.jpeg"
 import panelist9 from "../assets/panelist9.jpeg"
 import panelist10 from "../assets/panelist10.jpeg"
 import cheifguest from "../assets/cheifguest.png"
+import panelist11 from "../assets/panelist11.jpeg"
+
 export default function HomePage() {
   const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(null);
@@ -528,9 +530,17 @@ const speakersData = [
     description: "CoolFire Media",
 
   },
+    {
+    id: '11',
+    name: "KAMAL S",
+    dept: "Full Stack Developer - Techno Turf",
+    image: panelist11,
+    description: "Entrepreneur – Shiva Industries, Retro Tourism, Rest in Peace Cafe",
+
+  },
   {
     id: '10',
-    name: "Mr. JOEL JESU ROY M",
+    name: "Prof. JOEL JESU ROY M",
     dept: "Head - Training & Placement Cell",
     image: panelist10,
 
@@ -538,21 +548,21 @@ const speakersData = [
   },
   {
     id: 1,
-    name: "Mrs. C. Eyamini, M.E. (Ph.D)",
+    name: "Prof. C. Eyamini, M.E. (Ph.D)",
     dept: "SCE - AP | DEPT. - AI&DS",
     image: panelist7,
     description: "Expertise: Data Science and Cybersecurity"
   },
   {
     id: 2,
-    name: "Mr. C. Vignesh Manikandan, M.E",
+    name: "prof. C. Vignesh Manikandan, M.E",
     dept: "SCE - AP | DEPT. - AI&DS",
     image: panelist2,
     description: "Expertise: Data Analytics"
   },
   {
     id: 3,
-    name: "Mrs. C. Rajanayaki @ Sindhuja, M.E",
+    name: "prof. C. Rajanayaki @ Sindhuja, M.E",
     dept: "SCE - AP | DEPT. - AI&DS",
     image: panelist3,
     description: "Expertise: Computer Vision and Artificial Intelligence"
@@ -560,28 +570,28 @@ const speakersData = [
 
   {
     id: 4,
-    name: "Mrs. Suganya A, M.E., M.B.A",
+    name: "prof. Suganya A, M.E., M.B.A",
     dept: "SCE - AP | DEPT. - IT",
     image: panelist5,
     description: "Expertise: Networks"
   },
   {
     id: 5,
-    name: "Mr. S. Sivaraja, M.E",
+    name: "prof. S. Sivaraja, M.E",
     dept: "SCE - AP | DEPT. - AI&DS",
     image: panelist6,
     description: "Expertise: Cloud Computing"
   },
   {
     id: 6,
-    name: "Ms. Gayathri.S , M.E.",
+    name: "prof. Gayathri.S , M.E.",
     dept: "SCE - AP | DEPT. - IT",
     image: panelist4,
     description: "Expertise: Networks"
   },
   {
     id: 7,
-    name: "Mrs. K. Kanakambal , M.E",
+    name: "prof. K. Kanakambal , M.E",
     dept: "SCE - AP | DEPT. - AI&DS",
     image: panelist1,
     description: "Expertise: Computer Science"

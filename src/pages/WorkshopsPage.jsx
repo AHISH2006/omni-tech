@@ -16,9 +16,11 @@ export default function WorkshopsPage() {
     const audioRef = useRef(new Audio(rotateSound));
 
     useEffect(() => {
-        // Play sound whenever currentIndex changes
-        audioRef.current.currentTime = 0;
-        audioRef.current.play().catch(e => console.log("Audio play failed (user interaction needed):", e));
+        // Play sound whenever currentIndex changes (respect mute)
+        if (localStorage.getItem("omni_audio_allowed") !== "false") {
+            audioRef.current.currentTime = 0;
+            audioRef.current.play().catch(() => { });
+        }
     }, [currentIndex]);
 
     const handleNext = () => {

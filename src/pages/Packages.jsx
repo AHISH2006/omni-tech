@@ -10,9 +10,10 @@ const PackagesPage = () => {
     const activateAudio = useRef(new Audio(activateSound));
 
     const playClick = () => {
-        activateAudio.current.currentTime = 0;
-        activateAudio.current.play().catch(e => console.log("Audio play failed", e));
-        console.log("Plan Selected");
+        if (localStorage.getItem("omni_audio_allowed") !== "false") {
+            activateAudio.current.currentTime = 0;
+            activateAudio.current.play().catch(() => { });
+        }
     };
 
     const handleRegister = (link) => {
@@ -34,7 +35,7 @@ const PackagesPage = () => {
             title: 'SILVER',
             type: 'silver',
             image: silverImg,
-            
+
             pricePerHead: '₹250 / Head',
             link: "https://forms.gle/hg3QDxTWqon9iuVYA"
         },
@@ -43,7 +44,7 @@ const PackagesPage = () => {
             title: 'GOLD',
             type: 'gold',
             image: goldImg,
-            
+
             pricePerHead: '₹300 / Head',
             link: "https://docs.google.com/forms/d/e/1FAIpQLSdTGS_b-3YqGnRl0qXFBh0sgS9Q56B9dxGA-o52k1NiSg1S_g/viewform?usp=dialog"
         },

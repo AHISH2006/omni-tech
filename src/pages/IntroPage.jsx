@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -12,15 +12,24 @@ export default function IntroPage() {
   const [showAudioModal, setShowAudioModal] = useState(false);
   const navigate = useNavigate();
 
+  // If intro was already seen this session, skip it entirely
+  useEffect(() => {
+    if (sessionStorage.getItem('omni_intro_seen')) {
+      navigate('/home', { replace: true });
+    }
+  }, [navigate]);
+
   const handleActivateClick = () => {
     // Show modal instead of immediate navigation
     setShowAudioModal(true);
   };
 
   const handleAudioChoice = (allowed) => {
-    // 1. Play effect sound
-    const audio = new Audio(heroTimeSound);
-    audio.play().catch(error => console.log("Audio playback failed:", error));
+    // 1. Play effect sound only if user allowed audio
+    if (allowed) {
+      const audio = new Audio(heroTimeSound);
+      audio.play().catch(error => console.log("Audio playback failed:", error));
+    }
 
     // 2. Save preference
     localStorage.setItem("omni_audio_allowed", allowed.toString());
@@ -33,8 +42,11 @@ export default function IntroPage() {
     setShowAudioModal(false);
 
     // 5. Navigate after delay
+    // Mark intro as seen so it won't show again this session
+    sessionStorage.setItem('omni_intro_seen', 'true');
+
     setTimeout(() => {
-      navigate("/home");
+      navigate("/home", { replace: true });
     }, 2000);
   };
 

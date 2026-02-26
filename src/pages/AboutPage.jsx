@@ -1,4 +1,5 @@
 import '../styles/about.css'
+import CircuitBackground from '../components/CircuitBackground'
 import deptLogo from '../assets/dept-logo-1.png'
 import deptLogo2 from '../assets/dept-logo-2.png'
 import Antigravity from '../components/Antigravity'
@@ -9,6 +10,8 @@ import presidentImg from '../assets/president.jpeg'
 export default function AboutPage() {
   return (
     <main className="about-page">
+      <CircuitBackground />
+
 
       <header className="about-hero">
         <div className="hero-content">

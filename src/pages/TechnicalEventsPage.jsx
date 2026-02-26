@@ -20,9 +20,11 @@ export default function TechnicalEventsPage() {
     const audioRef = useRef(new Audio(rotateSound));
 
     useEffect(() => {
-        // Play sound whenever activeIndex changes
-        audioRef.current.currentTime = 0;
-        audioRef.current.play().catch(e => console.log("Audio play failed (user interaction needed):", e));
+        // Play sound whenever activeIndex changes (respect mute)
+        if (localStorage.getItem("omni_audio_allowed") !== "false") {
+            audioRef.current.currentTime = 0;
+            audioRef.current.play().catch(() => { });
+        }
     }, [activeIndex]);
 
     const handleNext = () => {
