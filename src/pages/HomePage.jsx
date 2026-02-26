@@ -27,6 +27,7 @@ import panelist7 from "../assets/panelist7.png";
 import panelist8 from "../assets/panelist8.jpeg"
 import panelist9 from "../assets/panelist9.jpeg"
 import panelist10 from "../assets/panelist10.jpeg"
+import cheifguest from "../assets/cheifguest.png"
 export default function HomePage() {
   const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(null);
@@ -278,6 +279,76 @@ export default function HomePage() {
       </section>
 
       {/* =========================
+          CHIEF GUEST SECTION
+          ========================= */}
+      <section id="chief-guest-section" className="chief-guest-section">
+        <motion.div
+          className="cg-section-header"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <h2 className="events-title">CHIEF GUEST</h2>
+          <p className="events-subtitle">Gracing the Occasion With Their Presence</p>
+        </motion.div>
+
+        <div className="cg-card-wrapper">
+          {chiefGuestData.map((guest, i) => (
+            <motion.div
+              key={i}
+              className="cg-card"
+              initial={{ opacity: 0, y: 60, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: i * 0.15 }}
+              whileHover={{ scale: 1.04, y: -8 }}
+            >
+              {/* Animated border shimmer */}
+              <div className="cg-border-shimmer" />
+
+              {/* Photo */}
+              <div className="cg-photo-ring">
+                <img
+                  src={guest.image || `https://placehold.co/320x320/001a00/39ff14?text=${encodeURIComponent(guest.name)}`}
+                  alt={guest.name}
+                  className="cg-photo"
+                />
+                <div className="cg-scan-line" />
+              </div>
+
+              {/* Badge */}
+              <div className="cg-badge">Software Developer</div>
+
+              {/* Info */}
+              <div className="cg-info">
+                <h3 className="cg-name">{guest.name}</h3>
+                <p className="cg-designation">{guest.designation}</p>
+                <p className="cg-org">{guest.organization}</p>
+                {guest.topic && (
+                  <p className="cg-topic">Topic: <span>{guest.topic}</span></p>
+                )}
+                {guest.linkedin && (
+                  <a
+                    href={guest.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cg-linkedin-link"
+                  >
+                    <Linkedin size={22} />
+                    <span>Connect on LinkedIn</span>
+                  </a>
+                )}
+              </div>
+
+              {/* Bottom glow bar */}
+              <div className="cg-glow-bar" />
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* =========================
           SPEAKERS & PANELISTS SECTION
           ========================= */}
       <section id="speakers-section" className="speakers-section">
@@ -403,6 +474,17 @@ export default function HomePage() {
   );
 }
 
+const chiefGuestData = [
+  {
+    name: "Rajkumar P Palanisamy",
+    designation: "Specialist | 12+ Years of IT Experience",
+    organization: "Bosch Global Software Technologies",
+    topic: ".NET, Process Automations & Power Platform",
+    image: cheifguest,
+    linkedin: "https://in.linkedin.com/in/rajkumar-p-palanisamy-51136418",
+  },
+];
+
 const associationHeadsIT = [
   { name: 'ANU J', role: 'PRESIDENT', number: '+91 6381313958' },
   { name: 'GNANA KAYANA C', role: 'SECRETARY', number: '+91 8668044227' },
@@ -429,14 +511,7 @@ const websiteDevelopers = [
 ];
 
 const speakersData = [
-  {
-    id: '10',
-    name: "Mr. JOEL JESU ROY M",
-    dept: "Head - Training & Placement Cell",
-    image:panelist10,
-    
 
-  },
   {
     id: '8',
     name: "SACHIN NANDHA SABARISH . J",
@@ -451,6 +526,14 @@ const speakersData = [
     dept: "Video Creator/ Editor",
     image: panelist9,
     description: "CoolFire Media",
+
+  },
+  {
+    id: '10',
+    name: "Mr. JOEL JESU ROY M",
+    dept: "Head - Training & Placement Cell",
+    image: panelist10,
+
 
   },
   {

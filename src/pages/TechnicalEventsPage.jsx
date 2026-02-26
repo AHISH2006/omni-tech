@@ -11,7 +11,12 @@ export default function TechnicalEventsPage() {
     // Filter only technical events
     const technicalEvents = eventsData.filter(e => e.category === 'Technical');
 
-    const [activeIndex, setActiveIndex] = useState(Math.floor(technicalEvents.length / 2));
+    const savedIndex = parseInt(sessionStorage.getItem("techEventsActiveIndex"), 10);
+    const [activeIndex, setActiveIndex] = useState(
+        !isNaN(savedIndex) && savedIndex < technicalEvents.length
+            ? savedIndex
+            : Math.floor(technicalEvents.length / 2)
+    );
     const audioRef = useRef(new Audio(rotateSound));
 
     useEffect(() => {
@@ -21,11 +26,19 @@ export default function TechnicalEventsPage() {
     }, [activeIndex]);
 
     const handleNext = () => {
-        setActiveIndex((prev) => (prev + 1) % technicalEvents.length);
+        setActiveIndex((prev) => {
+            const next = (prev + 1) % technicalEvents.length;
+            sessionStorage.setItem("techEventsActiveIndex", next);
+            return next;
+        });
     };
 
     const handlePrev = () => {
-        setActiveIndex((prev) => (prev - 1 + technicalEvents.length) % technicalEvents.length);
+        setActiveIndex((prev) => {
+            const next = (prev - 1 + technicalEvents.length) % technicalEvents.length;
+            sessionStorage.setItem("techEventsActiveIndex", next);
+            return next;
+        });
     };
 
     // Keyboard navigation
@@ -88,11 +101,11 @@ export default function TechnicalEventsPage() {
             {/* CAROUSEL CONTAINER */}
             <div className="tech-carousel-container">
                 {/* NAVIGATION BUTTONS */}
-                <button className="carousel-btn left" onClick={handlePrev}>
-                    
+                <button className="carouselbtn left" onClick={handlePrev}>
+                    &#9664;
                 </button>
-                <button className="carousel-btn right" onClick={handleNext}>
-                    &#8250;
+                <button className="carouselbtn right" onClick={handleNext}>
+                    &#9654;
                 </button>
 
                 {/* ITEMS */}
@@ -124,6 +137,7 @@ export default function TechnicalEventsPage() {
                                             navigate(`/technical/${event.id}`);
                                         } else {
                                             setActiveIndex(index);
+                                            sessionStorage.setItem("techEventsActiveIndex", index);
                                         }
                                     }}
                                 >
