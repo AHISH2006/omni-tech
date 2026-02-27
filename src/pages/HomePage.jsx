@@ -479,7 +479,7 @@ export default function HomePage() {
 const chiefGuestData = [
   {
     name: "Rajkumar P Palanisamy",
-    designation: "Specialist | 12+ Years of IT Experience",
+    designation: "Specialist | 15+ Years of IT Experience",
     organization: "Bosch Global Software Technologies",
     topic: ".NET, Process Automations & Power Platform",
     image: cheifguest,
