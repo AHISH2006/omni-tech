@@ -5,6 +5,7 @@ import goldImg from '../assets/gold-package-new.png';
 import platinumImg from '../assets/diamond-package-new.png'; // Using diamond image for Platinum
 import silverImg from '../assets/silver-package-new.jpeg';
 import Antigravity from '../components/Antigravity';
+import CircuitBackground from '../components/CircuitBackground';
 
 const PackagesPage = () => {
     const activateAudio = useRef(new Audio(activateSound));
@@ -60,6 +61,7 @@ const PackagesPage = () => {
 
     return (
         <div className="packages-container">
+            <CircuitBackground/>
             <Antigravity
                 count={150}
                 magnetRadius={15}
