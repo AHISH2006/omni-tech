@@ -137,7 +137,7 @@ This event aims to enhance logical thinking, problem-solving ability, and real-t
         duration: "5 Minutes per Team",
         format: "PPT Presentation + Model",
         participation: "Team (1-4 members) / Individual",
-        venue: "Common Room",
+        venue: "Seminar Hall",
         description: `Paper Presentation is a prestigious technical event where participants present their innovative ideas and working models on any topic related to technology. Each team gets 5 minutes to deliver their presentation and demonstrate their model to the expert panel.
 
 The event combines a PPT presentation with a physical or working model, giving participants the opportunity to showcase both their theoretical knowledge and practical implementation skills.`,
@@ -173,7 +173,7 @@ The event combines a PPT presentation with a physical or working model, giving p
         coordinator: "DINESH - 7806879335, GUNA - 8122572420, KAMAL - 9943043274",
         time: "11:00 am - 01:20 pm",
         participation: "Team (3–4 members only)",
-        venue: "Seminar Hall",
+        venue: "Common Room",
         description: `IPL Auction is a fun and interactive event inspired by the Indian Premier League auction, where participants act as team owners and bid on players using a fixed virtual budget to form a balanced team. The event tests strategic thinking, budgeting, teamwork, and quick decision-making.`,
         rules: `• Each team is given a fixed virtual budget that must not be exceeded.
 • Players are auctioned one at a time, and bids once placed cannot be withdrawn.
