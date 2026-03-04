@@ -29,6 +29,7 @@ import panelist9 from "../assets/panelist9.jpeg"
 import panelist10 from "../assets/panelist10.jpeg"
 import cheifguest from "../assets/cheifguest.png"
 import panelist11 from "../assets/panelist11.jpeg"
+import panelist12 from "../assets/panelist12.png"
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -513,7 +514,15 @@ const websiteDevelopers = [
 ];
 
 const speakersData = [
+  {
+    id: '12',
+    name: "Dr.K.Karuppasamy M.E.,Ph.D",
+    dept: "Professor & Head Department of Computer Science and Engineering",
+    image: panelist12,
+    description: "RVS College of Engineering and Technology"
 
+
+  },
   {
     id: '8',
     name: "SACHIN NANDHA SABARISH . J",
@@ -530,7 +539,7 @@ const speakersData = [
     description: "CoolFire Media",
 
   },
-    {
+  {
     id: '11',
     name: "KAMAL S",
     dept: "Full Stack Developer - Techno Turf",

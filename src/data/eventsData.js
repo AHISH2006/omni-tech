@@ -2,7 +2,7 @@ import webtrixBuilder from "../assets/webtrix-builder.png";
 import botrixBuilter from "../assets/botrix-builter.png";
 import cosmicVision from "../assets/cosmic-vision.png";
 import glanticIntel from "../assets/glantic-intel.jpeg";
-import dnaDecode from "../assets/dna-decode.jpeg";
+import dnaDecode from "../assets/dna-decode.png";
 import dataSpectrum from "../assets/data-spectrum.png";
 import battleArena from "../assets/battle-arena.png";
 import neural from "../assets/neural-nexus.png"
@@ -59,9 +59,9 @@ We eliminate the traditional development bottleneck, ensuring structural integri
         size: 'medium',
         image: cosmicVision,
         coordinator: "HARIDAS - 9080253396, KAVYA SHREE - 6381487932",
-        time: "12:00 pm - 01:00 pm",
+        time: "02:30 pm onwards",
         participation: "Team (1-2 members only)",
-        venue: "LH205",
+        venue: "Common Room",
         description: `This event showcases pre-created videos developed using AI and/or VR technologies. Participants will present their work during the event.`,
         rules: `1. Videos must be created prior to the event using AI and/or VR tools.
 2. The video must be original and not submitted to any other event.
@@ -133,11 +133,11 @@ This event aims to enhance logical thinking, problem-solving ability, and real-t
         size: 'large',
         image: paperPresentation,
         coordinator: "SADHANA GAYATHRI - 7871250418, SUBALAKSHMI - 9786147866",
-        time: "02:30 PM Onwards",
+        time: "11:00 AM Onwards",
         duration: "5 Minutes per Team",
         format: "PPT Presentation + Model",
         participation: "Team (1-4 members) / Individual",
-        venue: "LH205",
+        venue: "Common Room",
         description: `Paper Presentation is a prestigious technical event where participants present their innovative ideas and working models on any topic related to technology. Each team gets 5 minutes to deliver their presentation and demonstrate their model to the expert panel.
 
 The event combines a PPT presentation with a physical or working model, giving participants the opportunity to showcase both their theoretical knowledge and practical implementation skills.`,
