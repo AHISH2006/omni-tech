@@ -5,22 +5,24 @@ import '../styles/schedule.css';
 
 const scheduleData = [
     { time: "11:00 AM - 1:30 PM", title: "M1 BATTLE ARENA", type: "non-tech" },
-    { time: "11:00 AM - 1:20 PM", title: "IPL AUCTION", type: "non-tech" },
-    { time: "11:00 AM - 1:00 PM", title: "WEBTRIX REBUILD", type: "tech" },
-    { time: "11:00 AM - 11:20 PM", title: "FREAKY LENS (INSTRUCTIONS)", type: "non-tech" },
-    { time: "11:20 AM - 12:20 PM", title: "NEURAL NEXUS", type: "non-tech" },
-    { time: "11:20 AM - 12:20 PM", title: "BOTTRIX BUILDER", type: "tech" },
+    { time: "11:00 AM - 1:30 PM", title: "IPL AUCTION", type: "non-tech" },
+    { time: "11:00 AM - 1:30 PM", title: "WEBTRIX REBUILD", type: "tech" },
+    { time: "11:00 AM - 1:00 PM", title: "FREAKY LENS(Instruction and Finalizing) ", type: "non-tech" },
+    { time: "11:00 AM - 1:30 PM", title: "BOTTRIX BUILDER", type: "tech" },
+    { time: "11:00 AM - 1:30 pm", title: "PAPER PRESENTATION", type: "tech" },
+    { time: "2:30 AM - 4:00 PM", title: "NEURAL NEXUS", type: "non-tech" },
+    
     { time: "11:00 AM Onwards", title: "MOBILE APP DEV WITH FLUTTER", type: "workshop" },
-    { time: "02:30 PM Onwards", title: "COSMIC VISION", type: "tech" },
+    { time: "02:30 PM - 4:00 PM", title: "COSMIC VISION", type: "tech" },
     { time: "12:20 PM - 1:00 PM", title: "FREAKY LENS (FINALIZING)", type: "non-tech" },
     { time: "1:30 PM - 2:25 PM", title: "LUNCH BREAK", type: "common" },
     { time: "2:30 PM - 3:30 PM", title: "MIND MORPH CHALLENGE", type: "non-tech" },
     { time: "2:30 PM Onwards", title: "WEB APP DEV WITH STREAMLIT", type: "workshop" },
-    { time: "11:00 AM Onwards", title: "PAPER PRESENTATION", type: "tech" },
+    
     { time: "2:30 PM - 3:30 PM", title: "DNA DECODE", type: "tech" },
-    { time: "2:30 PM - 3:30 PM", title: "DNA HUNT", type: "non-tech" },
-    { time: "2:30 PM - 3:30 PM", title: "DATA SPECTRUM", type: "tech" },
-    { time: "3:30 PM - 4:00 PM", title: "GALACTIC INTEL HUNT", type: "tech" },
+    { time: "2:30 PM - 4:00 PM", title: "DNA HUNT", type: "non-tech" },
+    { time: "2:30 PM - 4:00 PM", title: "DATA SPECTRUM", type: "tech" },
+    { time: "2:30 PM - 4:00 PM", title: "GALACTIC INTEL HUNT", type: "tech" },
     { time: "4:10 PM ONWARDS", title: "VALEDICTORY", type: "common" },
 ];
 

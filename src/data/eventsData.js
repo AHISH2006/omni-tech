@@ -26,7 +26,7 @@ export const eventsData = [
         size: 'large',
         image: webtrixBuilder,
         coordinator: "ELANGO P - 9597617402, NAVEEN M S - 6379479890",
-        time: "11:00 am - 01:00pm",
+        time: "11:00 am - 01:30pm",
         participation: "Team (2-4 members only)",
         venue: "AI & DS LAB",
         description: `Deploy a high-fidelity digital twin of provided web architecture in two hours. Our "Vibe Coding" methodology fuses rapid-response engineering with premium aesthetic standards to deliver flawless, production-ready environments with unmatched speed.
@@ -40,9 +40,9 @@ We eliminate the traditional development bottleneck, ensuring structural integri
         size: 'medium',
         image: botrixBuilter,
         coordinator: "KESAV ADITHYA - 9363294125, PREETHI - 8610224428",
-        time: "11:20 am - 12:20 pm",
+        time: "11:00 - 01:30 pm",
         participation: "Team (1-2 members only)",
-        venue: "Data Analytics Lab",
+        venue: "IT Lab",
         description: `This event focuses on designing and developing a functional chatbot that can respond to user queries effectively based on a given problem statement.`,
         rules: `1. A problem statement will be provided on the spot.
 2. The chatbot must be developed during the event.
@@ -59,9 +59,9 @@ We eliminate the traditional development bottleneck, ensuring structural integri
         size: 'medium',
         image: cosmicVision,
         coordinator: "HARIDAS - 9080253396, KAVYA SHREE - 6381487932",
-        time: "02:30 pm onwards",
+        time: "02:30 pm - 03:30pm  onwards",
         participation: "Team (1-2 members only)",
-        venue: "Common Room",
+        venue: "Common Hall",
         description: `This event showcases pre-created videos developed using AI and/or VR technologies. Participants will present their work during the event.`,
         rules: `1. Videos must be created prior to the event using AI and/or VR tools.
 2. The video must be original and not submitted to any other event.
@@ -80,9 +80,9 @@ We eliminate the traditional development bottleneck, ensuring structural integri
         size: 'large',
         image: glanticIntel,
         coordinator: "KARTHIKEYAN.B - 7339181902, ANITHA - 9342596175",
-        time: "03:30 pm - 04:00 pm",
+        time: "02:30 pm - 04:00 pm",
         participation: "Team(3-4 members) / Individual",
-        venue: "LH206",
+        venue: "LH201",
         description: 'Participants will be given an on-spot topic and a fixed time limit. They are required to search, analyze, and compile relevant information from the web and present it as a structured report in the prescribed documentation format.'
     },
     {
@@ -97,7 +97,9 @@ We eliminate the traditional development bottleneck, ensuring structural integri
         venue: "AI & DS LAB",
         description: `Escape Code is a technical event focused on testing participants’ programming and debugging skills. In this challenge, participants will be provided with a problem statement along with error-filled code. The task is to analyze, identify, and correct the errors in the given program to produce the correct output.
 
-This event aims to enhance logical thinking, problem-solving ability, and real-time debugging skills. Only participants who successfully debug the code and generate accurate results will complete the challenge.`,
+This event aims to enhance logical thinking, problem-solving ability, and real-time debugging skills. Only participants who successfully debug the code and generate accurate results will complete the challenge.
+
+Note: The code is based on Python.`,
         rules: `1. Participants must solve the given problems independently using their own knowledge and skills.
 2. The use of any AI tools or platforms (such as ChatGPT, Copilot, or similar services) is strictly prohibited.
 3. Participants are not allowed to use search engines, online platforms, or external websites to find solutions.
@@ -114,7 +116,7 @@ This event aims to enhance logical thinking, problem-solving ability, and real-t
         size: 'medium',
         image: dataSpectrum,
         coordinator: "VISHWANATHAN - 6381103509, NANDINI - 9003942936",
-        time: "02:30 pm - 03:30 pm",
+        time: "02:30 pm - 04:00 pm",
         participation: "Team(2-3 members only)",
         venue: "Data Analytics Lab",
         description: `Participants will be given on-spot dirty or mismatched datasets and must clean, analyze, and visualize the data. Visualizations should be created based on panelists’ requirements and presented during the event.`,
@@ -133,7 +135,7 @@ This event aims to enhance logical thinking, problem-solving ability, and real-t
         size: 'large',
         image: paperPresentation,
         coordinator: "SADHANA GAYATHRI - 7871250418, SUBALAKSHMI - 9786147866",
-        time: "11:00 AM Onwards",
+        time: "11:00 - 01:30pm",
         duration: "5 Minutes per Team",
         format: "PPT Presentation + Model",
         participation: "Team (1-4 members) / Individual",
@@ -159,9 +161,9 @@ The event combines a PPT presentation with a physical or working model, giving p
         size: 'medium',
         image: neural,
         coordinator: "JAYASRI - 8667803947, PRABHU - 9080523755",
-        time: "11:20 am - 12:20 pm",
+        time: "2:30 pm - 04:00 pm",
         participation: "Team(3-4 members) / Individual",
-        venue: "LH206",
+        venue: "Seminar Hall",
         description: `Connection is a fun, interactive, non-technical event that challenges participants to identify logical links between given images, words, or clues, enhancing observation skills, creative thinking, teamwork, and quick decision-making while delivering an engaging and enjoyable competitive experience.`
     },
     {
@@ -171,9 +173,9 @@ The event combines a PPT presentation with a physical or working model, giving p
         size: 'large',
         image: iplAuction,
         coordinator: "DINESH - 7806879335, GUNA - 8122572420, KAMAL - 9943043274",
-        time: "11:00 am - 01:20 pm",
+        time: "11:00 am - 01:30 pm",
         participation: "Team (3–4 members only)",
-        venue: "Common Room",
+        venue: "Common Hall",
         description: `IPL Auction is a fun and interactive event inspired by the Indian Premier League auction, where participants act as team owners and bid on players using a fixed virtual budget to form a balanced team. The event tests strategic thinking, budgeting, teamwork, and quick decision-making.`,
         rules: `• Each team is given a fixed virtual budget that must not be exceeded.
 • Players are auctioned one at a time, and bids once placed cannot be withdrawn.
@@ -217,7 +219,7 @@ This game can be played either individually or as a team, which will be decided 
         size: 'medium',
         image: dnaHunter,
         coordinator: "HARINI - 9344822595, KAVIARASI - 8682915728",
-        time: "02:30 pm - 03:30 pm",
+        time: "02:30 pm - 04:00 pm",
         participation: "Team (4-5 members only)",
         venue: "LH102",
         description: `DNA HUNT (Treasure Hunt) is an exciting team-based game where participants solve clues and complete tasks to reach the final objective, testing their problem-solving skills and teamwork.`
@@ -229,7 +231,7 @@ This game can be played either individually or as a team, which will be decided 
         size: 'medium',
         image: freakyLens,
         coordinator: "KRISHNA KUMAR - 9600396542, SURYA - 9360623439",
-        time: "11:00am - 11:20pm & 12:20pm - 01:00pm",
+        time: "11:00am - 01:00pm",
         participation: "Individual",
         venue: "LH205",
         rules: `• Don't use DSLR Camera
@@ -252,7 +254,7 @@ This game can be played either individually or as a team, which will be decided 
         speaker: "Mrs. C. Eyamini, M.E. (Ph.D)",
         time: "11:00 am Onwards",
         participation: "Individual",
-        venue: "IT LAB",
+        venue: "Data Analytics Lab , Second Floor",
         description: `Explore the world of cross-platform mobile app development with Flutter.
         
 • Introduction to Mobile App
@@ -273,7 +275,7 @@ This game can be played either individually or as a team, which will be decided 
         image: workshop2, // Placeholder will be used
         coordinator: "T. MANOJI - 8248207843",
         speaker: "Mr. C Vignesh Manikandan M.E",
-        time: "02:30 pm Onwards",
+        time: "02:30 pm - 04:00 pm",
         participation: "Individual",
         venue: "IT LAB",
         description: `Build data-driven web apps in minutes with Streamlit.
